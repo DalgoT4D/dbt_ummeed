@@ -22,6 +22,9 @@ snapshot-paths: ["snapshots"]
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
+  
+flags:
+  require_explicit_package_overrides_for_builtin_materializations: false  # Allow packages to override materializations
 
 
 # Configuring models
@@ -35,3 +38,6 @@ models:
     # Config indicated by + and applies to all files under models/example/
     example:
       +materialized: view
+      
+  elementary:
+    +schema: "elementary"
