@@ -7,6 +7,7 @@ SELECT
     mrno,
     gender,
     diagnosis,
+    mobileno AS mobile_no,
     fatherage AS father_age,
     plan_name AS plan_name,
     fathercity AS father_city,
