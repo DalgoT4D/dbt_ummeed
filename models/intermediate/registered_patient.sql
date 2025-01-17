@@ -8,6 +8,8 @@ SELECT
     gender,
     diagnosis,
     mobileno AS mobile_no,
+    fatherphone as father_phone,
+    motherphone as mother_phone,
     fatherage AS father_age,
     plan_name AS plan_name,
     fathercity AS father_city,
