@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: source_ummeed_ict_health
+    schema: ict_health_staging
+    tables:
+      - name: registered_patient
+        identifier: registeredPatient
+        description: registered patient on ICT health app
+
+  - name: source_ummeed_synergy_connect
+    schema: staging_synergy_connect 
+    tables:
+      - name: participant_impact
+        identifier: Participant_Impact
+        description: participant details from synergy connect app
