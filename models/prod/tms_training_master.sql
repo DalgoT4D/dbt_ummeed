@@ -1,26 +1,27 @@
 {{ config(materialized='table') }}
 
 
-WITH categorized_data AS (
-    SELECT
-        start_date AS training_month,
-        CASE 
-            WHEN LOWER(course_category) = 'long term engagement' THEN 'long_term'
-            ELSE 'short_term'
-        END AS course_type,
-        course_name
-    FROM intermediate.participant_impact
-)
 SELECT
-    training_month,
-    COUNT(DISTINCT CASE WHEN course_type = 'long_term' THEN course_name END) AS long_term_courses,
-    COUNT(DISTINCT CASE WHEN course_type = 'short_term' THEN course_name END) AS short_term_courses
-FROM
-    categorized_data
-GROUP BY
-    training_month
-ORDER BY
-    training_month
+    participant, 
+    primary_contact,
+    state_name as state, 
+    iso."ISO Code" as iso_code,
+    gender,
+    course_name,
+    course_category,
+    course_short_name,
+    organisation_name,
+    reg_attending_program,
+    start_date,
+    TO_CHAR(start_date, 'Mon') AS month,
+    EXTRACT(YEAR FROM start_date) AS year
+FROM intermediate.participant_impact as p
+LEFT JOIN 
+    prod.india_states_iso iso
+ON 
+    LOWER(p.state_name) = LOWER(iso."State")
+
+
 
 
 
