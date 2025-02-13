@@ -14,3 +14,7 @@ sources:
       - name: participant_impact
         identifier: Participant_Impact
         description: participant details from synergy connect app
+      
+      - name: clinic_bay_management_data
+        identifier: April23-Mar24_consolidated
+        description: patient data
