@@ -1,0 +1,35 @@
+{{ config(materialized='table') }}
+
+WITH source_data AS (
+    SELECT
+        "courseId",
+        "courseName",
+        "endDateStr",
+        "startDateStr",
+        "courseCategory",
+        "departmentName",
+        "courseShortName",
+        "programShortName",
+        "unregisteredCount",  -- Case-sensitive reference
+        "_airbyte_raw_id",
+        "_airbyte_extracted_at",
+        "_airbyte_meta"
+    FROM staging_synergy_connect.no_registrations
+)
+SELECT
+    sd."courseId" AS course_id,
+    sd."courseName" AS course_name,
+    sd."endDateStr" AS end_date_str,
+    sd."startDateStr" AS start_date_str,
+    sd."courseCategory" AS course_category,
+    sd."departmentName" AS department_name,
+    sd."courseShortName" AS course_short_name,
+    sd."programShortName" AS program_short_name,
+    sd."_airbyte_raw_id",
+    sd."_airbyte_extracted_at",
+    sd."_airbyte_meta",
+    jsonb_extract_path_text(content.value, 'totalcount')::INTEGER AS total_count,
+    jsonb_extract_path_text(content.value, 'participantCount')::INTEGER AS participant_count,
+    jsonb_extract_path_text(content.value, 'participantCategory') AS participant_category
+FROM source_data sd,
+     LATERAL jsonb_array_elements(sd."unregisteredCount"->'content') AS content
