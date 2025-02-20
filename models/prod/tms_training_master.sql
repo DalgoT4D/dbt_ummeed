@@ -2,6 +2,7 @@
 
 
 SELECT
+    pid,
     participant, 
     primary_contact,
     state_name as state, 

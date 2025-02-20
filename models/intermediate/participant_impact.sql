@@ -1,6 +1,7 @@
 {{ config(materialized='table') }}
 
-SELECT 
+SELECT
+    "pId" as pid, 
     "city" AS city,
     "gender" AS gender,
     "taluka" AS taluka,
