@@ -54,7 +54,7 @@ participant_impact_agg AS (
         COALESCE(s.course_category, d.course_category) AS course_category,
         COALESCE(s.program_short_name, d.program_short_name) AS program_short_name,
         COALESCE(s.reg_attending_program, d.reg_attending_program) AS participant_category,
-        COUNT(DISTINCT d.pid) AS total_participants,
+        COUNT(DISTINCT d.pid) AS total_unique_participants,
         'participant_impact' AS source
     FROM full_session_list s
     FULL OUTER JOIN deduplicated_participants d
@@ -76,7 +76,7 @@ no_registrations_agg AS (
         course_category,
         program_short_name,
         participant_category,
-        SUM(participant_count) AS total_participants,
+        SUM(participant_count) AS total_unique_participants,
         'no_registrations' AS source
     FROM {{ ref('int_no_registration') }}
     GROUP BY 2, 3, 4, 5, 6, 7
