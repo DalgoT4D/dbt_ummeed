@@ -18,3 +18,7 @@ sources:
       - name: clinic_bay_management_data
         identifier: April23-Mar24_consolidated
         description: patient data
+      
+      - name: no_registrations
+        identifier: no_registrations
+        description: patient data
