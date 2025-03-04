@@ -8,13 +8,19 @@ sources:
         identifier: registeredPatient
         description: registered patient on ICT health app
 
+      - name: clinic_bay_management_data
+        identifier: clinicData
+        description: patient data
+
   - name: source_ummeed_synergy_connect
     schema: staging_synergy_connect 
     tables:
       - name: participant_impact
         identifier: Participant_Impact
         description: participant details from synergy connect app
+
+      - name: no_registrations
+        identifier: no_registrations
+        description: participant details who has aggregated data
       
-      - name: clinic_bay_management_data
-        identifier: April23-Mar24_consolidated
-        description: patient data
+
