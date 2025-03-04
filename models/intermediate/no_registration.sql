@@ -14,7 +14,7 @@ WITH source_data AS (
         "_airbyte_raw_id",
         "_airbyte_extracted_at",
         "_airbyte_meta"
-    FROM staging_synergy_connect.no_registrations
+    FROM {{ source('source_ummeed_synergy_connect', 'no_registrations') }}
 )
 SELECT
     sd."courseId" AS course_id,

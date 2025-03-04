@@ -1,26 +1,25 @@
 {{ config(materialized='table') }}
 
 SELECT 
-    "S.No." AS s_no,
-    "MRN" AS mrn,
-    "Patient Name" AS patient_name,
-    "Age" AS age,
-    "Gender" AS gender,
-    "Mobile No" AS mobile_no,
-    "Department" AS department,
-    "Doctor" AS doctor,
-    TO_TIMESTAMP("Consultation Request Date/Time", 'DD-MM-YYYY HH24:MI')::DATE AS consultation_date,
-    "Consultation Type" AS consultation_type,
-    "Unit" AS unit,
-    "Visit  No." AS visit_no,
-    "Billed Status" AS billed_status,
-    "Invoice No" AS invoice_no,
-    "Queue Generation Time" AS queue_generation_time,
-    "Queue No." AS queue_no,
-    "Start Consultation Time" AS start_consultation_time,
-    "End Consultation Time" AS end_consultation_time,
-    "Sponsor Name" AS sponsor_name,
-    "Plan" AS plan,
-    "Associate Company" AS associate_company
-FROM 
-{{ source('source_ummeed_synergy_connect', 'clinic_bay_management_data') }}
+    "encounterid" AS s_no,
+    "mrno" AS mrn,
+    "patientname" AS patient_name,
+    "age" AS age,
+    "gender" AS gender,
+    "mobileno" AS mobile_no,
+    "department" AS department,
+    "doctor" AS doctor,
+    TO_DATE("consultationrequestdate", 'DD-MON-YY') AS consultation_date,
+    "appointmenttype" AS consultation_type,
+    "unit" AS unit,
+    "visitid" AS visit_no,
+    "billstatus" AS billed_status,
+    "invoiceno" AS invoice_no,
+    "queuegenerationtime" AS queue_generation_time,
+    "queueno" AS queue_no,
+    "startconsultationtime" AS start_consultation_time,
+    "endconsultationtime" AS end_consultation_time,
+    "sponsorname" AS sponsor_name,
+    "plan" AS plan,
+    "assocmpny" AS associate_company
+FROM {{ source('source_ummeed_ict_health', 'clinic_bay_management_data') }}
