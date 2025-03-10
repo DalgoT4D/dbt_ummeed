@@ -12,6 +12,10 @@ sources:
         identifier: clinicData
         description: patient data
 
+      - name: appointment_details
+        identifier: appointmentDetails
+        description: appointment data
+
   - name: source_ummeed_synergy_connect
     schema: staging_synergy_connect 
     tables:
