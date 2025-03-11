@@ -9,7 +9,7 @@ WITH cte AS (
         rp.mother_phone,
         pi.state_name,
         pi.start_date,
-        rp.patient_age, 
+        rp.registered_patient_age, 
         rp.registration_type,
         rp.updated_date,
         pi.course_name,

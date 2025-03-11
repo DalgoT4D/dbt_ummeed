@@ -86,13 +86,13 @@ SELECT
     rp.registered_mobile_no,
     DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) AS calculated_age,
     CASE 
-        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 0 AND 3 THEN '0-3'
-        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 3.1 AND 6 THEN '3.1-6'
-        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 6.1 AND 9 THEN '6.1-9'
-        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 9.1 AND 14 THEN '9.1-14'
-        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 14.1 AND 19 THEN '14.1-19'
-        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 19.1 AND 24 THEN '19.1-24'
-        ELSE '24.1 and above'
+        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 0 AND 3 THEN 'Group A: 0-3'
+        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 3.1 AND 6 THEN 'Group B: 3.1-6'
+        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 6.1 AND 9 THEN 'Group C: 6.1-9'
+        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 9.1 AND 14 THEN 'Group D: 9.1-14'
+        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 14.1 AND 19 THEN 'Group E: 14.1-19'
+        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 19.1 AND 24 THEN 'Group F: 19.1-24'
+        ELSE 'Group G: 24.1 and above'
     END AS age_group,
     rp.parent_guardian_phone,
     rp.parent_guardian_age,
