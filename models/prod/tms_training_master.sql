@@ -15,7 +15,16 @@ SELECT
     reg_attending_program,
     start_date,
     TO_CHAR(start_date, 'Mon') AS month,
-    EXTRACT(YEAR FROM start_date) AS year
+    EXTRACT(YEAR FROM start_date) AS year,
+    
+    -- Calculate Financial Year
+    CASE 
+        WHEN EXTRACT(MONTH FROM start_date) >= 4 THEN 
+            CONCAT(EXTRACT(YEAR FROM start_date), '-', EXTRACT(YEAR FROM start_date) + 1)
+        ELSE 
+            CONCAT(EXTRACT(YEAR FROM start_date) - 1, '-', EXTRACT(YEAR FROM start_date))
+    END AS financial_year
+
 FROM intermediate.participant_impact as p
 LEFT JOIN 
     prod.india_states_iso iso
