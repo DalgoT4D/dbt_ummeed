@@ -2,10 +2,10 @@
 
 SELECT 
     id,
-    age,
+    age AS registered_patient_age,
     NULLIF(dob, '') AS dob,
     NULLIF(mrno, '') AS mrno,
-    NULLIF(gender, '') AS gender,
+    NULLIF(gender, '') AS registered_patient_gender,
     NULLIF(diagnosis, '') AS diagnosis,
     NULLIF(mobileno, '') AS mobile_no,
     NULLIF(fatherphone, '') AS father_phone,
