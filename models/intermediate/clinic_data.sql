@@ -1,12 +1,12 @@
 {{ config(materialized='table') }}
 
 WITH clinic_data AS (
-    SELECT 
+    SELECT
         "encounterid" AS s_no,
         "mrno" AS mrn,
         "patientname" AS patient_name,
-        "age" AS age,
-        "gender" AS gender,
+        "age" AS patient_age,
+        "gender" AS patient_gender,
         "mobileno" AS mobile_no,
         "department" AS department,
         "doctor" AS doctor,
@@ -29,10 +29,10 @@ WITH clinic_data AS (
 registered_patient AS (
     SELECT 
         id AS registered_patient_id,
-        age AS registered_patient_age,
+        registered_patient_age,
         dob AS date_of_birth,
         mrno AS mrn,
-        gender AS registered_gender,
+        registered_patient_gender,
         diagnosis,
         mobile_no AS registered_mobile_no,
         pat_idn_no,
@@ -81,7 +81,7 @@ SELECT
     rp.registered_patient_id,
     rp.registered_patient_age,
     rp.date_of_birth,
-    rp.registered_gender,
+    rp.registered_patient_gender,
     rp.diagnosis,
     rp.registered_mobile_no,
     DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) AS calculated_age,

@@ -1,11 +1,11 @@
 {{ config(materialized='table') }}
 
 SELECT
-NULLIF(age, '') AS age,
+NULLIF(age, '') AS patient_age,
 NULLIF(city	, '') AS city,
 NULLIF(mrno, '') AS mrno,
 NULLIF(dob, '') AS dob,
-NULLIF(gender, '') AS gender,
+NULLIF(gender, '') AS patient_gender,
 NULLIF(unit, '') AS unit,
 NULLIF(roomno, '') AS room_no,
 NULLIF(address, '') AS address,
