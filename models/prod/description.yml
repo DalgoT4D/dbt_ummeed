@@ -6,7 +6,7 @@ models:
     columns:
       - name: s_no
         description: "Serial number for unique identification of records."
-      - name: mrn
+      - name: mrno
         description: "Medical Record Number (MRN) assigned to the patient."
       - name: patient_name
         description: "Full name of the patient."

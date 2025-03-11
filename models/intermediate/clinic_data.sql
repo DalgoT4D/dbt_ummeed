@@ -3,7 +3,7 @@
 WITH clinic_data AS (
     SELECT
         "encounterid" AS s_no,
-        "mrno" AS mrn,
+        "mrno" AS mrno,
         "patientname" AS patient_name,
         "age" AS patient_age,
         "gender" AS patient_gender,
@@ -31,7 +31,7 @@ registered_patient AS (
         id AS registered_patient_id,
         registered_patient_age,
         dob AS date_of_birth,
-        mrno AS mrn,
+        mrno AS mrno,
         registered_patient_gender,
         diagnosis,
         mobile_no AS registered_mobile_no,
@@ -124,5 +124,5 @@ SELECT
     rp._airbyte_meta
 FROM clinic_data cd
 LEFT JOIN registered_patient rp
-ON cd.mrn = rp.mrn
+ON cd.mrno = rp.mrno
 
