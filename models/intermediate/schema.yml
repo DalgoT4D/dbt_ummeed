@@ -15,6 +15,14 @@ sources:
       - name: appointment_details
         identifier: appointmentDetails
         description: appointment data
+      
+      - name: dim_department_acronym
+        identifier: dim_department_acronym
+        description: departments and their acronyms
+
+      - name: dim_consultation_type_mapping
+        identifier: dim_consultation_type_mapping
+        description: consultation types mapped to their category
 
   - name: source_ummeed_synergy_connect
     schema: staging_synergy_connect 
