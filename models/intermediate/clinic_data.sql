@@ -123,7 +123,8 @@ SELECT
     rp._airbyte_extracted_at,
     rp._airbyte_meta,
     ctm."New Classification" AS consultation_category,  -- Mapped from dim_consultation_type_mapping
-    CONCAT_WS(' ', dda.acronym, ctm."New Classification") AS dep_consult_category  -- Acronym + Consultation Category
+    CONCAT_WS(' ', dda.acronym, ctm."New Classification") AS dep_consult_category,  -- Acronym + Consultation Category
+    dda.acronym AS dep_shortened
 
 FROM clinic_data cd
 LEFT JOIN registered_patient rp

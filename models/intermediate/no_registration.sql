@@ -22,7 +22,7 @@ SELECT
     sd."endDateStr" AS end_date_str,
     sd."startDateStr" AS start_date_str,
     sd."courseCategory" AS course_category,
-    sd."departmentName" AS department_name,
+    sd."departmentName" AS department,
     sd."courseShortName" AS course_short_name,
     sd."programShortName" AS program_short_name,
     sd."_airbyte_raw_id",

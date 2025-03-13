@@ -2,20 +2,20 @@
 
 
 SELECT
-    pid,
-    participant, 
-    primary_contact,
-    state_name as state, 
+    p.pid,
+    p.participant, 
+    p.primary_contact,
+    p.state_name as state, 
     iso."ISO Code" as iso_code,
-    gender,
-    course_name,
-    course_category,
-    course_short_name,
-    organisation_name,
-    reg_attending_program,
-    start_date,
-    TO_CHAR(start_date, 'Mon') AS month,
-    EXTRACT(YEAR FROM start_date) AS year,
+    p.gender,
+    p.course_name,
+    p.course_category,
+    p.course_short_name,
+    p.organisation_name,
+    p.reg_attending_program,
+    p.start_date,
+    nr.department,
+    EXTRACT(YEAR FROM p.start_date) AS year,
     
     -- Calculate Financial Year
     CASE 
@@ -23,13 +23,19 @@ SELECT
             CONCAT(EXTRACT(YEAR FROM start_date), '-', EXTRACT(YEAR FROM start_date) + 1)
         ELSE 
             CONCAT(EXTRACT(YEAR FROM start_date) - 1, '-', EXTRACT(YEAR FROM start_date))
-    END AS financial_year
+    END AS financial_year,
+    EXTRACT(MONTH FROM start_date) AS month
 
 FROM intermediate.participant_impact as p
 LEFT JOIN 
     prod.india_states_iso iso
 ON 
     LOWER(p.state_name) = LOWER(iso."State")
+LEFT JOIN 
+    {{ ref('no_registration') }} nr
+ON 
+    nr.course_short_name = p.course_short_name
+
 
 
 
