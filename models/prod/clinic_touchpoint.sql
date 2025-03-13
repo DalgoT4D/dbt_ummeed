@@ -15,6 +15,7 @@ WITH cte AS (
         pi.course_name,
         pi.course_category,
         pi.reg_attending_program,
+        EXTRACT(YEAR FROM start_date) as year,
         -- Calculate Financial Year
         CASE 
             WHEN EXTRACT(MONTH FROM start_date) >= 4 
@@ -23,7 +24,7 @@ WITH cte AS (
             ELSE CONCAT(EXTRACT(YEAR FROM start_date) - 1, '-', 
                         EXTRACT(YEAR FROM start_date))
         END AS financial_year,
-        EXTRACT(MONTH FROM start_date) AS month
+        TO_CHAR(start_date, 'Month') AS month
     FROM 
         intermediate.participant_impact AS pi
     LEFT JOIN 

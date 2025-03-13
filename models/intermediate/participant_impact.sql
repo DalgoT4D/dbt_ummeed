@@ -22,7 +22,7 @@ SELECT
     "countryCode2" AS country_code2,
     "districtName" AS district_name,
     TO_DATE("startDateStr", 'DD/MM/YYYY') AS start_date,
-    EXTRACT(MONTH from TO_DATE("startDateStr", 'DD/MM/YYYY')) AS month,
+    TO_CHAR(TO_DATE("startDateStr", 'DD/MM/YYYY'), 'Month') AS month,
     "educatopnRole" AS education_role,
     "regPatientId1" AS reg_patient_id1,
     "regPatientId2" AS reg_patient_id2,

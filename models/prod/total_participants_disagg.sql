@@ -45,10 +45,10 @@ WITH participant_impact_clean AS (
                 ))
             )
         END AS financial_year,
-        EXTRACT(MONTH FROM COALESCE(
+        TO_CHAR(COALESCE(
                 TO_DATE(updated_on, 'DD/MM/YYYY'), 
                 TO_DATE(created_on, 'DD/MM/YYYY')
-            )) AS month
+            ), 'Month') AS month
     FROM {{ ref('participant_impact') }}
 ),
 
@@ -72,7 +72,7 @@ no_registrations_expanded AS (
             ELSE CONCAT(EXTRACT(YEAR FROM TO_DATE(start_date_str, 'DD/MM/YYYY')) - 1, '-', 
                         EXTRACT(YEAR FROM TO_DATE(start_date_str, 'DD/MM/YYYY')))
         END AS financial_year,
-        EXTRACT(MONTH FROM TO_DATE(start_date_str, 'DD/MM/YYYY')) AS month
+        TO_CHAR(TO_DATE(start_date_str, 'DD/MM/YYYY'), 'Month') AS month
 
     FROM {{ ref('no_registration') }}
     CROSS JOIN generate_series(1, participant_count)  

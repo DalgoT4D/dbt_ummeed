@@ -24,7 +24,7 @@ SELECT
         ELSE 
             CONCAT(EXTRACT(YEAR FROM start_date) - 1, '-', EXTRACT(YEAR FROM start_date))
     END AS financial_year,
-    EXTRACT(MONTH FROM start_date) AS month
+    TO_CHAR(start_date, 'Month') AS month
 
 FROM intermediate.participant_impact as p
 LEFT JOIN 

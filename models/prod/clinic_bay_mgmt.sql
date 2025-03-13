@@ -2,6 +2,7 @@
 
 SELECT
 *,
+EXTRACT(YEAR FROM consultation_date) AS year,
 -- Calculate Financial Year
 CASE 
     WHEN EXTRACT(MONTH FROM consultation_date) >= 4 
@@ -10,7 +11,7 @@ CASE
     ELSE CONCAT(EXTRACT(YEAR FROM consultation_date) - 1, '-', 
                 EXTRACT(YEAR FROM consultation_date))
 END AS financial_year,
-EXTRACT(MONTH FROM consultation_date) AS month
+TO_CHAR(consultation_date, 'Month') AS month
 
 FROM {{ref('clinic_data')}}
 WHERE 
