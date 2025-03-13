@@ -121,8 +121,15 @@ SELECT
     rp.service_center_name,
     rp._airbyte_raw_id,
     rp._airbyte_extracted_at,
-    rp._airbyte_meta
+    rp._airbyte_meta,
+    ctm."New Classification" AS consultation_category,  -- Mapped from dim_consultation_type_mapping
+    CONCAT_WS(' ', dda.acronym, ctm."New Classification") AS dep_consult_category,  -- Acronym + Consultation Category
+    dda.acronym AS dep_shortened
+
 FROM clinic_data cd
 LEFT JOIN registered_patient rp
-ON cd.mrno = rp.mrno
-
+    ON cd.mrno = rp.mrno
+LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_consultation_type_mapping') }} AS ctm
+    ON cd.consultation_type = ctm."Consultation Type"
+LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_department_acronym') }} AS dda
+    ON cd.department = dda.department
