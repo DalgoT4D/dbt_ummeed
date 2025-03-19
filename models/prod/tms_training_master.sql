@@ -12,7 +12,7 @@ SELECT
     p.course_category,
     p.course_short_name,
     p.organisation_name,
-    p.reg_attending_program,
+    COALESCE(p.reg_attending_program, 'Not Available') AS reg_attending_program,
     p.start_date,
     nr.department,
     EXTRACT(YEAR FROM p.start_date) AS year,

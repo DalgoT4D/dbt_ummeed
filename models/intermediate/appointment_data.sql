@@ -1,6 +1,6 @@
 {{ config(materialized='table') }}
 
-SELECT
+SELECT DISTINCT
 NULLIF(age, '') AS patient_age,
 NULLIF(city	, '') AS city,
 NULLIF(mrno, '') AS mrno,
