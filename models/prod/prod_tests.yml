@@ -1,0 +1,185 @@
+version: 2
+
+models:
+  - name: appointment_details
+    description: "Stores appointment details."
+    columns:
+      - name: event_id
+        data_tests:
+          - not_null
+      - name: created_date
+        data_tests:
+          - not_null
+      - name: year
+        data_tests:
+          - not_null
+      - name: financial_year
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ["2009-2010", "2010-2011", "2011-2012", "2012-2013", "2013-2014", "2014-2015", "2015-2016", "2016-2017", "2017-2018", "2018-2019", "2019-2020", "2020-2021", "2021-2022", "2022-2023", "2023-2024", "2024-2025", "2025-2026"]
+      - name: month
+        data_tests:
+          - not_null
+
+  - name: clinic_bay_mgmt
+    description: "Manages clinic bay operations."
+    columns:
+      - name: s_no
+        description: "Serial number for unique identification of records."
+        data_tests:
+          - not_null
+      - name: mrno
+        description: "Medical Record Number (MRN) assigned to the patient."
+        data_tests:
+          - not_null
+      - name: patient_name
+        description: "Full name of the patient."
+      - name: age
+        description: "Age of the patient at the time of consultation."
+      - name: mobile_no
+        description: "Contact number of the patient."
+      - name: department
+        description: "Department where the consultation took place (e.g., Cardiology, Orthopedics)."
+      - name: doctor
+        description: "Name of the doctor who attended the consultation."
+      - name: consultation_date
+        description: "Date when the consultation occurred."
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+      - name: consultation_type
+        description: "Type of consultation (e.g., OPD, IPD, Emergency)."
+      - name: unit
+        description: "Unit or section within the hospital handling the consultation."
+      - name: visit_no
+        description: "Visit number to track multiple visits by the same patient."
+      - name: billed_status
+        description: "Indicates whether the consultation has been billed (e.g., Billed, Pending)."
+      - name: invoice_no
+        description: "Invoice number generated for the consultation billing."
+      - name: queue_generation_time
+        description: "Timestamp when the patient was added to the consultation queue."
+      - name: queue_no
+        description: "Queue number assigned to the patient for the consultation."
+      - name: start_consultation_time
+        description: "Timestamp when the consultation started."
+      - name: end_consultation_time
+        description: "Timestamp when the consultation ended."
+      - name: sponsor_name
+        description: "Name of the sponsor covering the consultation (if applicable)."
+      - name: plan
+        description: "Sponsor plan details under which the consultation is covered."
+      - name: associate_company
+        description: "Associated company providing sponsorship or medical coverage."
+      - name: consultation_category
+        data_tests:
+          - accepted_values:
+              values: ["Connect", "Dummy", "Group", "Therapy", "Consult", "Assessment", "Fees"]  
+      - name: patient_gender
+        data_tests:
+          - accepted_values:
+              values: ["Male", "Female", "Other"]
+      - name: year
+        data_tests:
+          - not_null
+      - name: financial_year
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ["2020-2021", "2021-2022", "2022-2023", "2023-2024", "2024-2025", "2025-2026"]
+      - name: month
+        data_tests:
+          - not_null
+
+  - name: clinic_touchpoint
+    description: "Tracks clinic touchpoints."
+    columns:
+      - name: mrno
+        data_tests:
+          - not_null
+      - name: start_date
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+      - name: year
+        data_tests:
+          - not_null
+      - name: financial_year
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ["2001-2002","2009-2010", "2010-2011", "2011-2012", "2012-2013", "2013-2014", "2014-2015", "2015-2016", "2016-2017", "2017-2018", "2018-2019", "2019-2020", "2020-2021", "2021-2022", "2022-2023", "2023-2024", "2024-2025", "2025-2026"]  
+      - name: month
+        data_tests:
+          - not_null
+
+  - name: pathways
+    description: "Summarizes patient pathways."
+    columns:
+      - name: mrno
+        data_tests:
+          - not_null
+      - name: consultation_date
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+      - name: consultation_category
+        data_tests:
+          - accepted_values:
+              values: ["Connect", "Dummy", "Group", "Therapy", "Consult", "Assessment", "Fees"]
+      - name: year
+        data_tests:
+          - not_null
+      - name: financial_year
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ["2020-2021", "2021-2022", "2022-2023", "2023-2024", "2024-2025", "2025-2026"]
+      - name: month
+        data_tests:
+          - not_null
+
+  - name: tms_training_master
+    description: "Tracks training master details."
+    columns:
+      - name: pid
+        data_tests:
+          - not_null
+      - name: start_date
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+      - name: year
+        data_tests:
+          - not_null
+      - name: financial_year
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ["2001-2002","2009-2010", "2010-2011", "2011-2012", "2012-2013", "2013-2014", "2014-2015", "2015-2016", "2016-2017", "2017-2018", "2018-2019", "2019-2020", "2020-2021", "2021-2022", "2022-2023", "2023-2024", "2024-2025", "2025-2026"]
+      - name: month
+        data_tests:
+          - not_null
+
+  - name: total_participants_disagg
+    description: "Aggregates total participant data."
+    columns:
+      - name: year
+        data_tests:
+          - not_null
+      - name: course_name
+        data_tests:
+          - not_null
+      - name: participant_category
+        data_tests:
+          - not_null
+      - name: financial_year
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ["2009-2010", "2010-2011", "2011-2012", "2012-2013", "2013-2014", "2014-2015", "2015-2016", "2016-2017", "2017-2018", "2018-2019", "2019-2020", "2020-2021", "2021-2022", "2022-2023", "2023-2024", "2024-2025", "2025-2026"]
+      - name: month
+        data_tests:
+          - not_null

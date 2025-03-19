@@ -13,7 +13,7 @@ WITH participant_impact_clean AS (
         course_short_name,
         course_category,
         program_short_name,
-        reg_attending_program AS participant_category,
+        COALESCE(reg_attending_program, 'Not Available') AS participant_category,
         pid,
         'participant_impact' AS source,
         -- Calculate Financial Year
