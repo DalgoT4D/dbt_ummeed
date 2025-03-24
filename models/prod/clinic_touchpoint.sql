@@ -15,25 +15,29 @@ WITH cte AS (
         pi.course_name,
         pi.course_category,
         pi.reg_attending_program,
-        EXTRACT(YEAR FROM start_date) as year,
+        EXTRACT(YEAR FROM start_date) AS year,
         -- Calculate Financial Year
         CASE 
             WHEN EXTRACT(MONTH FROM start_date) >= 4 
-            THEN CONCAT(EXTRACT(YEAR FROM start_date), '-', 
-                        EXTRACT(YEAR FROM start_date) + 1)
-            ELSE CONCAT(EXTRACT(YEAR FROM start_date) - 1, '-', 
-                        EXTRACT(YEAR FROM start_date))
+                THEN CONCAT(
+                    EXTRACT(YEAR FROM start_date), '-', 
+                    EXTRACT(YEAR FROM start_date) + 1
+                )
+            ELSE CONCAT(
+                EXTRACT(YEAR FROM start_date) - 1, '-', 
+                EXTRACT(YEAR FROM start_date)
+            )
         END AS financial_year,
         TO_CHAR(start_date, 'Month') AS month
     FROM 
         intermediate.participant_impact AS pi
     LEFT JOIN 
         intermediate.registered_patient AS rp
-    ON 
-        rp.mobile_no = pi.primary_contact
+        ON 
+            pi.primary_contact = rp.mobile_no
 )
-SELECT 
-    DISTINCT ON (mrno) *
+
+SELECT  DISTINCT ON (mrno) *
 FROM 
     cte
 WHERE 

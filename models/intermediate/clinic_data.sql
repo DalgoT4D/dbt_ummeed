@@ -2,27 +2,27 @@
 
 WITH clinic_data AS (
     SELECT
-        "encounterid" AS s_no,
-        "mrno" AS mrno,
-        "patientname" AS patient_name,
-        "age" AS patient_age,
-        "gender" AS patient_gender,
-        "mobileno" AS mobile_no,
-        "department" AS department,
-        "doctor" AS doctor,
-        TO_DATE("consultationrequestdate", 'DD-MON-YY') AS consultation_date,
-        "appointmenttype" AS consultation_type,
-        "unit" AS unit,
-        "visitid" AS visit_no,
-        "billstatus" AS billed_status,
-        "invoiceno" AS invoice_no,
-        "queuegenerationtime" AS queue_generation_time,
-        "queueno" AS queue_no,
-        "startconsultationtime" AS start_consultation_time,
-        "endconsultationtime" AS end_consultation_time,
-        "sponsorname" AS sponsor_name,
-        "plan" AS plan,
-        "assocmpny" AS associate_company
+        encounterid AS s_no,
+        mrno,
+        patientname AS patient_name,
+        age AS patient_age,
+        gender AS patient_gender,
+        mobileno AS mobile_no,
+        department,
+        doctor,
+        TO_DATE(consultationrequestdate, 'DD-MON-YY') AS consultation_date,
+        appointmenttype AS consultation_type,
+        unit,
+        visitid AS visit_no,
+        billstatus AS billed_status,
+        invoiceno AS invoice_no,
+        queuegenerationtime AS queue_generation_time,
+        queueno AS queue_no,
+        startconsultationtime AS start_consultation_time,
+        endconsultationtime AS end_consultation_time,
+        sponsorname AS sponsor_name,
+        plan,
+        assocmpny AS associate_company
     FROM {{ source('source_ummeed_ict_health', 'clinic_bay_management_data') }}
 ),
 
@@ -31,7 +31,7 @@ registered_patient AS (
         id AS registered_patient_id,
         registered_patient_age,
         dob AS date_of_birth,
-        mrno AS mrno,
+        mrno,
         registered_patient_gender,
         diagnosis,
         mobile_no AS registered_mobile_no,
@@ -60,7 +60,6 @@ registered_patient AS (
             WHEN guardian_dist IS NOT NULL THEN 'Guardian'
             WHEN guardian_rstate IS NOT NULL THEN 'Guardian'
             WHEN guardian_age IS NOT NULL THEN 'Guardian'
-            ELSE NULL
         END AS who_brought_the_child,
         plan_name,
         is_processed,
@@ -102,11 +101,14 @@ SELECT
     rp.parent_guardian_country,
     rp.who_brought_the_child,
     CASE 
-        WHEN LOWER(rp.parent_guardian_city) = 'mumbai' 
-             OR LOWER(rp.parent_guardian_district) = 'mumbai' 
-             OR (LOWER(rp.parent_guardian_state) = 'maharashtra' 
-                 AND LOWER(rp.parent_guardian_country) = 'india')
-        THEN 'Mumbai'
+        WHEN
+            LOWER(rp.parent_guardian_city) = 'mumbai' 
+            OR LOWER(rp.parent_guardian_district) = 'mumbai' 
+            OR (
+                LOWER(rp.parent_guardian_state) = 'maharashtra' 
+                AND LOWER(rp.parent_guardian_country) = 'india'
+            )
+            THEN 'Mumbai'
         ELSE 'Non-Mumbai'
     END AS location_category,
     rp.pat_idn_no,
@@ -126,8 +128,8 @@ SELECT
     CONCAT_WS(' ', dda.acronym, ctm."New Classification") AS dep_consult_category,  -- Acronym + Consultation Category
     dda.acronym AS dep_shortened
 
-FROM clinic_data cd
-LEFT JOIN registered_patient rp
+FROM clinic_data AS cd
+LEFT JOIN registered_patient AS rp
     ON cd.mrno = rp.mrno
 LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_consultation_type_mapping') }} AS ctm
     ON cd.consultation_type = ctm."Consultation Type"
