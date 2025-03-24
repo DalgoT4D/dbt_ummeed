@@ -35,9 +35,14 @@ flags:
 # files using the `{{ config(...) }}` macro.
 models:
   dbt_ummeed:
+    +dbt-osmosis: "_{model}.yml"
     # Config indicated by + and applies to all files under models/example/
     example:
       +materialized: view
       
   elementary:
     +schema: "elementary"
+    
+seeds:
+  your_project_name:
+    +dbt-osmosis: "_schema.yml"

@@ -1,0 +1,94 @@
+version: 2
+models:
+  - name: pathways
+    description: Summarizes patient pathways.
+    columns:
+      - name: mrno
+        data_tests:
+          - not_null
+        data_type: character varying
+        description: Medical record number
+      - name: patient_name
+        data_type: text
+        description: Name of the patient
+      - name: patient_age
+        data_type: numeric
+        description: Age of the patient
+      - name: patient_gender
+        data_type: text
+        description: Gender of the patient
+      - name: mobile_no
+        data_type: character varying
+        description: Mobile number of the patient
+      - name: department
+        data_type: text
+        description: Name of the department associated with its acronym.
+      - name: doctor
+        data_type: text
+        description: Doctor assigned to the patient
+      - name: consultation_date
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+        data_type: date
+        description: Date of consultation
+      - name: consultation_type
+        data_type: text
+        description: Type of the appointment
+      - name: date_of_birth
+        data_type: text
+        description: Date of birth of the patient
+      - name: diagnosis
+        data_type: text
+        description: Diagnosis information
+      - name: calculated_age
+        data_type: double precision
+        description: Calculated age based on date of birth
+      - name: age_group
+        data_type: text
+        description: Age group classification
+      - name: pat_idn_no
+        data_type: text
+        description: Patient identification number
+      - name: patient_income
+        data_type: text
+        description: Income of the patient
+      - name: consultation_category
+        data_tests:
+          - accepted_values:
+              values: [Connect, Dummy, Group, Therapy, Consult, Assessment, Fees]
+        data_type: text
+        description: Classification category for consultation types
+      - name: dep_consult_category
+        data_type: text
+        description: Acronym and consultation category combined
+      - name: dep_shortened
+        data_type: text
+        description: Acronym representing a department
+      - name: year
+        data_tests:
+          - not_null
+        data_type: integer
+        description: Year associated with the patient pathway record.
+      - name: financial_year
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [2020-2021, 2021-2022, 2022-2023, 2023-2024, 2024-2025, 2025-2026]
+        data_type: text
+        description: Indicates the financial year relevant to the patient pathway data.
+      - name: month
+        data_tests:
+          - not_null
+
+        data_type: text
+        description: Month of the course start date
+      - name: course_name
+        data_type: text
+        description: Name of the course attended
+      - name: course_category
+        data_type: text
+        description: Category of the course
+      - name: source
+        data_type: text
+        description: Indicates the origin or source of the patient pathway data.

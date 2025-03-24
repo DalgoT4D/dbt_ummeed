@@ -1,0 +1,56 @@
+version: 2
+models:
+  - name: no_registration
+    description: Tracks courses with no registrations.
+    columns:
+      - name: course_id
+        data_tests:
+          - not_null
+        data_type: character varying
+        description: Identifier for the course
+      - name: course_name
+        data_tests:
+          - not_null
+        data_type: character varying
+        description: Name of the course
+      - name: end_date_str
+        data_type: character varying
+        description: End date of the course in string format
+      - name: start_date_str
+        data_type: character varying
+        description: Start date of the course in string format
+      - name: course_category
+        data_type: character varying
+        description: Category of the course
+      - name: department
+        data_type: character varying
+        description: Name of the department offering the course.
+      - name: course_short_name
+        data_type: character varying
+        description: Short name of the course
+      - name: program_short_name
+        data_type: character varying
+        description: Short name of the program
+      - name: _airbyte_raw_id
+        data_type: character varying
+        description: Raw ID from Airbyte
+      - name: _airbyte_extracted_at
+        data_type: timestamp with time zone
+        description: Timestamp when data was extracted by Airbyte
+      - name: _airbyte_meta
+        data_type: jsonb
+        description: Metadata related to Airbyte extraction
+      - name: total_count
+        data_tests:
+          - not_null
+        data_type: integer
+        description: Total number of courses with no registrations.
+      - name: participant_count
+        data_tests:
+          - not_null
+
+        data_type: integer
+        description: Count of participants registered for the course.
+      - name: participant_category
+        data_type: text
+        description: Category of the participant in the course.

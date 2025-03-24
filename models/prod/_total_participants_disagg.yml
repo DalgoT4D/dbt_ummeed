@@ -1,0 +1,52 @@
+version: 2
+models:
+  - name: total_participants_disagg
+    description: Aggregates total participant data.
+    columns:
+      - name: year
+        data_tests:
+          - not_null
+        data_type: numeric
+        description: Year associated with the aggregated participant data.
+      - name: state_name
+        data_type: character varying
+        description: Name of the state associated with the participants.
+      - name: course_name
+        data_tests:
+          - not_null
+        data_type: character varying
+        description: Name of the course
+      - name: course_short_name
+        data_type: character varying
+        description: Short name of the course
+      - name: course_category
+        data_type: character varying
+        description: Category of the course
+      - name: program_short_name
+        data_type: character varying
+        description: Short name of the program
+      - name: participant_category
+        data_tests:
+          - not_null
+        data_type: character varying
+        description: Category of the participant in the course.
+      - name: pid
+        data_type: character varying
+        description: Unique identifier for the participant.
+      - name: source
+        data_type: text
+        description: Indicates the origin or source of the participant data.
+      - name: financial_year
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [2009-2010, 2010-2011, 2011-2012, 2012-2013, 2013-2014, 2014-2015, 2015-2016, 2016-2017,
+                2017-2018, 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, 2024-2025,
+                2025-2026]
+        data_type: text
+        description: The financial year associated with the aggregated participant data.
+      - name: month
+        data_tests:
+          - not_null
+        data_type: text
+        description: Represents the month associated with the aggregated participant data.

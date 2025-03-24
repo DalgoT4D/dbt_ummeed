@@ -1,0 +1,120 @@
+version: 2
+models:
+  - name: registered_patient
+    description: Contains registered patient records.
+    columns:
+      - name: id
+        data_type: numeric
+        description: Unique identifier for each patient record
+      - name: registered_patient_age
+        data_tests:
+          - not_null
+        data_type: numeric
+        description: Age of the patient
+      - name: dob
+        data_type: text
+        description: Date of birth of the patient
+      - name: mrno
+        data_tests:
+          - not_null
+          - unique
+        data_type: text
+        description: Medical record number
+      - name: registered_patient_gender
+        data_tests:
+          - accepted_values:
+              values: [Male, Female, Other]
+        data_type: text
+        description: Gender of the patient
+      - name: diagnosis
+        data_type: text
+        description: Diagnosis information
+      - name: mobile_no
+        data_type: text
+        description: Mobile number of the patient
+      - name: father_phone
+        data_type: text
+        description: Phone number of the patient's father
+      - name: mother_phone
+        data_type: text
+        description: Phone number of the patient's mother
+      - name: father_age
+        data_type: text
+        description: Age of the patient's father
+      - name: plan_name
+        data_type: text
+        description: Name of the patient's plan
+      - name: father_city
+        data_type: text
+        description: City of the patient's father
+      - name: father_dist
+        data_type: text
+        description: District of the patient's father
+      - name: mother_city
+        data_type: text
+        description: City of the patient's mother
+      - name: mother_dist
+        data_type: text
+        description: District of the patient's mother
+      - name: pat_idn_no
+        data_type: text
+        description: Patient identification number
+      - name: father_state
+        data_type: text
+        description: State of the patient's father
+      - name: guardian_age
+        data_type: text
+        description: Age of the guardian
+      - name: guardian_pin
+        data_type: text
+        description: PIN code of the guardian's address
+      - name: is_processed
+        data_tests:
+          - not_null
+        data_type: numeric
+        description: Indicates if the record is processed
+      - name: mother_state
+        data_type: text
+        description: State of the patient's mother
+      - name: updated_date
+        data_type: text
+        description: Date when the record was last updated
+      - name: guardian_city
+        data_type: text
+        description: City of the guardian
+      - name: guardian_dist
+        data_type: text
+        description: District of the guardian
+      - name: inserted_date
+        data_type: text
+        description: Date when the record was inserted
+      - name: father_country
+        data_type: text
+        description: Country of the patient's father
+      - name: identity_type
+        data_type: text
+        description: Type of identity document
+      - name: mother_country
+        data_type: text
+        description: Country of the patient's mother
+      - name: guardian_rstate
+        data_type: text
+        description: State of residence of the guardian
+      - name: patient_income
+        data_type: text
+        description: Income of the patient
+      - name: registration_type
+        data_type: text
+        description: Type of registration
+      - name: service_center_name
+        data_type: text
+        description: Name of the service center
+      - name: _airbyte_raw_id
+        data_type: character varying
+        description: Airbyte raw ID
+      - name: _airbyte_extracted_at
+        data_type: timestamp with time zone
+        description: Timestamp when data was extracted by Airbyte
+      - name: _airbyte_meta
+        data_type: jsonb
+        description: Metadata from Airbyte

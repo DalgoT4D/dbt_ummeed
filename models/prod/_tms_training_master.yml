@@ -1,0 +1,69 @@
+version: 2
+models:
+  - name: tms_training_master
+    description: Tracks training master details.
+    columns:
+      - name: pid
+        data_tests:
+          - not_null
+        data_type: character varying
+        description: Unique identifier for each participant
+      - name: participant
+        data_type: character varying
+        description: Name of the participant
+      - name: primary_contact
+        data_type: character varying
+        description: Primary contact information for the participant
+      - name: state
+        data_type: character varying
+        description: State name of the participant
+      - name: iso_code
+        data_type: text
+        description: ISO code for the state
+      - name: gender
+        data_type: character varying
+        description: Gender of the participant
+      - name: course_name
+        data_type: character varying
+        description: Name of the course
+      - name: course_category
+        data_type: character varying
+        description: Category of the course
+      - name: course_short_name
+        data_type: character varying
+        description: Short name of the course
+      - name: organisation_name
+        data_type: character varying
+        description: Name of the organisation offering the course
+      - name: reg_attending_program
+        data_type: character varying
+        description: Registration status for attending the program
+      - name: start_date
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+        data_type: date
+        description: Start date of the course
+      - name: department
+        data_type: character varying
+        description: Name of the department offering the course.
+      - name: year
+        data_tests:
+          - not_null
+        data_type: numeric
+        description: Year extracted from the start date
+      - name: financial_year
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [2001-2002, 2009-2010, 2010-2011, 2011-2012, 2012-2013, 2013-2014, 2014-2015, 2015-2016,
+                2016-2017, 2017-2018, 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024,
+                2024-2025, 2025-2026]
+        data_type: text
+        description: Calculated financial year based on the start date
+      - name: month
+        data_tests:
+          - not_null
+
+        data_type: text
+        description: Month name extracted from the start date

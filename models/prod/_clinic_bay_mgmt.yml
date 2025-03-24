@@ -1,0 +1,195 @@
+version: 2
+models:
+  - name: clinic_bay_mgmt
+    description: Manages clinic bay operations.
+    columns:
+      - name: s_no
+        description: Serial number for unique identification of records.
+        data_tests:
+          - not_null
+        data_type: numeric
+      - name: mrno
+        description: Medical Record Number (MRN) assigned to the patient.
+        data_tests:
+          - not_null
+        data_type: character varying
+      - name: patient_name
+        description: Full name of the patient.
+        data_type: character varying
+      - name: patient_age
+        data_type: numeric
+        description: Age of the patient
+      - name: patient_gender
+        data_tests:
+          - accepted_values:
+              values: [Male, Female, Other]
+        data_type: character varying
+        description: Gender of the patient
+      - name: mobile_no
+        description: Contact number of the patient.
+        data_type: character varying
+      - name: department
+        description: Department where the consultation took place (e.g., Cardiology, Orthopedics).
+        data_type: character varying
+      - name: doctor
+        description: Name of the doctor who attended the consultation.
+        data_type: character varying
+      - name: consultation_date
+        description: Date when the consultation occurred.
+        data_tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+        data_type: date
+      - name: consultation_type
+        description: Type of consultation (e.g., OPD, IPD, Emergency).
+        data_type: character varying
+      - name: unit
+        description: Unit or section within the hospital handling the consultation.
+        data_type: character varying
+      - name: visit_no
+        description: Visit number to track multiple visits by the same patient.
+        data_type: character varying
+      - name: billed_status
+        description: Indicates whether the consultation has been billed (e.g., Billed, Pending).
+        data_type: character varying
+      - name: invoice_no
+        description: Invoice number generated for the consultation billing.
+        data_type: character varying
+      - name: queue_generation_time
+        description: Timestamp when the patient was added to the consultation queue.
+        data_type: character varying
+      - name: queue_no
+        description: Queue number assigned to the patient for the consultation.
+        data_type: character varying
+      - name: start_consultation_time
+        description: Timestamp when the consultation started.
+        data_type: character varying
+      - name: end_consultation_time
+        description: Timestamp when the consultation ended.
+        data_type: character varying
+      - name: sponsor_name
+        description: Name of the sponsor covering the consultation (if applicable).
+        data_type: character varying
+      - name: plan
+        description: Sponsor plan details under which the consultation is covered.
+        data_type: character varying
+      - name: associate_company
+        description: Associated company providing sponsorship or medical coverage.
+        data_type: character varying
+      - name: registered_patient_id
+        data_type: numeric
+        description: Unique identifier for each patient record
+      - name: registered_patient_age
+        data_type: numeric
+        description: Age of the patient
+      - name: date_of_birth
+        data_type: text
+        description: Date of birth of the patient
+      - name: registered_patient_gender
+        data_type: text
+        description: Gender of the patient
+      - name: diagnosis
+        data_type: text
+        description: Diagnosis information
+      - name: registered_mobile_no
+        data_type: text
+        description: Mobile number of the registered patient
+      - name: calculated_age
+        data_type: double precision
+        description: Calculated age based on date of birth
+      - name: age_group
+        data_type: text
+        description: Age group classification
+      - name: parent_guardian_phone
+        data_type: text
+        description: Phone number of the parent or guardian
+      - name: parent_guardian_age
+        data_type: text
+        description: Age of the parent or guardian
+      - name: parent_guardian_city
+        data_type: text
+        description: City of the parent or guardian
+      - name: parent_guardian_district
+        data_type: text
+        description: District of the parent or guardian
+      - name: parent_guardian_state
+        data_type: text
+        description: State of the parent or guardian
+      - name: parent_guardian_country
+        data_type: text
+        description: Country of the parent or guardian
+      - name: who_brought_the_child
+        data_type: text
+        description: Person who brought the child
+      - name: location_category
+        data_type: text
+        description: Location category based on address
+      - name: pat_idn_no
+        data_type: text
+        description: Patient identification number
+      - name: guardian_pin
+        data_type: text
+        description: PIN code of the guardian's address
+      - name: plan_name
+        data_type: text
+        description: Name of the patient's plan
+      - name: is_processed
+        data_type: numeric
+        description: Indicates if the record is processed
+      - name: updated_date
+        data_type: text
+        description: Date when the record was last updated
+      - name: inserted_date
+        data_type: text
+        description: Date when the record was inserted
+      - name: identity_type
+        data_type: text
+        description: Type of identity document
+      - name: patient_income
+        data_type: text
+        description: Income of the patient
+      - name: registration_type
+        data_type: text
+        description: Type of registration
+      - name: service_center_name
+        data_type: text
+        description: Name of the service center
+      - name: _airbyte_raw_id
+        data_type: character varying
+        description: Airbyte raw identifier
+      - name: _airbyte_extracted_at
+        data_type: timestamp with time zone
+        description: Timestamp when data was extracted by Airbyte
+      - name: _airbyte_meta
+        data_type: jsonb
+        description: Metadata from Airbyte
+      - name: consultation_category
+        data_tests:
+          - accepted_values:
+              values: [Connect, Dummy, Group, Therapy, Consult, Assessment, Fees]
+        data_type: text
+        description: Classification category for consultation types
+      - name: dep_consult_category
+        data_type: text
+        description: Acronym and consultation category combined
+      - name: dep_shortened
+        data_type: text
+        description: Acronym representing a department
+      - name: year
+        data_tests:
+          - not_null
+        data_type: numeric
+        description: Year associated with the clinic bay management data.
+      - name: financial_year
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [2020-2021, 2021-2022, 2022-2023, 2023-2024, 2024-2025, 2025-2026]
+        data_type: text
+        description: The financial year associated with the clinic bay management activities.
+      - name: month
+        data_tests:
+          - not_null
+        data_type: text
+        description: Month when the clinic bay management activity is recorded.
