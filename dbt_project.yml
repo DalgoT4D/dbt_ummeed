@@ -44,5 +44,5 @@ models:
     +schema: "elementary"
     
 seeds:
-  your_project_name:
+  dbt_ummeed:
     +dbt-osmosis: "_schema.yml"
