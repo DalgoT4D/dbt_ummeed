@@ -64,6 +64,5 @@ models:
       - name: month
         data_tests:
           - not_null
-
         data_type: text
         description: Month extracted from the start date

@@ -47,7 +47,6 @@ models:
       - name: created_date
         data_tests:
           - not_null
-
         data_type: text
         description: Date when the record was created
       - name: event_status

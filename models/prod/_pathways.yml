@@ -80,7 +80,6 @@ models:
       - name: month
         data_tests:
           - not_null
-
         data_type: text
         description: Month of the course start date
       - name: course_name

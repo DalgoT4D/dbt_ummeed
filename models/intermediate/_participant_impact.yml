@@ -29,7 +29,6 @@ models:
       - name: course_name
         data_tests:
           - not_null
-
         data_type: character varying
         description: Name of the course attended
       - name: end_date

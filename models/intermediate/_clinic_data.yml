@@ -6,7 +6,6 @@ models:
       - name: s_no
         data_tests:
           - not_null
-
         data_type: numeric
         description: Identifier for the patient encounter
       - name: mrno
