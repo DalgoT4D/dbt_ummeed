@@ -1,6 +1,5 @@
 repos:
-  - repo: https://github.com/z3z1ma/dbt-osmosis
-    rev: v0.10.3  # Or the latest stable version
+  - repo: local
     hooks:
       - id: dbt-osmosis-yaml-organize
         name: Organize dbt schema.yml files
