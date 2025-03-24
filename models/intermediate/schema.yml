@@ -7,32 +7,608 @@ sources:
       - name: registered_patient
         identifier: registeredPatient
         description: registered patient on ICT health app
-
+        columns:
+          - name: id
+            data_type: numeric
+            description: Unique identifier for each patient record
+          - name: age
+            data_type: numeric
+            description: Age of the patient
+          - name: dob
+            data_type: character varying
+            description: Date of birth of the patient
+          - name: mrno
+            data_type: character varying
+            description: Medical record number
+          - name: email
+            data_type: character varying
+            description: Email address of the patient
+          - name: title
+            data_type: character varying
+            description: Title of the patient
+          - name: gender
+            data_type: character varying
+            description: Gender of the patient
+          - name: mobileno
+            data_type: character varying
+            description: Mobile number of the patient
+          - name: username
+            data_type: character varying
+            description: Username of the patient
+          - name: diagnosis
+            data_type: character varying
+            description: Diagnosis information
+          - name: fatherage
+            data_type: character varying
+            description: Age of the patient's father
+          - name: fatherpin
+            data_type: character varying
+            description: PIN code of the patient's father's address
+          - name: motherage
+            data_type: character varying
+            description: Age of the patient's mother
+          - name: motherpin
+            data_type: character varying
+            description: PIN code of the patient's mother's address
+          - name: plan_name
+            data_type: character varying
+            description: Name of the patient's plan
+          - name: fathercity
+            data_type: character varying
+            description: City of the patient's father
+          - name: fatherdist
+            data_type: character varying
+            description: District of the patient's father
+          - name: fathername
+            data_type: character varying
+            description: Name of the patient's father
+          - name: mothercity
+            data_type: character varying
+            description: City of the patient's mother
+          - name: motherdist
+            data_type: character varying
+            description: District of the patient's mother
+          - name: mothername
+            data_type: character varying
+            description: Name of the patient's mother
+          - name: pat_idn_no
+            data_type: character varying
+            description: Patient identification number
+          - name: fatherphone
+            data_type: character varying
+            description: Phone number of the patient's father
+          - name: fatherstate
+            data_type: character varying
+            description: State of the patient's father
+          - name: guardianage
+            data_type: character varying
+            description: Age of the guardian
+          - name: guardianpin
+            data_type: character varying
+            description: PIN code of the guardian's address
+          - name: isprocessed
+            data_type: numeric
+            description: Indicator if the record is processed
+          - name: motherphone
+            data_type: character varying
+            description: Phone number of the patient's mother
+          - name: motherstate
+            data_type: character varying
+            description: State of the patient's mother
+          - name: patientname
+            data_type: character varying
+            description: Name of the patient
+          - name: updateddate
+            data_type: character varying
+            description: Date when the record was last updated
+          - name: guardiancity
+            data_type: character varying
+            description: City of the guardian
+          - name: guardiandist
+            data_type: character varying
+            description: District of the guardian
+          - name: guardianname
+            data_type: character varying
+            description: Name of the guardian
+          - name: inserteddate
+            data_type: character varying
+            description: Date when the record was inserted
+          - name: fatheraddress
+            data_type: character varying
+            description: Address of the patient's father
+          - name: fathercountry
+            data_type: character varying
+            description: Country of the patient's father
+          - name: identity_type
+            data_type: character varying
+            description: Type of identity document
+          - name: motheraddress
+            data_type: character varying
+            description: Address of the patient's mother
+          - name: mothercountry
+            data_type: character varying
+            description: Country of the patient's mother
+          - name: guardianrstate
+            data_type: character varying
+            description: State of the guardian
+          - name: patient_income
+            data_type: character varying
+            description: Income of the patient
+          - name: asguardianrphone
+            data_type: character varying
+            description: Phone number of the guardian
+          - name: guardianraddress
+            data_type: character varying
+            description: Address of the guardian
+          - name: guardianrelation
+            data_type: character varying
+            description: Relation of the guardian to the patient
+          - name: registrationtype
+            data_type: character varying
+            description: Type of registration
+          - name: asguardiancountry
+            data_type: character varying
+            description: Country of the guardian
+          - name: service_center_name
+            data_type: character varying
+            description: Name of the service center
+          - name: _airbyte_raw_id
+            data_type: character varying
+            description: Airbyte raw ID
+          - name: _airbyte_extracted_at
+            data_type: timestamp with time zone
+            description: Timestamp when data was extracted by Airbyte
+          - name: _airbyte_meta
+            data_type: jsonb
+            description: Metadata from Airbyte
       - name: clinic_bay_management_data
         identifier: clinicData
         description: patient data
 
+        columns:
+          - name: age
+            data_type: numeric
+            description: Age of the patient
+          - name: mrno
+            data_type: character varying
+            description: Medical record number
+          - name: plan
+            data_type: character varying
+            description: Patient's healthcare plan
+          - name: unit
+            data_type: character varying
+            description: Unit where the patient is assigned
+          - name: doctor
+            data_type: character varying
+            description: Doctor assigned to the patient
+          - name: gender
+            data_type: character varying
+            description: Gender of the patient
+          - name: queueno
+            data_type: character varying
+            description: Queue number for patient consultation
+          - name: visitid
+            data_type: character varying
+            description: Identifier for the patient visit
+          - name: mobileno
+            data_type: character varying
+            description: Patient's mobile number
+          - name: assocmpny
+            data_type: character varying
+            description: Associated company for the patient
+          - name: invoiceno
+            data_type: character varying
+            description: Invoice number for billing
+          - name: billstatus
+            data_type: character varying
+            description: Status of the bill
+          - name: department
+            data_type: character varying
+            description: Department handling the patient
+          - name: createddate
+            data_type: character varying
+            description: Date the record was created
+          - name: encounterid
+            data_type: numeric
+            description: Identifier for the patient encounter
+          - name: isprocessed
+            data_type: numeric
+            description: Indicates if the record has been processed
+          - name: patientname
+            data_type: character varying
+            description: Name of the patient
+          - name: sponsorname
+            data_type: character varying
+            description: Name of the sponsor
+          - name: updateddate
+            data_type: character varying
+            description: Date the record was last updated
+          - name: appointmenttype
+            data_type: character varying
+            description: Type of the appointment
+          - name: reginvcreateddate
+            data_type: character varying
+            description: Date the registration invoice was created
+          - name: endconsultationtime
+            data_type: character varying
+            description: Time the consultation ended
+          - name: queuegenerationtime
+            data_type: character varying
+            description: Time the queue number was generated
+          - name: startconsultationtime
+            data_type: character varying
+            description: Time the consultation started
+          - name: consultationrequestdate
+            data_type: character varying
+            description: Date the consultation was requested
+          - name: _airbyte_raw_id
+            data_type: character varying
+            description: Airbyte raw identifier
+          - name: _airbyte_extracted_at
+            data_type: timestamp with time zone
+            description: Timestamp when data was extracted by Airbyte
+          - name: _airbyte_meta
+            data_type: jsonb
+            description: Metadata from Airbyte
       - name: appointment_details
         identifier: appointmentDetails
         description: appointment data
-      
+
+        columns:
+          - name: age
+            data_type: character varying
+            description: Age of the patient
+          - name: dob
+            data_type: character varying
+            description: Date of birth of the patient
+          - name: city
+            data_type: character varying
+            description: City of the appointment
+          - name: mrno
+            data_type: character varying
+            description: Medical record number
+          - name: unit
+            data_type: character varying
+            description: Unit of the appointment
+          - name: gender
+            data_type: character varying
+            description: Gender of the patient
+          - name: roomno
+            data_type: character varying
+            description: Room number for the appointment
+          - name: address
+            data_type: character varying
+            description: Address related to the appointment
+          - name: eventid
+            data_type: numeric
+            description: Identifier for the event
+          - name: mobileno
+            data_type: character varying
+            description: Mobile number of the patient
+          - name: createdby
+            data_type: character varying
+            description: User who created the record
+          - name: consultant
+            data_type: character varying
+            description: Consultant for the appointment
+          - name: department
+            data_type: character varying
+            description: Department of the appointment
+          - name: createddate
+            data_type: character varying
+            description: Date when the record was created
+          - name: eventstatus
+            data_type: character varying
+            description: Status of the event
+          - name: isprocessed
+            data_type: numeric
+            description: Indicates if the event has been processed
+          - name: patientname
+            data_type: character varying
+            description: Name of the patient
+          - name: slotendtime
+            data_type: character varying
+            description: End time of the appointment slot
+          - name: updateddate
+            data_type: character varying
+            description: Date when the record was last updated
+          - name: cancelreason
+            data_type: character varying
+            description: Reason for cancellation of the appointment
+          - name: eventvalidto
+            data_type: character varying
+            description: Validity end date of the event
+          - name: slotstarttime
+            data_type: character varying
+            description: Start time of the appointment slot
+          - name: eventvalidfrom
+            data_type: character varying
+            description: Validity start date of the event
+          - name: _airbyte_raw_id
+            data_type: character varying
+            description: Raw ID from Airbyte
+          - name: _airbyte_extracted_at
+            data_type: timestamp with time zone
+            description: Timestamp when data was extracted by Airbyte
+          - name: _airbyte_meta
+            data_type: jsonb
+            description: Metadata from Airbyte
       - name: dim_department_acronym
         identifier: dim_department_acronym
         description: departments and their acronyms
 
+        columns:
+          - name: department
+            data_type: text
+            description: Name of the department associated with its acronym.
+          - name: acronym
+            data_type: text
+            description: Acronym representing a department.
       - name: dim_consultation_type_mapping
         identifier: dim_consultation_type_mapping
         description: consultation types mapped to their category
 
+        columns:
+          - name: Consultation Type
+            data_type: text
+            description: Maps consultation types to their corresponding categories.
+          - name: New Classification
+            data_type: text
+            description: Classification category for consultation types.
   - name: source_ummeed_synergy_connect
-    schema: staging_synergy_connect 
+    schema: staging_synergy_connect
     tables:
       - name: participant_impact
         identifier: Participant_Impact
         description: participant details from synergy connect app
 
+        columns:
+          - name: pId
+            data_type: character varying
+            description: Participant unique identifier
+          - name: city
+            data_type: character varying
+            description: City of the participant
+          - name: gender
+            data_type: character varying
+            description: Gender of the participant
+          - name: taluka
+            data_type: character varying
+            description: Taluka where the participant resides
+          - name: address
+            data_type: character varying
+            description: Address of the participant
+          - name: skypeId
+            data_type: character varying
+            description: Skype ID of the participant
+          - name: emailId1
+            data_type: character varying
+            description: Primary email address of the participant
+          - name: emailId2
+            data_type: character varying
+            description: Secondary email address of the participant
+          - name: CreatedOn
+            data_type: character varying
+            description: Record creation date
+          - name: UpdatedOn
+            data_type: character varying
+            description: Record last updated date
+          - name: stateName
+            data_type: character varying
+            description: State where the participant resides
+          - name: courseName
+            data_type: character varying
+            description: Name of the course the participant is enrolled in
+          - name: endDateStr
+            data_type: character varying
+            description: Course end date
+          - name: postalCode
+            data_type: character varying
+            description: Postal code of the participant's address
+          - name: speciality
+            data_type: character varying
+            description: Speciality of the participant
+          - name: totalChild
+            data_type: character varying
+            description: Total number of children the participant has
+          - name: workerRole
+            data_type: character varying
+            description: Role of the participant as a worker
+          - name: countryName
+            data_type: character varying
+            description: Country where the participant resides
+          - name: designation
+            data_type: character varying
+            description: Designation of the participant
+          - name: participant
+            data_type: character varying
+            description: Indicates if the individual is a participant
+          - name: totalMember
+            data_type: character varying
+            description: Total number of members in the participant's household
+          - name: yearOfBirth
+            data_type: character varying
+            description: Year of birth of the participant
+          - name: countryCode1
+            data_type: character varying
+            description: Primary country code for contact
+          - name: countryCode2
+            data_type: character varying
+            description: Secondary country code for contact
+          - name: districtName
+            data_type: character varying
+            description: District where the participant resides
+          - name: startDateStr
+            data_type: character varying
+            description: Course start date
+          - name: educatopnRole
+            data_type: character varying
+            description: Role related to education
+          - name: regPatientId1
+            data_type: character varying
+            description: Registered patient ID 1
+          - name: regPatientId2
+            data_type: character varying
+            description: Registered patient ID 2
+          - name: regPatientId3
+            data_type: character varying
+            description: Registered patient ID 3
+          - name: childNameinfo1
+            data_type: character varying
+            description: Name of child 1
+          - name: childNameinfo2
+            data_type: character varying
+            description: Name of child 2
+          - name: childNameinfo3
+            data_type: character varying
+            description: Name of child 3
+          - name: courseCategory
+            data_type: character varying
+            description: Category of the course
+          - name: primaryContact
+            data_type: character varying
+            description: Primary contact number
+          - name: ummeedService1
+            data_type: character varying
+            description: Ummeed service 1
+          - name: ummeedService2
+            data_type: character varying
+            description: Ummeed service 2
+          - name: ummeedService3
+            data_type: character varying
+            description: Ummeed service 3
+          - name: courseShortName
+            data_type: character varying
+            description: Short name of the course
+          - name: orgnisationName
+            data_type: character varying
+            description: Name of the organisation
+          - name: regMonthWorking
+            data_type: character varying
+            description: Month of registration for working individuals
+          - name: takeCareOfChild
+            data_type: character varying
+            description: Indicates if the participant takes care of a child
+          - name: childgenderinfo1
+            data_type: character varying
+            description: Gender of child 1
+          - name: childgenderinfo2
+            data_type: character varying
+            description: Gender of child 2
+          - name: childgenderinfo3
+            data_type: character varying
+            description: Gender of child 3
+          - name: organisationwork
+            data_type: character varying
+            description: Work related to the organisation
+          - name: programShortName
+            data_type: character varying
+            description: Short name of the program
+          - name: secondaryContact
+            data_type: character varying
+            description: Secondary contact number
+          - name: relationWithChild
+            data_type: character varying
+            description: Relation with the child
+          - name: regNonWorkingMonth
+            data_type: character varying
+            description: Month of registration for non-working individuals
+          - name: childBirthDateinfo1
+            data_type: character varying
+            description: Birth date of child 1
+          - name: childBirthDateinfo2
+            data_type: character varying
+            description: Birth date of child 2
+          - name: childBirthDateinfo3
+            data_type: character varying
+            description: Birth date of child 3
+          - name: parentQualification
+            data_type: character varying
+            description: Qualification of the parent
+          - name: recipantservicetext
+            data_type: character varying
+            description: Text related to recipient service
+          - name: regAttendingProgram
+            data_type: character varying
+            description: Indicates if registered for attending a program
+          - name: sSelectEorkVolunteer
+            data_type: character varying
+            description: Selection of work as a volunteer
+          - name: childPrimaryDiagnosis1
+            data_type: character varying
+            description: Primary diagnosis of child 1
+          - name: childPrimaryDiagnosis2
+            data_type: character varying
+            description: Primary diagnosis of child 2
+          - name: childPrimaryDiagnosis3
+            data_type: character varying
+            description: Primary diagnosis of child 3
+          - name: monthlyHouseholdIncome
+            data_type: character varying
+            description: Monthly income of the household
+          - name: mailconfirmregistration
+            data_type: character varying
+            description: Indicates if registration is confirmed by mail
+          - name: contactedbyemailinfuture
+            data_type: character varying
+            description: Permission to be contacted by email in the future
+          - name: permissioninterviewedpost
+            data_type: character varying
+            description: Permission to be interviewed and posted
+          - name: permissiontousephotovideos
+            data_type: character varying
+            description: Permission to use photos and videos
+          - name: whereyouhearaboutprogcourtext
+            data_type: character varying
+            description: Source of information about the program/course
+          - name: _airbyte_raw_id
+            data_type: character varying
+            description: Airbyte raw ID
+          - name: _airbyte_extracted_at
+            data_type: timestamp with time zone
+            description: Timestamp when data was extracted by Airbyte
+          - name: _airbyte_meta
+            data_type: jsonb
+            description: Metadata from Airbyte
       - name: no_registrations
         identifier: no_registrations
         description: participant details who has aggregated data
-      
 
+
+        columns:
+          - name: courseId
+            data_type: character varying
+            description: Identifier for the course
+          - name: courseName
+            data_type: character varying
+            description: Name of the course
+          - name: endDateStr
+            data_type: character varying
+            description: End date of the course in string format
+          - name: startDateStr
+            data_type: character varying
+            description: Start date of the course in string format
+          - name: courseCategory
+            data_type: character varying
+            description: Category of the course
+          - name: departmentName
+            data_type: character varying
+            description: Name of the department offering the course
+          - name: courseShortName
+            data_type: character varying
+            description: Short name of the course
+          - name: programShortName
+            data_type: character varying
+            description: Short name of the program
+          - name: unregisteredCount
+            data_type: jsonb
+            description: Count of participants not registered
+          - name: _airbyte_raw_id
+            data_type: character varying
+            description: Raw ID from Airbyte
+          - name: _airbyte_extracted_at
+            data_type: timestamp with time zone
+            description: Timestamp when data was extracted by Airbyte
+          - name: _airbyte_meta
+            data_type: jsonb
+            description: Metadata related to Airbyte extraction

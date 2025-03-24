@@ -1,0 +1,18 @@
+repos:
+  - repo: local
+    hooks:
+      - id: dbt-osmosis-yaml-organize
+        name: Organize dbt schema.yml files
+        entry: dbt-osmosis
+        args: ["yaml", "organize"]
+        language: system
+        types: [yaml]
+        files: ^models/
+
+      - id: dbt-osmosis-yaml-refactor
+        name: Refactor and synthesize dbt model columns
+        entry: dbt-osmosis
+        args: ["yaml", "refactor", "--synthesize"]
+        language: system
+        types: [sql]
+        files: ^models/

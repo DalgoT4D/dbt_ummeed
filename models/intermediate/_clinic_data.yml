@@ -1,0 +1,178 @@
+version: 2
+models:
+  - name: clinic_data
+    description: Aggregates clinic visit data.
+    columns:
+      - name: s_no
+        data_tests:
+          - not_null
+        data_type: numeric
+        description: Identifier for the patient encounter
+      - name: mrno
+        data_tests:
+          - not_null
+        data_type: character varying
+        description: Medical record number
+      - name: patient_name
+        data_type: character varying
+        description: Name of the patient
+      - name: patient_age
+        data_type: numeric
+        description: Age of the patient
+      - name: patient_gender
+        data_tests:
+          - accepted_values:
+              values: [Male, Female, Other]
+
+        data_type: character varying
+        description: Gender of the patient
+      - name: mobile_no
+        data_type: character varying
+        description: Mobile number of the patient
+      - name: department
+        data_type: character varying
+        description: Name of the department associated with its acronym.
+      - name: doctor
+        data_type: character varying
+        description: Doctor assigned to the patient
+      - name: consultation_date
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+        data_type: date
+        description: Date of consultation
+      - name: consultation_type
+        data_type: character varying
+        description: Type of the appointment
+      - name: unit
+        data_type: character varying
+        description: Unit where the patient is assigned
+      - name: visit_no
+        data_type: character varying
+        description: Identifier for the patient visit
+      - name: billed_status
+        data_type: character varying
+        description: Status of the bill
+      - name: invoice_no
+        data_type: character varying
+        description: Invoice number for billing
+      - name: queue_generation_time
+        data_type: character varying
+        description: Time the queue was generated
+      - name: queue_no
+        data_type: character varying
+        description: Queue number for patient consultation
+      - name: start_consultation_time
+        data_type: character varying
+        description: Time the consultation started
+      - name: end_consultation_time
+        data_type: character varying
+        description: Time the consultation ended
+      - name: sponsor_name
+        data_type: character varying
+        description: Name of the sponsor
+      - name: plan
+        data_type: character varying
+        description: Patient's healthcare plan
+      - name: associate_company
+        data_type: character varying
+        description: Associated company for the patient
+      - name: registered_patient_id
+        data_type: numeric
+        description: Unique identifier for each patient record
+      - name: registered_patient_age
+        data_type: numeric
+        description: Age of the patient
+      - name: date_of_birth
+        data_type: text
+        description: Date of birth of the patient
+      - name: registered_patient_gender
+        data_type: text
+        description: Gender of the patient
+      - name: diagnosis
+        data_type: text
+        description: Diagnosis information
+      - name: registered_mobile_no
+        data_type: text
+        description: Mobile number of the registered patient
+      - name: calculated_age
+        data_type: double precision
+        description: Calculated age based on date of birth
+      - name: age_group
+        data_type: text
+        description: Age group classification
+      - name: parent_guardian_phone
+        data_type: text
+        description: Phone number of the parent or guardian
+      - name: parent_guardian_age
+        data_type: text
+        description: Age of the parent or guardian
+      - name: parent_guardian_city
+        data_type: text
+        description: City of the parent or guardian
+      - name: parent_guardian_district
+        data_type: text
+        description: District of the parent or guardian
+      - name: parent_guardian_state
+        data_type: text
+        description: State of the parent or guardian
+      - name: parent_guardian_country
+        data_type: text
+        description: Country of the parent or guardian
+      - name: who_brought_the_child
+        data_type: text
+        description: Person who brought the child
+      - name: location_category
+        data_type: text
+        description: Location category based on address
+      - name: pat_idn_no
+        data_type: text
+        description: Patient identification number
+      - name: guardian_pin
+        data_type: text
+        description: PIN code of the guardian's address
+      - name: plan_name
+        data_type: text
+        description: Name of the patient's plan
+      - name: is_processed
+        data_type: numeric
+        description: Indicates if the record is processed
+      - name: updated_date
+        data_type: text
+        description: Date when the record was last updated
+      - name: inserted_date
+        data_type: text
+        description: Date when the record was inserted
+      - name: identity_type
+        data_type: text
+        description: Type of identity document
+      - name: patient_income
+        data_type: text
+        description: Income of the patient
+      - name: registration_type
+        data_type: text
+        description: Type of registration
+      - name: service_center_name
+        data_type: text
+        description: Name of the service center
+      - name: _airbyte_raw_id
+        data_type: character varying
+        description: Airbyte raw identifier
+      - name: _airbyte_extracted_at
+        data_type: timestamp with time zone
+        description: Timestamp when data was extracted by Airbyte
+      - name: _airbyte_meta
+        data_type: jsonb
+        description: Metadata from Airbyte
+      - name: consultation_category
+        data_tests:
+          - accepted_values:
+              values: [Connect, Dummy, Group, Therapy, Consult, Assessment, Fees]
+        data_type: text
+        description: Classification category for consultation types
+      - name: dep_consult_category
+        data_type: text
+        description: Acronym and consultation category combined
+      - name: dep_shortened
+        data_type: text
+        description: Acronym representing a department

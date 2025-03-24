@@ -1,0 +1,104 @@
+version: 2
+models:
+  - name: appointment_details
+    description: Stores appointment details.
+    columns:
+      - name: patient_age
+        data_type: text
+        description: Age of the patient
+      - name: city
+        data_type: text
+        description: City of the appointment
+      - name: mrno
+        data_type: text
+        description: Medical record number
+      - name: dob
+        data_type: text
+        description: Date of birth of the patient
+      - name: patient_gender
+        data_type: text
+        description: Gender of the patient
+      - name: unit
+        data_type: text
+        description: Unit of the appointment
+      - name: room_no
+        data_type: text
+        description: Room number for the appointment
+      - name: address
+        data_type: text
+        description: Address related to the appointment
+      - name: event_id
+        data_tests:
+          - not_null
+        data_type: numeric
+        description: Identifier for the event
+      - name: mobile_no
+        data_type: text
+        description: Mobile number of the patient
+      - name: created_by
+        data_type: text
+        description: User who created the record
+      - name: consultant
+        data_type: text
+        description: Consultant for the appointment
+      - name: department
+        data_type: text
+        description: Department of the appointment
+      - name: created_date
+        data_tests:
+          - not_null
+        data_type: text
+        description: Date when the record was created
+      - name: event_status
+        data_type: text
+        description: Status of the event
+      - name: isprocessed
+        data_type: numeric
+        description: Indicates if the event has been processed
+      - name: patient_name
+        data_type: text
+        description: Name of the patient
+      - name: slot_end_time
+        data_type: text
+        description: End time of the appointment slot
+      - name: updated_date
+        data_type: text
+        description: Date when the record was last updated
+      - name: cancel_code
+        data_type: text
+        description: Code representing the reason for cancellation
+      - name: cancelled_by
+        data_type: text
+        description: Entity that cancelled the appointment
+      - name: cancellation_reason
+        data_type: text
+        description: Reason for cancellation of the appointment
+      - name: slot_start_time
+        data_type: text
+        description: Start time of the appointment slot
+      - name: event_valid_from
+        data_type: timestamp with time zone
+        description: Validity start date of the event
+      - name: event_valid_to
+        data_type: timestamp with time zone
+        description: Validity end date of the event
+      - name: year
+        data_tests:
+          - not_null
+        data_type: numeric
+        description: Year of the appointment.
+      - name: financial_year
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [2009-2010, 2010-2011, 2011-2012, 2012-2013, 2013-2014, 2014-2015, 2015-2016, 2016-2017,
+                2017-2018, 2018-2019, 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, 2024-2025,
+                2025-2026]
+        data_type: text
+        description: Represents the financial year associated with the appointment.
+      - name: month
+        data_tests:
+          - not_null
+
+        data_type: text
+        description: Month of the appointment.

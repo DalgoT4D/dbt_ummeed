@@ -1,0 +1,210 @@
+version: 2
+models:
+  - name: participant_impact
+    description: Records participant impact details.
+    columns:
+      - name: pid
+        data_tests:
+          - not_null
+        data_type: character varying
+        description: Participant unique identifier
+      - name: city
+        data_type: character varying
+        description: City of the participant
+      - name: gender
+        data_type: character varying
+        description: Gender of the participant
+      - name: taluka
+        data_type: character varying
+        description: Taluka of the participant
+      - name: created_on
+        data_type: character varying
+        description: Record creation date
+      - name: updated_on
+        data_type: character varying
+        description: Record update date
+      - name: state_name
+        data_type: character varying
+        description: State name of the participant
+      - name: course_name
+        data_tests:
+          - not_null
+        data_type: character varying
+        description: Name of the course attended
+      - name: end_date
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+        data_type: date
+        description: Course end date
+      - name: speciality
+        data_type: character varying
+        description: Speciality of the participant
+      - name: total_child
+        data_type: character varying
+        description: Total number of children
+      - name: worker_role
+        data_type: character varying
+        description: Role of the worker
+      - name: country_name
+        data_type: character varying
+        description: Country name of the participant
+      - name: designation
+        data_type: character varying
+        description: Designation of the participant
+      - name: participant
+        data_type: character varying
+        description: Participant details
+      - name: total_member
+        data_type: character varying
+        description: Total number of family members
+      - name: year_of_birth
+        data_type: character varying
+        description: Year of birth of the participant
+      - name: country_code1
+        data_type: character varying
+        description: Primary country code
+      - name: country_code2
+        data_type: character varying
+        description: Secondary country code
+      - name: district_name
+        data_type: character varying
+        description: District name of the participant
+      - name: start_date
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+        data_type: date
+        description: Course start date
+      - name: month
+        data_type: text
+        description: Month of the course start date
+      - name: education_role
+        data_type: character varying
+        description: Role in education
+      - name: reg_patient_id1
+        data_type: character varying
+        description: Registered patient ID 1
+      - name: reg_patient_id2
+        data_type: character varying
+        description: Registered patient ID 2
+      - name: reg_patient_id3
+        data_type: character varying
+        description: Registered patient ID 3
+      - name: child_name_info1
+        data_type: character varying
+        description: Child name information 1
+      - name: child_name_info2
+        data_type: character varying
+        description: Child name information 2
+      - name: child_name_info3
+        data_type: character varying
+        description: Child name information 3
+      - name: course_category
+        data_type: character varying
+        description: Category of the course
+      - name: primary_contact
+        data_type: character varying
+        description: Primary contact information
+      - name: ummeed_service1
+        data_type: character varying
+        description: Ummeed service 1
+      - name: ummeed_service2
+        data_type: character varying
+        description: Ummeed service 2
+      - name: ummeed_service3
+        data_type: character varying
+        description: Ummeed service 3
+      - name: course_short_name
+        data_type: character varying
+        description: Short name of the course
+      - name: organisation_name
+        data_type: character varying
+        description: Name of the organisation
+      - name: reg_month_working
+        data_type: character varying
+        description: Registered month working
+      - name: take_care_of_child
+        data_type: character varying
+        description: Taking care of child information
+      - name: child_gender_info1
+        data_type: character varying
+        description: Child gender information 1
+      - name: child_gender_info2
+        data_type: character varying
+        description: Child gender information 2
+      - name: child_gender_info3
+        data_type: character varying
+        description: Child gender information 3
+      - name: organisation_work
+        data_type: character varying
+        description: Work of the organisation
+      - name: program_short_name
+        data_type: character varying
+        description: Short name of the program
+      - name: secondary_contact
+        data_type: character varying
+        description: Secondary contact information
+      - name: relation_with_child
+        data_type: character varying
+        description: Relation with the child
+      - name: reg_non_working_month
+        data_type: character varying
+        description: Registered non-working month
+      - name: child_birth_date_info1
+        data_type: character varying
+        description: Child birth date information 1
+      - name: child_birth_date_info2
+        data_type: character varying
+        description: Child birth date information 2
+      - name: child_birth_date_info3
+        data_type: character varying
+        description: Child birth date information 3
+      - name: parent_qualification
+        data_type: character varying
+        description: Qualification of the parent
+      - name: recipient_service_text
+        data_type: character varying
+        description: Recipient service text
+      - name: reg_attending_program
+        data_type: character varying
+        description: Registered attending program
+      - name: select_work_volunteer
+        data_type: character varying
+        description: Select work volunteer option
+      - name: child_primary_diagnosis1
+        data_type: character varying
+        description: Child primary diagnosis 1
+      - name: child_primary_diagnosis2
+        data_type: character varying
+        description: Child primary diagnosis 2
+      - name: child_primary_diagnosis3
+        data_type: character varying
+        description: Child primary diagnosis 3
+      - name: monthly_household_income
+        data_type: character varying
+        description: Monthly household income
+      - name: mail_confirm_registration
+        data_type: character varying
+        description: Mail confirmation for registration
+      - name: contacted_by_email_in_future
+        data_type: character varying
+        description: Consent to be contacted by email in future
+      - name: permission_interviewed_post
+        data_type: character varying
+        description: Permission to be interviewed post
+      - name: permission_to_use_photo_videos
+        data_type: character varying
+        description: Permission to use photos and videos
+      - name: where_you_hear_about_prog_course_text
+        data_type: character varying
+        description: Where you heard about the program/course
+      - name: airbyte_raw_id
+        data_type: character varying
+        description: Airbyte raw ID
+      - name: airbyte_extracted_at
+        data_type: timestamp with time zone
+        description: Airbyte extraction timestamp
+      - name: airbyte_meta
+        data_type: jsonb
+        description: Airbyte metadata
