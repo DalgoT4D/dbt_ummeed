@@ -57,22 +57,21 @@ WITH participant_impact_clean AS (
         -- Quarter
         CASE 
             WHEN EXTRACT(MONTH FROM COALESCE(
-                    TO_DATE(updated_on, 'DD/MM/YYYY'), 
-                    TO_DATE(created_on, 'DD/MM/YYYY')
-                )) BETWEEN 1 AND 3 THEN 'Q4'
+                TO_DATE(updated_on, 'DD/MM/YYYY'), 
+                TO_DATE(created_on, 'DD/MM/YYYY')
+            )) BETWEEN 1 AND 3 THEN 'Q4'
             WHEN EXTRACT(MONTH FROM COALESCE(
-                    TO_DATE(updated_on, 'DD/MM/YYYY'), 
-                    TO_DATE(created_on, 'DD/MM/YYYY')
-                )) BETWEEN 4 AND 6 THEN 'Q1'
+                TO_DATE(updated_on, 'DD/MM/YYYY'), 
+                TO_DATE(created_on, 'DD/MM/YYYY')
+            )) BETWEEN 4 AND 6 THEN 'Q1'
             WHEN EXTRACT(MONTH FROM COALESCE(
-                    TO_DATE(updated_on, 'DD/MM/YYYY'), 
-                    TO_DATE(created_on, 'DD/MM/YYYY')
-                )) BETWEEN 7 AND 9 THEN 'Q2'
+                TO_DATE(updated_on, 'DD/MM/YYYY'), 
+                TO_DATE(created_on, 'DD/MM/YYYY')
+            )) BETWEEN 7 AND 9 THEN 'Q2'
             WHEN EXTRACT(MONTH FROM COALESCE(
-                    TO_DATE(updated_on, 'DD/MM/YYYY'), 
-                    TO_DATE(created_on, 'DD/MM/YYYY')
-                )) BETWEEN 10 AND 12 THEN 'Q3'
-            ELSE NULL
+                TO_DATE(updated_on, 'DD/MM/YYYY'), 
+                TO_DATE(created_on, 'DD/MM/YYYY')
+            )) BETWEEN 10 AND 12 THEN 'Q3'
         END AS quarter
 
     FROM {{ ref('participant_impact') }}
@@ -117,7 +116,6 @@ no_registrations_expanded AS (
                 THEN 'Q2'
             WHEN EXTRACT(MONTH FROM TO_DATE(start_date_str, 'DD/MM/YYYY')) BETWEEN 10 AND 12 
                 THEN 'Q3'
-            ELSE NULL
         END AS quarter
 
     FROM {{ ref('no_registration') }}

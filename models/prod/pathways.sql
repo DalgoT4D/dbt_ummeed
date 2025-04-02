@@ -70,7 +70,6 @@ matched_synergy AS (
                 THEN 'Q2'
             WHEN EXTRACT(MONTH FROM cd.consultation_date) BETWEEN 10 AND 12 
                 THEN 'Q3'
-            ELSE NULL
         END AS quarter
     FROM {{ ref('participant_impact') }} AS sp
     INNER JOIN {{ ref('clinic_data') }} AS cd

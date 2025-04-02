@@ -9,8 +9,7 @@
 }}
 
 select 
-mrno,
-registered_mobile_no
+    mrno,
+    registered_mobile_no
 from {{ ref('clinic_data') }}
-
 {% endsnapshot %}

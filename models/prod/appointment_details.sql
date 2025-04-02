@@ -37,15 +37,14 @@ SELECT
     -- Month
     TO_CHAR(event_valid_to, 'Month') AS month,
     -- Quarter
-        CASE 
-            WHEN EXTRACT(MONTH FROM event_valid_to) BETWEEN 1 AND 3 
-                THEN 'Q4'
-            WHEN EXTRACT(MONTH FROM event_valid_to) BETWEEN 4 AND 6 
-                THEN 'Q1'
-            WHEN EXTRACT(MONTH FROM event_valid_to) BETWEEN 7 AND 9 
-                THEN 'Q2'
-            WHEN EXTRACT(MONTH FROM event_valid_to) BETWEEN 10 AND 12 
-                THEN 'Q3'
-            ELSE NULL
-        END AS quarter
+    CASE 
+        WHEN EXTRACT(MONTH FROM event_valid_to) BETWEEN 1 AND 3 
+            THEN 'Q4'
+        WHEN EXTRACT(MONTH FROM event_valid_to) BETWEEN 4 AND 6 
+            THEN 'Q1'
+        WHEN EXTRACT(MONTH FROM event_valid_to) BETWEEN 7 AND 9 
+            THEN 'Q2'
+        WHEN EXTRACT(MONTH FROM event_valid_to) BETWEEN 10 AND 12 
+            THEN 'Q3'
+    END AS quarter
 FROM {{ ref('appointment_data') }}

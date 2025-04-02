@@ -7,5 +7,6 @@ dialect = postgres
 templater = dbt
 
 # Comma separated list of rules to exclude, or None
-exclude_rules = L001,L029,RF05, LT05, ST06, RF02, ST10
+exclude_rules = L001,L029,RF05, LT05, ST06, RF02, ST10, AL08, CV11
 #max_line_length = 120
+# CV11 is buggy - https://github.com/sqlfluff/sqlfluff/issues/4805

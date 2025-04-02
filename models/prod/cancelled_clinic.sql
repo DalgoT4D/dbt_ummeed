@@ -63,7 +63,7 @@ WITH clinic_data AS (
 
         -- Appointment-only columns as NULLs
         'Checked In' AS event_status,
-        NULL::TEXT AS cancel_code,
+        NULL::TEXT AS cancel_code, -- noqa: CV11
         NULL::TEXT AS cancelled_by,
         NULL::TEXT AS cancellation_reason,
         NULL::TEXT AS slot_start_time,
