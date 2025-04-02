@@ -1,30 +1,22 @@
 version: 2
 models:
-  - name: clinic_bay_mgmt
-    description: Manages clinic bay operations.
+  - name: cancelled_clinic
     columns:
       - name: s_no
         description: Serial number for unique identification of records.
-        data_tests:
-          - not_null
         data_type: numeric
       - name: mrno
         description: Medical Record Number (MRN) assigned to the patient.
-        data_tests:
-          - not_null
         data_type: character varying
       - name: patient_name
         description: Full name of the patient.
         data_type: character varying
       - name: patient_age
-        data_type: numeric
         description: Age of the patient
+        data_type: text
       - name: patient_gender
-        data_tests:
-          - accepted_values:
-              values: [Male, Female, Other]
-        data_type: character varying
         description: Gender of the patient
+        data_type: character varying
       - name: mobile_no
         description: Contact number of the patient.
         data_type: character varying
@@ -34,15 +26,13 @@ models:
       - name: doctor
         description: Name of the doctor who attended the consultation.
         data_type: character varying
-      - name: consultation_date
-        description: Date when the consultation occurred.
-        data_tests:
-          - not_null
-          - dbt_expectations.expect_column_values_to_be_of_type:
-              column_type: date
-        data_type: date
-      - name: consultation_type
-        description: Type of consultation (e.g., OPD, IPD, Emergency).
+      - name: event_date
+        description: >-
+          The date and time when the clinic event was scheduled to occur, adjusted for time zone.
+        data_type: timestamp with time zone
+      - name: visit_type
+        description: >-
+          Type of visit associated with the cancelled clinic event (e.g., OPD, IPD, Emergency).
         data_type: character varying
       - name: unit
         description: Unit or section within the hospital handling the consultation.
@@ -58,16 +48,16 @@ models:
         data_type: character varying
       - name: queue_generation_time
         description: Timestamp when the patient was added to the consultation queue.
-        data_type: character varying
+        data_type: text
       - name: queue_no
         description: Queue number assigned to the patient for the consultation.
         data_type: character varying
       - name: start_consultation_time
         description: Timestamp when the consultation started.
-        data_type: character varying
+        data_type: text
       - name: end_consultation_time
         description: Timestamp when the consultation ended.
-        data_type: character varying
+        data_type: text
       - name: sponsor_name
         description: Name of the sponsor covering the consultation (if applicable).
         data_type: character varying
@@ -78,122 +68,162 @@ models:
         description: Associated company providing sponsorship or medical coverage.
         data_type: character varying
       - name: registered_patient_id
-        data_type: numeric
         description: Unique identifier for each patient record
+        data_type: numeric
       - name: registered_patient_age
-        data_type: numeric
         description: Age of the patient
+        data_type: numeric
       - name: date_of_birth
-        data_type: text
         description: Date of birth of the patient
+        data_type: text
       - name: registered_patient_gender
-        data_type: text
         description: Gender of the patient
+        data_type: text
       - name: diagnosis
-        data_type: text
         description: Diagnosis information
+        data_type: text
       - name: registered_mobile_no
-        data_type: text
         description: Mobile number of the registered patient
+        data_type: text
       - name: calculated_age
-        data_type: double precision
         description: Calculated age based on date of birth
+        data_type: double precision
       - name: age_group
-        data_type: text
         description: Age group classification
+        data_type: text
       - name: parent_guardian_phone
-        data_type: text
         description: Phone number of the parent or guardian
+        data_type: text
       - name: parent_guardian_age
-        data_type: text
         description: Age of the parent or guardian
+        data_type: text
       - name: parent_guardian_city
-        data_type: text
         description: City of the parent or guardian
+        data_type: text
       - name: parent_guardian_district
-        data_type: text
         description: District of the parent or guardian
+        data_type: text
       - name: parent_guardian_state
-        data_type: text
         description: State of the parent or guardian
+        data_type: text
       - name: parent_guardian_country
-        data_type: text
         description: Country of the parent or guardian
+        data_type: text
       - name: who_brought_the_child
-        data_type: text
         description: Person who brought the child
+        data_type: text
       - name: location_category
-        data_type: text
         description: Location category based on address
+        data_type: text
       - name: pat_idn_no
-        data_type: text
         description: Patient identification number
+        data_type: text
       - name: guardian_pin
-        data_type: text
         description: PIN code of the guardian's address
+        data_type: text
       - name: plan_name
-        data_type: text
         description: Name of the patient's plan
+        data_type: text
       - name: is_processed
-        data_type: numeric
         description: Indicates if the record is processed
-      - name: updated_date
-        data_type: text
-        description: Date when the record was last updated
-      - name: inserted_date
-        data_type: text
-        description: Date when the record was inserted
-      - name: identity_type
-        data_type: text
-        description: Type of identity document
-      - name: patient_income
-        data_type: text
-        description: Income of the patient
-      - name: registration_type
-        data_type: text
-        description: Type of registration
-      - name: service_center_name
-        data_type: text
-        description: Name of the service center
-      - name: _airbyte_raw_id
-        data_type: character varying
-        description: Airbyte raw identifier
-      - name: _airbyte_extracted_at
-        data_type: timestamp with time zone
-        description: Timestamp when data was extracted by Airbyte
-      - name: _airbyte_meta
-        data_type: jsonb
-        description: Metadata from Airbyte
-      - name: consultation_category
-        data_tests:
-          - accepted_values:
-              values: [Connect, Dummy, Group, Therapy, Consult, Assessment, Fees]
-        data_type: text
-        description: Classification category for consultation types
-      - name: dep_consult_category
-        data_type: text
-        description: Acronym and consultation category combined
-      - name: dep_shortened
-        data_type: text
-        description: Acronym representing a department
-      - name: year
-        data_tests:
-          - not_null
         data_type: numeric
+      - name: updated_date
+        description: Date when the record was last updated
+        data_type: text
+      - name: inserted_date
+        description: Date when the record was inserted
+        data_type: text
+      - name: identity_type
+        description: Type of identity document
+        data_type: text
+      - name: patient_income
+        description: Income of the patient
+        data_type: text
+      - name: registration_type
+        description: Type of registration
+        data_type: text
+      - name: service_center_name
+        description: Name of the service center
+        data_type: text
+      - name: _airbyte_raw_id
+        description: Airbyte raw identifier
+        data_type: character varying
+      - name: _airbyte_extracted_at
+        description: Timestamp when data was extracted by Airbyte
+        data_type: timestamp with time zone
+      - name: _airbyte_meta
+        description: Metadata from Airbyte
+        data_type: jsonb
+      - name: consultation_category
+        description: Classification category for consultation types
+        data_type: text
+      - name: dep_consult_category
+        description: Acronym and consultation category combined
+        data_type: text
+      - name: dep_shortened
+        description: Acronym representing a department
+        data_type: text
+      - name: year
         description: Year associated with the clinic bay management data.
+        data_type: numeric
       - name: financial_year
-        data_tests:
-          - not_null
-          - accepted_values:
-              values: [2020-2021, 2021-2022, 2022-2023, 2023-2024, 2024-2025, 2025-2026]
-        data_type: text
         description: The financial year associated with the clinic bay management activities.
-      - name: month
-        data_tests:
-          - not_null
         data_type: text
+      - name: month
         description: Month when the clinic bay management activity is recorded.
+        data_type: text
       - name: quarter
         description: >-
-          Represents the quarter of the year relevant to the clinic bay management activities.
+          Represents the quarter of the year when the clinic event was cancelled, aiding in understanding
+          seasonal patterns in cancellations.
         data_type: text
+      - name: source
+        description: Indicates the origin or source of the cancelled clinic event data.
+        data_type: text
+      - name: event_status
+        description: Status of the event
+        data_type: text
+      - name: cancel_code
+        description: Code representing the reason for cancellation
+        data_type: text
+      - name: cancelled_by
+        description: Entity that cancelled the appointment
+        data_type: text
+      - name: cancellation_reason
+        description: Reason for cancellation of the appointment
+        data_type: text
+      - name: slot_start_time
+        description: Start time of the appointment slot
+        data_type: text
+      - name: slot_end_time
+        description: End time of the appointment slot
+        data_type: text
+      - name: event_valid_from
+        description: Validity start date of the event
+        data_type: timestamp without time zone
+      - name: event_valid_to
+        description: Validity end date of the event
+        data_type: timestamp without time zone
+      - name: appointment_created_date
+        description: The date and time when the appointment was initially created.
+        data_type: timestamp without time zone
+      - name: appointment_updated_date
+        description: Timestamp indicating when the appointment details were last updated.
+        data_type: timestamp without time zone
+      - name: room_no
+        description: Room number for the appointment
+        data_type: text
+      - name: address
+        description: Address related to the appointment
+        data_type: text
+      - name: city
+        description: City of the appointment
+        data_type: text
+      - name: created_by
+        description: User who created the record
+        data_type: text
+    description: >-
+      This table combines data from clinic management and appointment details to provide a comprehensive
+      view of cancelled clinic events. It includes information on patient demographics, consultation details,
+      and appointment statuses, capturing both clinic visits and appointments, particularly focusing on
+      cancellations and no-shows.

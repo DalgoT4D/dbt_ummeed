@@ -12,7 +12,7 @@ SELECT DISTINCT
     eventid AS event_id,
     NULLIF(mobileno, '') AS mobile_no,
     NULLIF(createdby, '') AS created_by,
-    NULLIF(consultant, '') AS consultant,
+    NULLIF(consultant, '') AS doctor,
     NULLIF(department, '') AS department,
     NULLIF(createddate, '') AS created_date,
     NULLIF(eventstatus, '') AS event_status,

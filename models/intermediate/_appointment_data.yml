@@ -38,9 +38,9 @@ models:
       - name: created_by
         data_type: text
         description: User who created the record
-      - name: consultant
+      - name: doctor
+        description: Name of the doctor associated with the appointment.
         data_type: text
-        description: Consultant for the appointment
       - name: department
         data_type: text
         description: Department of the appointment

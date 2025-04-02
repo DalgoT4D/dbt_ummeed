@@ -38,9 +38,9 @@ models:
       - name: created_by
         data_type: text
         description: User who created the record
-      - name: consultant
+      - name: doctor
+        description: Name of the doctor involved in the appointment.
         data_type: text
-        description: Consultant for the appointment
       - name: department
         data_type: text
         description: Department of the appointment
@@ -102,3 +102,6 @@ models:
 
         data_type: text
         description: Month of the appointment.
+      - name: quarter
+        description: Represents the fiscal quarter during which the appointment is scheduled.
+        data_type: text

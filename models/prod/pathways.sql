@@ -54,11 +54,24 @@ matched_synergy AS (
         cd.patient_income,
         sp.start_date AS consultation_date,
         EXTRACT(YEAR FROM cd.consultation_date)::INTEGER AS year,
+        -- Financial Year
         CASE 
             WHEN EXTRACT(MONTH FROM cd.consultation_date) >= 4 
-                THEN CONCAT(EXTRACT(YEAR FROM consultation_date), '-', EXTRACT(YEAR FROM consultation_date) + 1)
-            ELSE CONCAT(EXTRACT(YEAR FROM consultation_date) - 1, '-', EXTRACT(YEAR FROM consultation_date))
-        END::TEXT AS financial_year
+                THEN CONCAT(EXTRACT(YEAR FROM cd.consultation_date), '-', EXTRACT(YEAR FROM cd.consultation_date) + 1)
+            ELSE CONCAT(EXTRACT(YEAR FROM cd.consultation_date) - 1, '-', EXTRACT(YEAR FROM cd.consultation_date))
+        END::TEXT AS financial_year,
+        -- Quarter
+        CASE 
+            WHEN EXTRACT(MONTH FROM cd.consultation_date) BETWEEN 1 AND 3 
+                THEN 'Q4'
+            WHEN EXTRACT(MONTH FROM cd.consultation_date) BETWEEN 4 AND 6 
+                THEN 'Q1'
+            WHEN EXTRACT(MONTH FROM cd.consultation_date) BETWEEN 7 AND 9 
+                THEN 'Q2'
+            WHEN EXTRACT(MONTH FROM cd.consultation_date) BETWEEN 10 AND 12 
+                THEN 'Q3'
+            ELSE NULL
+        END AS quarter
     FROM {{ ref('participant_impact') }} AS sp
     INNER JOIN {{ ref('clinic_data') }} AS cd
         ON TRIM(cd.mobile_no) = TRIM(sp.primary_contact)

@@ -25,7 +25,22 @@ SELECT
         ELSE 
             CONCAT(EXTRACT(YEAR FROM start_date) - 1, '-', EXTRACT(YEAR FROM start_date))
     END AS financial_year,
-    TO_CHAR(start_date, 'Month') AS month
+
+    -- Month
+    TO_CHAR(start_date, 'Month') AS month,
+
+    -- Quarter
+        CASE 
+            WHEN EXTRACT(MONTH FROM start_date) BETWEEN 1 AND 3 
+                THEN 'Q4'
+            WHEN EXTRACT(MONTH FROM start_date) BETWEEN 4 AND 6 
+                THEN 'Q1'
+            WHEN EXTRACT(MONTH FROM start_date) BETWEEN 7 AND 9 
+                THEN 'Q2'
+            WHEN EXTRACT(MONTH FROM start_date) BETWEEN 10 AND 12 
+                THEN 'Q3'
+            ELSE NULL
+        END AS quarter
 
 FROM intermediate.participant_impact AS p
 LEFT JOIN 
