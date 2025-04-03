@@ -12,7 +12,7 @@ SELECT
     event_id,
     mobile_no,
     created_by,
-    consultant,
+    doctor,
     department,
     created_date,
     event_status,
@@ -34,5 +34,17 @@ SELECT
             THEN CONCAT(EXTRACT(YEAR FROM event_valid_to), '-', EXTRACT(YEAR FROM event_valid_to) + 1)
         ELSE CONCAT(EXTRACT(YEAR FROM event_valid_to) - 1, '-', EXTRACT(YEAR FROM event_valid_to))
     END AS financial_year,
-    TO_CHAR(event_valid_to, 'Month') AS month
+    -- Month
+    TO_CHAR(event_valid_to, 'Month') AS month,
+    -- Quarter
+    CASE 
+        WHEN EXTRACT(MONTH FROM event_valid_to) BETWEEN 1 AND 3 
+            THEN 'Q4'
+        WHEN EXTRACT(MONTH FROM event_valid_to) BETWEEN 4 AND 6 
+            THEN 'Q1'
+        WHEN EXTRACT(MONTH FROM event_valid_to) BETWEEN 7 AND 9 
+            THEN 'Q2'
+        WHEN EXTRACT(MONTH FROM event_valid_to) BETWEEN 10 AND 12 
+            THEN 'Q3'
+    END AS quarter
 FROM {{ ref('appointment_data') }}

@@ -67,3 +67,6 @@ models:
 
         data_type: text
         description: Month name extracted from the start date
+      - name: quarter
+        description: The quarter of the year in which the training took place.
+        data_type: text

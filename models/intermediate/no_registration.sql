@@ -10,10 +10,7 @@ WITH source_data AS (
         "departmentName",
         "courseShortName",
         "programShortName",
-        "unregisteredCount",  -- Case-sensitive reference
-        _airbyte_raw_id,
-        _airbyte_extracted_at,
-        _airbyte_meta
+        "unregisteredCount"  -- Case-sensitive reference
     FROM {{ source('source_ummeed_synergy_connect', 'no_registrations') }}
 )
 
@@ -26,9 +23,6 @@ SELECT
     sd."departmentName" AS department,
     sd."courseShortName" AS course_short_name,
     sd."programShortName" AS program_short_name,
-    sd._airbyte_raw_id,
-    sd._airbyte_extracted_at,
-    sd._airbyte_meta,
     jsonb_extract_path_text(content.value, 'totalcount')::INTEGER AS total_count,
     jsonb_extract_path_text(content.value, 'participantCount')::INTEGER AS participant_count,
     jsonb_extract_path_text(content.value, 'participantCategory') AS participant_category

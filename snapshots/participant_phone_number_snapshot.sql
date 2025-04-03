@@ -8,9 +8,8 @@
         )
     }}
 
-    select
-        pid,
-        primary_contact
-    from {{ ref('participant_impact') }}
-
+select
+    pid,
+    primary_contact
+from {{ ref('participant_impact') }}
 {% endsnapshot %}

@@ -199,12 +199,3 @@ models:
       - name: where_you_hear_about_prog_course_text
         data_type: character varying
         description: Where you heard about the program/course
-      - name: airbyte_raw_id
-        data_type: character varying
-        description: Airbyte raw ID
-      - name: airbyte_extracted_at
-        data_type: timestamp with time zone
-        description: Airbyte extraction timestamp
-      - name: airbyte_meta
-        data_type: jsonb
-        description: Airbyte metadata

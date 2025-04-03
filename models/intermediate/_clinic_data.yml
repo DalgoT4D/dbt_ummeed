@@ -6,7 +6,7 @@ models:
       - name: s_no
         data_tests:
           - not_null
-        data_type: numeric
+        data_type: character varying
         description: Identifier for the patient encounter
       - name: mrno
         data_tests:
@@ -17,7 +17,7 @@ models:
         data_type: character varying
         description: Name of the patient
       - name: patient_age
-        data_type: numeric
+        data_type: character varying
         description: Age of the patient
       - name: patient_gender
         data_tests:
@@ -78,10 +78,10 @@ models:
         data_type: character varying
         description: Associated company for the patient
       - name: registered_patient_id
-        data_type: numeric
+        data_type: character varying
         description: Unique identifier for each patient record
       - name: registered_patient_age
-        data_type: numeric
+        data_type: character varying
         description: Age of the patient
       - name: date_of_birth
         data_type: text
@@ -93,10 +93,10 @@ models:
         data_type: text
         description: Diagnosis information
       - name: registered_mobile_no
-        data_type: text
+        data_type: character varying
         description: Mobile number of the registered patient
       - name: calculated_age
-        data_type: double precision
+        data_type: text
         description: Calculated age based on date of birth
       - name: age_group
         data_type: text
@@ -135,13 +135,13 @@ models:
         data_type: text
         description: Name of the patient's plan
       - name: is_processed
-        data_type: numeric
+        data_type: text
         description: Indicates if the record is processed
       - name: updated_date
         data_type: text
         description: Date when the record was last updated
       - name: inserted_date
-        data_type: text
+        data_type: date
         description: Date when the record was inserted
       - name: identity_type
         data_type: text
@@ -155,15 +155,6 @@ models:
       - name: service_center_name
         data_type: text
         description: Name of the service center
-      - name: _airbyte_raw_id
-        data_type: character varying
-        description: Airbyte raw identifier
-      - name: _airbyte_extracted_at
-        data_type: timestamp with time zone
-        description: Timestamp when data was extracted by Airbyte
-      - name: _airbyte_meta
-        data_type: jsonb
-        description: Metadata from Airbyte
       - name: consultation_category
         data_tests:
           - accepted_values:

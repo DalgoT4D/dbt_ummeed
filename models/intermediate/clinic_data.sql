@@ -2,14 +2,14 @@
 
 WITH clinic_data AS (
     SELECT
-        encounterid AS s_no,
-        mrno,
+        encounterid::VARCHAR AS s_no,
+        mrno::VARCHAR AS mrno,
         patientname AS patient_name,
-        age AS patient_age,
+        CAST(age AS VARCHAR) AS patient_age,
         gender AS patient_gender,
-        mobileno AS mobile_no,
-        department,
-        doctor,
+        mobileno::VARCHAR AS mobile_no,
+        department::VARCHAR AS department,
+        doctor::VARCHAR AS doctor,
         TO_DATE(consultationrequestdate, 'DD-MON-YY') AS consultation_date,
         appointmenttype AS consultation_type,
         unit,
@@ -28,8 +28,8 @@ WITH clinic_data AS (
 
 registered_patient AS (
     SELECT 
-        id AS registered_patient_id,
-        registered_patient_age,
+        id::VARCHAR AS registered_patient_id,
+        registered_patient_age::VARCHAR AS registered_patient_age,
         dob AS date_of_birth,
         mrno,
         registered_patient_gender,
@@ -62,16 +62,13 @@ registered_patient AS (
             WHEN guardian_age IS NOT NULL THEN 'Guardian'
         END AS who_brought_the_child,
         plan_name,
-        is_processed,
+        is_processed::TEXT,
         updated_date,
-        inserted_date,
+        inserted_date::DATE AS inserted_date,
         identity_type,
         patient_income,
         registration_type,
-        service_center_name,
-        _airbyte_raw_id,
-        _airbyte_extracted_at,
-        _airbyte_meta
+        service_center_name
     FROM {{ ref('registered_patient') }}
 )
 
@@ -82,8 +79,8 @@ SELECT
     rp.date_of_birth,
     rp.registered_patient_gender,
     rp.diagnosis,
-    rp.registered_mobile_no,
-    DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) AS calculated_age,
+    rp.registered_mobile_no::VARCHAR AS registered_mobile_no,
+    DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')))::TEXT AS calculated_age,
     CASE 
         WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 0 AND 3 THEN 'Group A: 0-3'
         WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 3.1 AND 6 THEN 'Group B: 3.1-6'
@@ -121,9 +118,6 @@ SELECT
     rp.patient_income,
     rp.registration_type,
     rp.service_center_name,
-    rp._airbyte_raw_id,
-    rp._airbyte_extracted_at,
-    rp._airbyte_meta,
     ctm."New Classification" AS consultation_category,  -- Mapped from dim_consultation_type_mapping
     CONCAT_WS(' ', dda.acronym, ctm."New Classification") AS dep_consult_category,  -- Acronym + Consultation Category
     dda.acronym AS dep_shortened
