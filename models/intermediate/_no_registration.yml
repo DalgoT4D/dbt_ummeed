@@ -31,15 +31,6 @@ models:
       - name: program_short_name
         data_type: character varying
         description: Short name of the program
-      - name: _airbyte_raw_id
-        data_type: character varying
-        description: Raw ID from Airbyte
-      - name: _airbyte_extracted_at
-        data_type: timestamp with time zone
-        description: Timestamp when data was extracted by Airbyte
-      - name: _airbyte_meta
-        data_type: jsonb
-        description: Metadata related to Airbyte extraction
       - name: total_count
         data_tests:
           - not_null

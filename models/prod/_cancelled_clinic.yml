@@ -4,7 +4,7 @@ models:
     columns:
       - name: s_no
         description: Serial number for unique identification of records.
-        data_type: numeric
+        data_type: character varying
       - name: mrno
         description: Medical Record Number (MRN) assigned to the patient.
         data_type: character varying
@@ -13,7 +13,7 @@ models:
         data_type: character varying
       - name: patient_age
         description: Age of the patient
-        data_type: text
+        data_type: character varying
       - name: patient_gender
         description: Gender of the patient
         data_type: character varying
@@ -43,21 +43,6 @@ models:
       - name: billed_status
         description: Indicates whether the consultation has been billed (e.g., Billed, Pending).
         data_type: character varying
-      - name: invoice_no
-        description: Invoice number generated for the consultation billing.
-        data_type: character varying
-      - name: queue_generation_time
-        description: Timestamp when the patient was added to the consultation queue.
-        data_type: text
-      - name: queue_no
-        description: Queue number assigned to the patient for the consultation.
-        data_type: character varying
-      - name: start_consultation_time
-        description: Timestamp when the consultation started.
-        data_type: text
-      - name: end_consultation_time
-        description: Timestamp when the consultation ended.
-        data_type: text
       - name: sponsor_name
         description: Name of the sponsor covering the consultation (if applicable).
         data_type: character varying
@@ -69,10 +54,10 @@ models:
         data_type: character varying
       - name: registered_patient_id
         description: Unique identifier for each patient record
-        data_type: numeric
+        data_type: character varying
       - name: registered_patient_age
         description: Age of the patient
-        data_type: numeric
+        data_type: character varying
       - name: date_of_birth
         description: Date of birth of the patient
         data_type: text
@@ -84,30 +69,12 @@ models:
         data_type: text
       - name: registered_mobile_no
         description: Mobile number of the registered patient
-        data_type: text
+        data_type: character varying
       - name: calculated_age
         description: Calculated age based on date of birth
-        data_type: double precision
+        data_type: text
       - name: age_group
         description: Age group classification
-        data_type: text
-      - name: parent_guardian_phone
-        description: Phone number of the parent or guardian
-        data_type: text
-      - name: parent_guardian_age
-        description: Age of the parent or guardian
-        data_type: text
-      - name: parent_guardian_city
-        description: City of the parent or guardian
-        data_type: text
-      - name: parent_guardian_district
-        description: District of the parent or guardian
-        data_type: text
-      - name: parent_guardian_state
-        description: State of the parent or guardian
-        data_type: text
-      - name: parent_guardian_country
-        description: Country of the parent or guardian
         data_type: text
       - name: who_brought_the_child
         description: Person who brought the child
@@ -118,21 +85,18 @@ models:
       - name: pat_idn_no
         description: Patient identification number
         data_type: text
-      - name: guardian_pin
-        description: PIN code of the guardian's address
-        data_type: text
       - name: plan_name
         description: Name of the patient's plan
         data_type: text
       - name: is_processed
         description: Indicates if the record is processed
-        data_type: numeric
+        data_type: text
       - name: updated_date
         description: Date when the record was last updated
         data_type: text
       - name: inserted_date
         description: Date when the record was inserted
-        data_type: text
+        data_type: date
       - name: identity_type
         description: Type of identity document
         data_type: text
@@ -145,15 +109,6 @@ models:
       - name: service_center_name
         description: Name of the service center
         data_type: text
-      - name: _airbyte_raw_id
-        description: Airbyte raw identifier
-        data_type: character varying
-      - name: _airbyte_extracted_at
-        description: Timestamp when data was extracted by Airbyte
-        data_type: timestamp with time zone
-      - name: _airbyte_meta
-        description: Metadata from Airbyte
-        data_type: jsonb
       - name: consultation_category
         description: Classification category for consultation types
         data_type: text
@@ -192,24 +147,12 @@ models:
       - name: cancellation_reason
         description: Reason for cancellation of the appointment
         data_type: text
-      - name: slot_start_time
-        description: Start time of the appointment slot
-        data_type: text
-      - name: slot_end_time
-        description: End time of the appointment slot
-        data_type: text
       - name: event_valid_from
         description: Validity start date of the event
-        data_type: timestamp without time zone
+        data_type: timestamp with time zone
       - name: event_valid_to
         description: Validity end date of the event
-        data_type: timestamp without time zone
-      - name: appointment_created_date
-        description: The date and time when the appointment was initially created.
-        data_type: timestamp without time zone
-      - name: appointment_updated_date
-        description: Timestamp indicating when the appointment details were last updated.
-        data_type: timestamp without time zone
+        data_type: timestamp with time zone
       - name: room_no
         description: Room number for the appointment
         data_type: text

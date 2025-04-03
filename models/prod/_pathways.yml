@@ -9,22 +9,22 @@ models:
         data_type: character varying
         description: Medical record number
       - name: patient_name
-        data_type: text
+        data_type: character varying
         description: Name of the patient
       - name: patient_age
-        data_type: numeric
+        data_type: character varying
         description: Age of the patient
       - name: patient_gender
-        data_type: text
+        data_type: character varying
         description: Gender of the patient
       - name: mobile_no
         data_type: character varying
         description: Mobile number of the patient
       - name: department
-        data_type: text
+        data_type: character varying
         description: Name of the department associated with its acronym.
       - name: doctor
-        data_type: text
+        data_type: character varying
         description: Doctor assigned to the patient
       - name: consultation_date
         data_tests:
@@ -33,7 +33,7 @@ models:
         data_type: date
         description: Date of consultation
       - name: consultation_type
-        data_type: text
+        data_type: character varying
         description: Type of the appointment
       - name: date_of_birth
         data_type: text
@@ -42,7 +42,7 @@ models:
         data_type: text
         description: Diagnosis information
       - name: calculated_age
-        data_type: double precision
+        data_type: text
         description: Calculated age based on date of birth
       - name: age_group
         data_type: text
@@ -68,7 +68,7 @@ models:
       - name: year
         data_tests:
           - not_null
-        data_type: integer
+        data_type: numeric
         description: Year associated with the patient pathway record.
       - name: financial_year
         data_tests:

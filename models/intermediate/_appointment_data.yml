@@ -4,13 +4,13 @@ models:
     description: Stores appointment information.
     columns:
       - name: patient_age
-        data_type: text
+        data_type: character varying
         description: Age of the patient
       - name: city
         data_type: text
         description: City of the appointment
       - name: mrno
-        data_type: text
+        data_type: character varying
         description: Medical record number
       - name: dob
         data_type: text
@@ -33,27 +33,27 @@ models:
         data_type: numeric
         description: Identifier for the event
       - name: mobile_no
-        data_type: text
+        data_type: character varying
         description: Mobile number of the patient
       - name: created_by
         data_type: text
         description: User who created the record
       - name: doctor
         description: Name of the doctor associated with the appointment.
-        data_type: text
+        data_type: character varying
       - name: department
-        data_type: text
+        data_type: character varying
         description: Department of the appointment
       - name: created_date
         data_tests:
           - not_null
-        data_type: text
+        data_type: date
         description: Date when the record was created
       - name: event_status
         data_type: text
         description: Status of the event
       - name: isprocessed
-        data_type: numeric
+        data_type: character varying
         description: Indicates if the event has been processed
       - name: patient_name
         data_type: text

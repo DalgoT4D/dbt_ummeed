@@ -31,7 +31,7 @@ SELECT
     "childNameinfo2" AS child_name_info2,
     "childNameinfo3" AS child_name_info3,
     "courseCategory" AS course_category,
-    "primaryContact" AS primary_contact,
+    "primaryContact"::VARCHAR AS primary_contact,
     "ummeedService1" AS ummeed_service1,
     "ummeedService2" AS ummeed_service2,
     "ummeedService3" AS ummeed_service3,
@@ -62,8 +62,5 @@ SELECT
     contactedbyemailinfuture AS contacted_by_email_in_future,
     permissioninterviewedpost AS permission_interviewed_post,
     permissiontousephotovideos AS permission_to_use_photo_videos,
-    whereyouhearaboutprogcourtext AS where_you_hear_about_prog_course_text,
-    _airbyte_raw_id AS airbyte_raw_id,
-    _airbyte_extracted_at AS airbyte_extracted_at,
-    _airbyte_meta AS airbyte_meta
+    whereyouhearaboutprogcourtext AS where_you_hear_about_prog_course_text
 FROM {{ source('source_ummeed_synergy_connect', 'participant_impact') }}

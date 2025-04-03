@@ -2,9 +2,9 @@
 
 SELECT 
     id,
-    age AS registered_patient_age,
+    age::TEXT AS registered_patient_age,
     NULLIF(dob, '') AS dob,
-    NULLIF(mrno, '') AS mrno,
+    CAST(NULLIF(mrno, '') AS VARCHAR) AS mrno,
     NULLIF(gender, '') AS registered_patient_gender,
     NULLIF(diagnosis, '') AS diagnosis,
     NULLIF(mobileno, '') AS mobile_no,
@@ -32,11 +32,6 @@ SELECT
     NULLIF(guardianrstate, '') AS guardian_rstate,
     NULLIF(patient_income, '') AS patient_income,
     NULLIF(registrationtype, '') AS registration_type,
-    NULLIF(service_center_name, '') AS service_center_name,
-
-    -- Airbyte metadata columns remain unchanged
-    _airbyte_raw_id,
-    _airbyte_extracted_at,
-    _airbyte_meta
+    NULLIF(service_center_name, '') AS service_center_name
 
 FROM {{ source('source_ummeed_ict_health', 'registered_patient') }}

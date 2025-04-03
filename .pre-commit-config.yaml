@@ -16,3 +16,10 @@ repos:
         language: system
         types: [sql]
         files: ^models/
+      
+      - id: dbt-coverage-test
+        name: Run dbt-coverage test
+        entry: dbt-coverage
+        args: ["compute", "test", "--cov-report", "coverage-test.json"]
+        language: system
+        pass_filenames: false

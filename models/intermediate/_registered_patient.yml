@@ -9,7 +9,7 @@ models:
       - name: registered_patient_age
         data_tests:
           - not_null
-        data_type: numeric
+        data_type: text
         description: Age of the patient
       - name: dob
         data_type: text
@@ -18,7 +18,7 @@ models:
         data_tests:
           - not_null
           - unique
-        data_type: text
+        data_type: character varying
         description: Medical record number
       - name: registered_patient_gender
         data_tests:
@@ -109,12 +109,3 @@ models:
       - name: service_center_name
         data_type: text
         description: Name of the service center
-      - name: _airbyte_raw_id
-        data_type: character varying
-        description: Airbyte raw ID
-      - name: _airbyte_extracted_at
-        data_type: timestamp with time zone
-        description: Timestamp when data was extracted by Airbyte
-      - name: _airbyte_meta
-        data_type: jsonb
-        description: Metadata from Airbyte
