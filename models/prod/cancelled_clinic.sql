@@ -66,7 +66,7 @@ filtered_appointments AS (
         NULL::TEXT AS s_no,
         mrno,
         patient_name,
-        patient_age AS patient_age,
+        patient_age,
         NULL::VARCHAR AS patient_gender,
         mobile_no,
         department,

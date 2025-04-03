@@ -8,7 +8,7 @@ WITH clinic_data AS (
         CAST(age AS VARCHAR) AS patient_age,
         gender AS patient_gender,
         mobileno::VARCHAR AS mobile_no,
-        department::VARCHAR as department,
+        department::VARCHAR AS department,
         doctor::VARCHAR AS doctor,
         TO_DATE(consultationrequestdate, 'DD-MON-YY') AS consultation_date,
         appointmenttype AS consultation_type,
@@ -29,7 +29,7 @@ WITH clinic_data AS (
 registered_patient AS (
     SELECT 
         id::VARCHAR AS registered_patient_id,
-        registered_patient_age::VARCHAR as registered_patient_age,
+        registered_patient_age::VARCHAR AS registered_patient_age,
         dob AS date_of_birth,
         mrno,
         registered_patient_gender,
@@ -64,7 +64,7 @@ registered_patient AS (
         plan_name,
         is_processed::TEXT,
         updated_date,
-        inserted_date::DATE as inserted_date,
+        inserted_date::DATE AS inserted_date,
         identity_type,
         patient_income,
         registration_type,
@@ -79,7 +79,7 @@ SELECT
     rp.date_of_birth,
     rp.registered_patient_gender,
     rp.diagnosis,
-    rp.registered_mobile_no::VARCHAR as registered_mobile_no,
+    rp.registered_mobile_no::VARCHAR AS registered_mobile_no,
     DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')))::TEXT AS calculated_age,
     CASE 
         WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 0 AND 3 THEN 'Group A: 0-3'
