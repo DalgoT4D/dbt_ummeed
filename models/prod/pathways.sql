@@ -29,7 +29,17 @@ WITH cleaned_clinic_data AS (
         END::TEXT AS financial_year,
         TO_CHAR(consultation_date, 'Month')::TEXT AS month,
         NULL::TEXT AS course_name,  
-        NULL::TEXT AS course_category
+        NULL::TEXT AS course_category,
+        CASE 
+            WHEN EXTRACT(MONTH FROM consultation_date) BETWEEN 1 AND 3 
+                THEN 'Q4'
+            WHEN EXTRACT(MONTH FROM consultation_date) BETWEEN 4 AND 6 
+                THEN 'Q1'
+            WHEN EXTRACT(MONTH FROM consultation_date) BETWEEN 7 AND 9 
+                THEN 'Q2'
+            WHEN EXTRACT(MONTH FROM consultation_date) BETWEEN 10 AND 12 
+                THEN 'Q3'
+        END AS quarter
     FROM {{ ref('clinic_data') }}
     WHERE 
         TRIM(patient_name) <> 'Dummy Ummeed'
@@ -100,7 +110,8 @@ expanded_synergy AS (
         ms.financial_year,
         ms.month,
         ms.course_name,
-        ms.course_category
+        ms.course_category,
+        ms.quarter
     FROM matched_synergy AS ms
 )
 

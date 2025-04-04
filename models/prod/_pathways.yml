@@ -88,6 +88,9 @@ models:
       - name: course_category
         data_type: text
         description: Category of the course
+      - name: quarter
+        description: Represents the quarter of the year related to the patient pathway.
+        data_type: text
       - name: source
         data_type: text
         description: Indicates the origin or source of the patient pathway data.
