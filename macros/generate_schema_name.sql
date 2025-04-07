@@ -22,8 +22,8 @@
             {% endif %}
          {% endif %}
     {%- else -%}
-
-        {{ default_schema }}_{{ custom_schema_name | trim }}
+      {% if 'elementary' not in custom_schema_name  %}
+            {{ default_schema }}_{{ custom_schema_name | trim }}
 
     {%- endif -%}
 
