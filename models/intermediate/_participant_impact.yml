@@ -17,6 +17,9 @@ models:
       - name: taluka
         data_type: character varying
         description: Taluka of the participant
+      - name: department
+        description: Department associated with the participant.
+        data_type: character varying
       - name: created_on
         data_type: character varying
         description: Record creation date

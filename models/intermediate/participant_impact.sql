@@ -5,6 +5,7 @@ SELECT
     city,
     gender,
     taluka,
+    "departmentName" AS department,
     "CreatedOn" AS created_on,
     "UpdatedOn" AS updated_on,
     "stateName" AS state_name,

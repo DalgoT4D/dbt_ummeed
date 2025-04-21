@@ -1,8 +1,8 @@
 {
   "cov_type": "test",
   "covered": 48,
-  "total": 1112,
-  "coverage": 0.04316546762589928,
+  "total": 1113,
+  "coverage": 0.0431266846361186,
   "tables": [
     {
       "name": "ict_health_staging.appointment_details",
@@ -1194,6 +1194,2314 @@
         },
         {
           "name": "_airbyte_meta",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        }
+      ]
+    },
+    {
+      "name": "intermediate.appointment_data",
+      "covered": 2,
+      "total": 25,
+      "coverage": 0.08,
+      "columns": [
+        {
+          "name": "patient_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "city",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "mrno",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "dob",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_gender",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "unit",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "room_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "address",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "event_id",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "mobile_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "created_by",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "doctor",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "department",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "created_date",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "event_status",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "isprocessed",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "slot_end_time",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "updated_date",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "cancel_code",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "cancelled_by",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "cancellation_reason",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "slot_start_time",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "event_valid_from",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "event_valid_to",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        }
+      ]
+    },
+    {
+      "name": "intermediate.clinic_data",
+      "covered": 5,
+      "total": 50,
+      "coverage": 0.1,
+      "columns": [
+        {
+          "name": "s_no",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "mrno",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "patient_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_gender",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "mobile_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "department",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "doctor",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "consultation_date",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "consultation_type",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "unit",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "visit_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "billed_status",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "invoice_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "queue_generation_time",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "queue_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "start_consultation_time",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "end_consultation_time",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "sponsor_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "plan",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "associate_company",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registered_patient_id",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registered_patient_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "date_of_birth",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registered_patient_gender",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "diagnosis",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registered_mobile_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "calculated_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "age_group",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "parent_guardian_phone",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "parent_guardian_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "parent_guardian_city",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "parent_guardian_district",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "parent_guardian_state",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "parent_guardian_country",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "who_brought_the_child",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "location_category",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "pat_idn_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "guardian_pin",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "plan_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "is_processed",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "updated_date",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "inserted_date",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "identity_type",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_income",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registration_type",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "service_center_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "consultation_category",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "dep_consult_category",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "dep_shortened",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        }
+      ]
+    },
+    {
+      "name": "intermediate.no_registration",
+      "covered": 4,
+      "total": 11,
+      "coverage": 0.36363636363636365,
+      "columns": [
+        {
+          "name": "course_id",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "course_name",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "end_date_str",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "start_date_str",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "course_category",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "department",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "course_short_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "program_short_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "total_count",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "participant_count",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "participant_category",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        }
+      ]
+    },
+    {
+      "name": "intermediate.participant_impact",
+      "covered": 4,
+      "total": 62,
+      "coverage": 0.06451612903225806,
+      "columns": [
+        {
+          "name": "pid",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "city",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "gender",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "taluka",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "created_on",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "updated_on",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "state_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "course_name",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "end_date",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "speciality",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "total_child",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "worker_role",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "country_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "designation",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "participant",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "total_member",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "year_of_birth",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "country_code1",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "country_code2",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "district_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "start_date",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "month",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "education_role",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "reg_patient_id1",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "reg_patient_id2",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "reg_patient_id3",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "child_name_info1",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "child_name_info2",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "child_name_info3",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "course_category",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "primary_contact",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "ummeed_service1",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "ummeed_service2",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "ummeed_service3",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "course_short_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "organisation_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "reg_month_working",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "take_care_of_child",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "child_gender_info1",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "child_gender_info2",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "child_gender_info3",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "organisation_work",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "program_short_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "secondary_contact",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "relation_with_child",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "reg_non_working_month",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "child_birth_date_info1",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "child_birth_date_info2",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "child_birth_date_info3",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "parent_qualification",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "recipient_service_text",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "reg_attending_program",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "select_work_volunteer",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "child_primary_diagnosis1",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "child_primary_diagnosis2",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "child_primary_diagnosis3",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "monthly_household_income",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "mail_confirm_registration",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "contacted_by_email_in_future",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "permission_interviewed_post",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "permission_to_use_photo_videos",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "where_you_hear_about_prog_course_text",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        }
+      ]
+    },
+    {
+      "name": "intermediate.registered_patient",
+      "covered": 4,
+      "total": 32,
+      "coverage": 0.125,
+      "columns": [
+        {
+          "name": "id",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registered_patient_age",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "dob",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "mrno",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "registered_patient_gender",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "diagnosis",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "mobile_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "father_phone",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "mother_phone",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "father_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "plan_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "father_city",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "father_dist",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "mother_city",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "mother_dist",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "pat_idn_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "father_state",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "guardian_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "guardian_pin",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "is_processed",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "mother_state",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "updated_date",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "guardian_city",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "guardian_dist",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "inserted_date",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "father_country",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "identity_type",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "mother_country",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "guardian_rstate",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_income",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registration_type",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "service_center_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        }
+      ]
+    },
+    {
+      "name": "prod.appointment_details",
+      "covered": 5,
+      "total": 29,
+      "coverage": 0.1724137931034483,
+      "columns": [
+        {
+          "name": "patient_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "city",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "mrno",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "dob",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_gender",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "unit",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "room_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "address",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "event_id",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "mobile_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "created_by",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "doctor",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "department",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "created_date",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "event_status",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "isprocessed",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "slot_end_time",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "updated_date",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "cancel_code",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "cancelled_by",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "cancellation_reason",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "slot_start_time",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "event_valid_from",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "event_valid_to",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "year",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "financial_year",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "month",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "quarter",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        }
+      ]
+    },
+    {
+      "name": "prod.cancelled_clinic",
+      "covered": 0,
+      "total": 53,
+      "coverage": 0.0,
+      "columns": [
+        {
+          "name": "s_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "mrno",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_gender",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "mobile_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "department",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "doctor",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "event_date",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "visit_type",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "unit",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "visit_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "billed_status",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "sponsor_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "plan",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "associate_company",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registered_patient_id",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registered_patient_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "date_of_birth",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registered_patient_gender",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "diagnosis",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registered_mobile_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "calculated_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "age_group",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "who_brought_the_child",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "location_category",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "pat_idn_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "plan_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "is_processed",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "updated_date",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "inserted_date",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "identity_type",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_income",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registration_type",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "service_center_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "consultation_category",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "dep_consult_category",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "dep_shortened",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "year",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "financial_year",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "month",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "quarter",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "source",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "event_status",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "cancel_code",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "cancelled_by",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "cancellation_reason",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "event_valid_from",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "event_valid_to",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "room_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "address",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "city",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "created_by",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        }
+      ]
+    },
+    {
+      "name": "prod.clinic_bay_mgmt",
+      "covered": 8,
+      "total": 54,
+      "coverage": 0.14814814814814814,
+      "columns": [
+        {
+          "name": "s_no",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "mrno",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "patient_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_gender",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "mobile_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "department",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "doctor",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "consultation_date",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "consultation_type",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "unit",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "visit_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "billed_status",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "invoice_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "queue_generation_time",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "queue_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "start_consultation_time",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "end_consultation_time",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "sponsor_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "plan",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "associate_company",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registered_patient_id",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registered_patient_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "date_of_birth",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registered_patient_gender",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "diagnosis",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registered_mobile_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "calculated_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "age_group",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "parent_guardian_phone",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "parent_guardian_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "parent_guardian_city",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "parent_guardian_district",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "parent_guardian_state",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "parent_guardian_country",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "who_brought_the_child",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "location_category",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "pat_idn_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "guardian_pin",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "plan_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "is_processed",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "updated_date",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "inserted_date",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "identity_type",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_income",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "registration_type",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "service_center_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "consultation_category",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "dep_consult_category",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "dep_shortened",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "year",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "financial_year",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "month",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "quarter",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        }
+      ]
+    },
+    {
+      "name": "prod.pathways",
+      "covered": 6,
+      "total": 25,
+      "coverage": 0.24,
+      "columns": [
+        {
+          "name": "mrno",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "patient_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_gender",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "mobile_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "department",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "doctor",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "consultation_date",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "consultation_type",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "date_of_birth",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "diagnosis",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "calculated_age",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "age_group",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "pat_idn_no",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "patient_income",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "consultation_category",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "dep_consult_category",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "dep_shortened",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "year",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "financial_year",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "month",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "course_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "course_category",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "quarter",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "source",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        }
+      ]
+    },
+    {
+      "name": "prod.tms_training_master",
+      "covered": 5,
+      "total": 17,
+      "coverage": 0.29411764705882354,
+      "columns": [
+        {
+          "name": "pid",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "participant",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "primary_contact",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "state",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "iso_code",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "gender",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "course_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "course_category",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "course_short_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "organisation_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "reg_attending_program",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "start_date",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "department",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "year",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "financial_year",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "month",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "quarter",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        }
+      ]
+    },
+    {
+      "name": "prod.total_participants_disagg",
+      "covered": 5,
+      "total": 12,
+      "coverage": 0.4166666666666667,
+      "columns": [
+        {
+          "name": "year",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "state_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "course_name",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "course_short_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "course_category",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "program_short_name",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "participant_category",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "pid",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "source",
+          "covered": 0,
+          "total": 1,
+          "coverage": 0.0
+        },
+        {
+          "name": "financial_year",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "month",
+          "covered": 1,
+          "total": 1,
+          "coverage": 1.0
+        },
+        {
+          "name": "quarter",
           "covered": 0,
           "total": 1,
           "coverage": 0.0
@@ -4358,2308 +6666,6 @@
         },
         {
           "name": "created_at",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        }
-      ]
-    },
-    {
-      "name": "intermediate.appointment_data",
-      "covered": 2,
-      "total": 25,
-      "coverage": 0.08,
-      "columns": [
-        {
-          "name": "patient_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "city",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "mrno",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "dob",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_gender",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "unit",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "room_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "address",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "event_id",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "mobile_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "created_by",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "doctor",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "department",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "created_date",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "event_status",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "isprocessed",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "slot_end_time",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "updated_date",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "cancel_code",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "cancelled_by",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "cancellation_reason",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "slot_start_time",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "event_valid_from",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "event_valid_to",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        }
-      ]
-    },
-    {
-      "name": "intermediate.clinic_data",
-      "covered": 5,
-      "total": 50,
-      "coverage": 0.1,
-      "columns": [
-        {
-          "name": "s_no",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "mrno",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "patient_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_gender",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "mobile_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "department",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "doctor",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "consultation_date",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "consultation_type",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "unit",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "visit_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "billed_status",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "invoice_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "queue_generation_time",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "queue_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "start_consultation_time",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "end_consultation_time",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "sponsor_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "plan",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "associate_company",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registered_patient_id",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registered_patient_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "date_of_birth",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registered_patient_gender",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "diagnosis",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registered_mobile_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "calculated_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "age_group",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "parent_guardian_phone",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "parent_guardian_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "parent_guardian_city",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "parent_guardian_district",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "parent_guardian_state",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "parent_guardian_country",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "who_brought_the_child",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "location_category",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "pat_idn_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "guardian_pin",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "plan_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "is_processed",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "updated_date",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "inserted_date",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "identity_type",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_income",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registration_type",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "service_center_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "consultation_category",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "dep_consult_category",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "dep_shortened",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        }
-      ]
-    },
-    {
-      "name": "intermediate.no_registration",
-      "covered": 4,
-      "total": 11,
-      "coverage": 0.36363636363636365,
-      "columns": [
-        {
-          "name": "course_id",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "course_name",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "end_date_str",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "start_date_str",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "course_category",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "department",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "course_short_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "program_short_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "total_count",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "participant_count",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "participant_category",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        }
-      ]
-    },
-    {
-      "name": "intermediate.participant_impact",
-      "covered": 4,
-      "total": 62,
-      "coverage": 0.06451612903225806,
-      "columns": [
-        {
-          "name": "pid",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "city",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "gender",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "taluka",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "created_on",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "updated_on",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "state_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "course_name",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "end_date",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "speciality",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "total_child",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "worker_role",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "country_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "designation",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "participant",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "total_member",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "year_of_birth",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "country_code1",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "country_code2",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "district_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "start_date",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "month",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "education_role",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "reg_patient_id1",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "reg_patient_id2",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "reg_patient_id3",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "child_name_info1",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "child_name_info2",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "child_name_info3",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "course_category",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "primary_contact",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "ummeed_service1",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "ummeed_service2",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "ummeed_service3",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "course_short_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "organisation_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "reg_month_working",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "take_care_of_child",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "child_gender_info1",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "child_gender_info2",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "child_gender_info3",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "organisation_work",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "program_short_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "secondary_contact",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "relation_with_child",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "reg_non_working_month",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "child_birth_date_info1",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "child_birth_date_info2",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "child_birth_date_info3",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "parent_qualification",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "recipient_service_text",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "reg_attending_program",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "select_work_volunteer",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "child_primary_diagnosis1",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "child_primary_diagnosis2",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "child_primary_diagnosis3",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "monthly_household_income",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "mail_confirm_registration",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "contacted_by_email_in_future",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "permission_interviewed_post",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "permission_to_use_photo_videos",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "where_you_hear_about_prog_course_text",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        }
-      ]
-    },
-    {
-      "name": "intermediate.registered_patient",
-      "covered": 4,
-      "total": 32,
-      "coverage": 0.125,
-      "columns": [
-        {
-          "name": "id",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registered_patient_age",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "dob",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "mrno",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "registered_patient_gender",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "diagnosis",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "mobile_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "father_phone",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "mother_phone",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "father_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "plan_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "father_city",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "father_dist",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "mother_city",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "mother_dist",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "pat_idn_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "father_state",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "guardian_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "guardian_pin",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "is_processed",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "mother_state",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "updated_date",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "guardian_city",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "guardian_dist",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "inserted_date",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "father_country",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "identity_type",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "mother_country",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "guardian_rstate",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_income",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registration_type",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "service_center_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        }
-      ]
-    },
-    {
-      "name": "prod.appointment_details",
-      "covered": 5,
-      "total": 29,
-      "coverage": 0.1724137931034483,
-      "columns": [
-        {
-          "name": "patient_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "city",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "mrno",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "dob",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_gender",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "unit",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "room_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "address",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "event_id",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "mobile_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "created_by",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "doctor",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "department",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "created_date",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "event_status",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "isprocessed",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "slot_end_time",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "updated_date",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "cancel_code",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "cancelled_by",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "cancellation_reason",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "slot_start_time",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "event_valid_from",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "event_valid_to",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "year",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "financial_year",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "month",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "quarter",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        }
-      ]
-    },
-    {
-      "name": "prod.cancelled_clinic",
-      "covered": 0,
-      "total": 53,
-      "coverage": 0.0,
-      "columns": [
-        {
-          "name": "s_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "mrno",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_gender",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "mobile_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "department",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "doctor",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "event_date",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "visit_type",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "unit",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "visit_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "billed_status",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "sponsor_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "plan",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "associate_company",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registered_patient_id",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registered_patient_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "date_of_birth",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registered_patient_gender",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "diagnosis",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registered_mobile_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "calculated_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "age_group",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "who_brought_the_child",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "location_category",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "pat_idn_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "plan_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "is_processed",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "updated_date",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "inserted_date",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "identity_type",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_income",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registration_type",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "service_center_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "consultation_category",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "dep_consult_category",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "dep_shortened",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "year",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "financial_year",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "month",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "quarter",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "source",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "event_status",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "cancel_code",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "cancelled_by",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "cancellation_reason",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "event_valid_from",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "event_valid_to",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "room_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "address",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "city",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "created_by",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        }
-      ]
-    },
-    {
-      "name": "prod.clinic_bay_mgmt",
-      "covered": 8,
-      "total": 54,
-      "coverage": 0.14814814814814814,
-      "columns": [
-        {
-          "name": "s_no",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "mrno",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "patient_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_gender",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "mobile_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "department",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "doctor",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "consultation_date",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "consultation_type",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "unit",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "visit_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "billed_status",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "invoice_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "queue_generation_time",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "queue_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "start_consultation_time",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "end_consultation_time",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "sponsor_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "plan",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "associate_company",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registered_patient_id",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registered_patient_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "date_of_birth",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registered_patient_gender",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "diagnosis",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registered_mobile_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "calculated_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "age_group",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "parent_guardian_phone",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "parent_guardian_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "parent_guardian_city",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "parent_guardian_district",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "parent_guardian_state",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "parent_guardian_country",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "who_brought_the_child",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "location_category",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "pat_idn_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "guardian_pin",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "plan_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "is_processed",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "updated_date",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "inserted_date",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "identity_type",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_income",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "registration_type",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "service_center_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "consultation_category",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "dep_consult_category",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "dep_shortened",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "year",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "financial_year",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "month",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "quarter",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        }
-      ]
-    },
-    {
-      "name": "prod.pathways",
-      "covered": 6,
-      "total": 24,
-      "coverage": 0.25,
-      "columns": [
-        {
-          "name": "mrno",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "patient_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_gender",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "mobile_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "department",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "doctor",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "consultation_date",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "consultation_type",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "date_of_birth",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "diagnosis",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "calculated_age",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "age_group",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "pat_idn_no",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "patient_income",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "consultation_category",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "dep_consult_category",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "dep_shortened",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "year",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "financial_year",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "month",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "course_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "course_category",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "source",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        }
-      ]
-    },
-    {
-      "name": "prod.tms_training_master",
-      "covered": 5,
-      "total": 17,
-      "coverage": 0.29411764705882354,
-      "columns": [
-        {
-          "name": "pid",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "participant",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "primary_contact",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "state",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "iso_code",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "gender",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "course_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "course_category",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "course_short_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "organisation_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "reg_attending_program",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "start_date",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "department",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "year",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "financial_year",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "month",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "quarter",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        }
-      ]
-    },
-    {
-      "name": "prod.total_participants_disagg",
-      "covered": 5,
-      "total": 12,
-      "coverage": 0.4166666666666667,
-      "columns": [
-        {
-          "name": "year",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "state_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "course_name",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "course_short_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "course_category",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "program_short_name",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "participant_category",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "pid",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "source",
-          "covered": 0,
-          "total": 1,
-          "coverage": 0.0
-        },
-        {
-          "name": "financial_year",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "month",
-          "covered": 1,
-          "total": 1,
-          "coverage": 1.0
-        },
-        {
-          "name": "quarter",
           "covered": 0,
           "total": 1,
           "coverage": 0.0
