@@ -17,6 +17,9 @@ models:
       - name: state
         data_type: character varying
         description: State name of the participant
+      - name: department
+        data_type: character varying
+        description: Name of the department offering the course.
       - name: iso_code
         data_type: text
         description: ISO code for the state
@@ -44,9 +47,6 @@ models:
               column_type: date
         data_type: date
         description: Start date of the course
-      - name: department
-        data_type: character varying
-        description: Name of the department offering the course.
       - name: year
         data_tests:
           - not_null

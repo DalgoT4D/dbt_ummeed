@@ -8,6 +8,7 @@ WITH participant_impact_clean AS (
             TO_DATE(updated_on, 'DD/MM/YYYY'), 
             TO_DATE(created_on, 'DD/MM/YYYY')
         )) AS year,
+        department,
         state_name,
         course_name,
         course_short_name,
@@ -80,6 +81,7 @@ WITH participant_impact_clean AS (
 no_registrations_expanded AS (
     SELECT
         EXTRACT(YEAR FROM TO_DATE(start_date_str, 'DD/MM/YYYY')) AS year,
+        department,
         NULL::TEXT AS state_name,
         course_name,
         course_short_name,

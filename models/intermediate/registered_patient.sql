@@ -1,6 +1,6 @@
 {{ config(materialized='table') }}
 
-SELECT 
+SELECT DISTINCT
     id,
     age::TEXT AS registered_patient_age,
     NULLIF(dob, '') AS dob,

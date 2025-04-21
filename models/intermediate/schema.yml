@@ -465,6 +465,9 @@ sources:
           - name: courseCategory
             data_type: character varying
             description: Category of the course
+          - name: departmentName
+            description: Name of the department associated with the participant.
+            data_type: character varying
           - name: primaryContact
             data_type: character varying
             description: Primary contact number
