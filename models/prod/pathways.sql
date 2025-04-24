@@ -47,14 +47,14 @@ WITH cleaned_clinic_data AS (
 ),
 
 matched_synergy AS (
-    SELECT 
+    SELECT DISTINCT
         cd.mrno,  -- Only keep rows where MRN exists in clinic_data
         sp.primary_contact AS mobile_no,
         sp.course_name,
         sp.course_category,
         TO_CHAR(cd.consultation_date, 'Month')::TEXT AS month,
         cd.patient_name,
-        cd.department,
+        sp.department,
         cd.patient_age,
         cd.patient_gender,
         cd.date_of_birth,

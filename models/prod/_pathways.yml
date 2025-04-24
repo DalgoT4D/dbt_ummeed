@@ -9,13 +9,13 @@ models:
         data_type: character varying
         description: Medical record number
       - name: patient_name
-        data_type: character varying
+        data_type: text
         description: Name of the patient
       - name: patient_age
         data_type: character varying
         description: Age of the patient
       - name: patient_gender
-        data_type: character varying
+        data_type: text
         description: Gender of the patient
       - name: mobile_no
         data_type: character varying
@@ -33,7 +33,7 @@ models:
         data_type: date
         description: Date of consultation
       - name: consultation_type
-        data_type: character varying
+        data_type: text
         description: Type of the appointment
       - name: date_of_birth
         data_type: text
