@@ -94,7 +94,7 @@ expanded_synergy AS (
         ms.patient_age,
         ms.patient_gender,
         ms.mobile_no,
-        ms.department AS department,
+        ms.department,
         NULL::TEXT AS doctor,
         ms.consultation_date,
         NULL::TEXT AS consultation_type,

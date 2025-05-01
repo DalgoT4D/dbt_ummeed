@@ -48,7 +48,6 @@ SELECT DISTINCT
         ELSE TRIM(REGEXP_REPLACE(SPLIT_PART(cancelreason, '- ', 2), '^\d+\.\s*', ''))
     END AS cancellation_reason,
 
-
     NULLIF(slotstarttime, '') AS slot_start_time,
     TO_TIMESTAMP(eventvalidfrom, 'Mon DD, YYYY HH12:MI:SS PM') AS event_valid_from,
     TO_TIMESTAMP(eventvalidto, 'Mon DD, YYYY HH12:MI:SS PM') AS event_valid_to

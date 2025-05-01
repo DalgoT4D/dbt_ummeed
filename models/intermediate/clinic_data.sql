@@ -82,7 +82,7 @@ SELECT
     rp.registered_mobile_no::VARCHAR AS registered_mobile_no,
     DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')))::TEXT AS calculated_age,
     CASE 
-        WHEN rp.date_of_birth is NULL THEN NULL
+        WHEN rp.date_of_birth IS NULL THEN NULL
         WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 0 AND 3 THEN 'Group A: 0-3'
         WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 3.1 AND 6 THEN 'Group B: 3.1-6'
         WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 6.1 AND 9 THEN 'Group C: 6.1-9'
