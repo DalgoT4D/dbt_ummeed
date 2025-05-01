@@ -79,9 +79,19 @@ jobs:
       - name: Install dbt dependencies
         run: dbt deps
 
-      # Step 9: Run dbt build
-      - name: dbt build
+      # Step 9: Run dbt run
+      - name: dbt run
         run: dbt build --full-refresh
+        env:
+          POSTGRES_DBNAME: ${{ secrets.POSTGRES_DBNAME }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_HOST: 127.0.0.1 # Use localhost since the SSH tunnel forwards the port
+          DBT_PROFILES_DIR: /home/runner/.dbt
+
+      # Step 10: Run dbt test
+      - name: dbt test
+        run: dbt test --full-refresh
         env:
           POSTGRES_DBNAME: ${{ secrets.POSTGRES_DBNAME }}
           POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
