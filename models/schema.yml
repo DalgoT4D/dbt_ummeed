@@ -5,7 +5,7 @@ sources:
     schema: ict_health_staging
     tables:
       - name: registered_patient
-        identifier: registeredPatient
+        identifier: RegisteredPatient
         description: registered patient on ICT health app
         columns:
           - name: id
@@ -162,7 +162,7 @@ sources:
             data_type: jsonb
             description: Metadata from Airbyte
       - name: clinic_bay_management_data
-        identifier: clinicData
+        identifier: ClinicEncounterData
         description: patient data
 
         columns:
@@ -251,7 +251,7 @@ sources:
             data_type: jsonb
             description: Metadata from Airbyte
       - name: appointment_details
-        identifier: appointmentDetails
+        identifier: AppointmentDetails
         description: appointment data
 
         columns:
