@@ -8,14 +8,6 @@ repos:
         language: system
         types: [yaml]
         files: ^models/
-
-      - id: dbt-osmosis-yaml-refactor
-        name: Refactor and synthesize dbt model columns
-        entry: dbt-osmosis
-        args: ["yaml", "refactor", "--synthesize"]
-        language: system
-        types: [sql]
-        files: ^models/
       
       - id: dbt-coverage-test
         name: Run dbt-coverage test
