@@ -4,10 +4,7 @@
 
 WITH participant_impact_clean AS (
     SELECT
-        EXTRACT(YEAR FROM COALESCE(
-            TO_DATE(updated_on, 'DD/MM/YYYY'), 
-            TO_DATE(created_on, 'DD/MM/YYYY')
-        )) AS year,
+        EXTRACT(YEAR FROM start_date) AS year,
         department,
         state_name,
         course_name,
@@ -21,58 +18,28 @@ WITH participant_impact_clean AS (
         -- Calculate Financial Year
         CASE 
             WHEN
-                EXTRACT(MONTH FROM COALESCE(
-                    TO_DATE(updated_on, 'DD/MM/YYYY'), 
-                    TO_DATE(created_on, 'DD/MM/YYYY')
-                )) >= 4 
+                EXTRACT(MONTH FROM start_date) >= 4 
                 THEN CONCAT(
-                    EXTRACT(YEAR FROM COALESCE(
-                        TO_DATE(updated_on, 'DD/MM/YYYY'), 
-                        TO_DATE(created_on, 'DD/MM/YYYY')
-                    )), 
+                    EXTRACT(YEAR FROM start_date), 
                     '-', 
-                    EXTRACT(YEAR FROM COALESCE(
-                        TO_DATE(updated_on, 'DD/MM/YYYY'), 
-                        TO_DATE(created_on, 'DD/MM/YYYY')
-                    )) + 1
+                    EXTRACT(YEAR FROM start_date) + 1
                 )
             ELSE CONCAT(
-                EXTRACT(YEAR FROM COALESCE(
-                    TO_DATE(updated_on, 'DD/MM/YYYY'), 
-                    TO_DATE(created_on, 'DD/MM/YYYY')
-                )) - 1, 
+                EXTRACT(YEAR FROM start_date) - 1, 
                 '-', 
-                EXTRACT(YEAR FROM COALESCE(
-                    TO_DATE(updated_on, 'DD/MM/YYYY'), 
-                    TO_DATE(created_on, 'DD/MM/YYYY')
-                ))
+                EXTRACT(YEAR FROM start_date)
             )
         END AS financial_year,
 
         --Month
-        TO_CHAR(COALESCE(
-            TO_DATE(updated_on, 'DD/MM/YYYY'), 
-            TO_DATE(created_on, 'DD/MM/YYYY')
-        ), 'Month') AS month,
+        TO_CHAR(start_date, 'Month') AS month,
 
         -- Quarter
         CASE 
-            WHEN EXTRACT(MONTH FROM COALESCE(
-                TO_DATE(updated_on, 'DD/MM/YYYY'), 
-                TO_DATE(created_on, 'DD/MM/YYYY')
-            )) BETWEEN 1 AND 3 THEN 'Q4'
-            WHEN EXTRACT(MONTH FROM COALESCE(
-                TO_DATE(updated_on, 'DD/MM/YYYY'), 
-                TO_DATE(created_on, 'DD/MM/YYYY')
-            )) BETWEEN 4 AND 6 THEN 'Q1'
-            WHEN EXTRACT(MONTH FROM COALESCE(
-                TO_DATE(updated_on, 'DD/MM/YYYY'), 
-                TO_DATE(created_on, 'DD/MM/YYYY')
-            )) BETWEEN 7 AND 9 THEN 'Q2'
-            WHEN EXTRACT(MONTH FROM COALESCE(
-                TO_DATE(updated_on, 'DD/MM/YYYY'), 
-                TO_DATE(created_on, 'DD/MM/YYYY')
-            )) BETWEEN 10 AND 12 THEN 'Q3'
+            WHEN EXTRACT(MONTH FROM start_date) BETWEEN 1 AND 3 THEN 'Q4'
+            WHEN EXTRACT(MONTH FROM start_date) BETWEEN 4 AND 6 THEN 'Q1'
+            WHEN EXTRACT(MONTH FROM start_date) BETWEEN 7 AND 9 THEN 'Q2'
+            WHEN EXTRACT(MONTH FROM start_date) BETWEEN 10 AND 12 THEN 'Q3'
         END AS quarter
 
     FROM {{ ref('participant_impact') }}
