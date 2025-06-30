@@ -9,7 +9,18 @@ WITH clinic_data AS (
         gender AS patient_gender,
         mobileno::VARCHAR AS mobile_no,
         department::VARCHAR AS department,
-        doctor::VARCHAR AS doctor,
+        --doctor::VARCHAR AS doctor,
+        -- Cleaned doctor name value by removing titles, salutations and extra spaces
+        -- The regex removes common titles like Dr., Miss, Ms., Mr., and Mister
+        REGEXP_REPLACE(
+            REGEXP_REPLACE(
+                TRIM(
+                    REGEXP_REPLACE(doctor, '(?i)\b(dr\.?|miss|ms\.?|mr\.?|mister)\s*', ' ')
+                    ),
+                    '\s+', ' '
+            ),
+            '^\s+|\s+$',''
+        )::VARCHAR AS doctor,
         TO_DATE(consultationrequestdate, 'DD-MON-YY') AS consultation_date,
         appointmenttype AS consultation_type,
         unit,
@@ -121,7 +132,8 @@ SELECT
     rp.service_center_name,
     ctm."New Classification" AS consultation_category,  -- Mapped from dim_consultation_type_mapping
     CONCAT_WS(' ', dda.acronym, ctm."New Classification") AS dep_consult_category,  -- Acronym + Consultation Category
-    dda.acronym AS dep_shortened
+    dda.acronym AS dep_shortened,
+    ddlm.doctor_level AS doctor_level  -- Mapped from dim_doctor_level
 
 FROM clinic_data AS cd
 LEFT JOIN registered_patient AS rp
@@ -130,3 +142,5 @@ LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_consultation_type_mapping')
     ON cd.consultation_type = ctm."Consultation Type"
 LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_department_acronym') }} AS dda
     ON cd.department = dda.department
+LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_doctor_level_mapping') }} AS ddlm
+    ON cd.doctor = ddlm.doctor
