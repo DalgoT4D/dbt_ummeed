@@ -9,6 +9,7 @@ SELECT
     mobile_no,
     department,
     doctor,
+    doctor_level,
     consultation_date,
     consultation_type,
     unit,

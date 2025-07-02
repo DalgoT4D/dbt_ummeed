@@ -13,14 +13,16 @@ WITH clinic_data AS (
         -- Cleaned doctor name value by removing titles, salutations and extra spaces
         -- The regex removes common titles like Dr., Miss, Ms., Mr., and Mister
         REGEXP_REPLACE(
-            REGEXP_REPLACE(
-                TRIM(
-                    REGEXP_REPLACE(doctor, '(?i)\b(dr\.?|miss|ms\.?|mr\.?|mister)\s*', ' ')
+                REGEXP_REPLACE(
+                    TRIM(
+                        REGEXP_REPLACE(doctor, '(?i)(^|\s)(dr\.?|miss|ms\.?|mr\.?|mister)(\s|$)', ' ')
                     ),
                     '\s+', ' '
-            ),
-            '^\s+|\s+$',''
+                ),
+                '^\s+|\s+$', ''
+            )
         )::VARCHAR AS doctor,
+
         TO_DATE(consultationrequestdate, 'DD-MON-YY') AS consultation_date,
         appointmenttype AS consultation_type,
         unit,
@@ -133,7 +135,7 @@ SELECT
     ctm."New Classification" AS consultation_category,  -- Mapped from dim_consultation_type_mapping
     CONCAT_WS(' ', dda.acronym, ctm."New Classification") AS dep_consult_category,  -- Acronym + Consultation Category
     dda.acronym AS dep_shortened,
-    ddlm.doctor_level AS doctor_level  -- Mapped from dim_doctor_level
+    ddlm.doctor_level AS doctor_level  -- Mapped from dim_doctor_level_mapping
 
 FROM clinic_data AS cd
 LEFT JOIN registered_patient AS rp

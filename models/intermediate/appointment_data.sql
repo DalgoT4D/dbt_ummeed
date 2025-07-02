@@ -17,17 +17,16 @@ WITH appointment_data AS(
     -- Cleaned doctor name value by removing titles, salutations and extra spaces
     -- The regex removes common titles like Dr., Miss, Ms., Mr., and Mister
     NULLIF(
+    REGEXP_REPLACE(
         REGEXP_REPLACE(
-            REGEXP_REPLACE(
-                TRIM(
-                    REGEXP_REPLACE(consultant,'(?i)\b(dr\.?|miss|ms\.?|mr\.?|mister)\s*',' ')
-                ),
-                '\s+',' '
+            TRIM(
+                REGEXP_REPLACE(consultant, '(?i)(^|\s)(dr\.?|miss|ms\.?|mr\.?|mister)(\s|$)', ' ')
             ),
-            '^\s+|\s+$', ''
-        )
+            '\s+', ' '
+        ),
+        '^\s+|\s+$', ''
+    )
     )::VARCHAR AS doctor,
-
     NULLIF(department, '')::VARCHAR AS department,
     NULLIF(createddate, '')::DATE AS created_date,
     NULLIF(eventstatus, '') AS event_status,
@@ -71,7 +70,7 @@ FROM {{ source('source_ummeed_ict_health', 'appointment_details') }}) AS appoint
 
 SELECT 
     ad.*,
-    ddlm.doctor_level AS doctor_level  -- Mapped from dim_doctor_level
+    ddlm.doctor_level AS doctor_level  -- Mapped from dim_doctor_level_mapping
 FROM appointment_data AS ad
 LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_doctor_level_mapping') }} AS ddlm
     ON ad.doctor = ddlm.doctor
