@@ -41,6 +41,9 @@ models:
       - name: doctor
         description: Name of the doctor involved in the appointment.
         data_type: text
+      - name: doctor_level
+        data_type: text
+        description: Level of the doctor
       - name: department
         data_type: text
         description: Department of the appointment

@@ -26,6 +26,9 @@ models:
       - name: doctor
         description: Name of the doctor who attended the consultation.
         data_type: character varying
+      - name: doctor_level
+        description: Level of the doctor_level
+        data_type: text
       - name: event_date
         description: >-
           The date and time when the clinic event was scheduled to occur, adjusted for time zone.
