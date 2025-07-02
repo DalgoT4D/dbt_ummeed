@@ -13,6 +13,7 @@ SELECT
     mobile_no,
     created_by,
     doctor,
+    doctor_level,
     department,
     created_date,
     event_status,
