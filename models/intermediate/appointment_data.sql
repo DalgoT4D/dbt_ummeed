@@ -20,7 +20,7 @@ WITH appointment_data AS(
     REGEXP_REPLACE(
         REGEXP_REPLACE(
             TRIM(
-                REGEXP_REPLACE(consultant, '(?i)(^|\s)(dr\.?|miss|ms\.?|mr\.?|mister)(\s|$)', ' ')
+                REGEXP_REPLACE(COALESCE(consultant, ''), '(?i)(^|\s)(dr\.?|miss|ms\.?|mr\.?|mister)(\s|$)', ' ')
             ),
             '\s+', ' '
         ),
