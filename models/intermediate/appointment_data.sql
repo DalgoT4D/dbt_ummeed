@@ -66,7 +66,7 @@ WITH appointment_data AS(
     TO_TIMESTAMP(eventvalidfrom, 'Mon DD, YYYY HH12:MI:SS PM') AS event_valid_from,
     TO_TIMESTAMP(eventvalidto, 'Mon DD, YYYY HH12:MI:SS PM') AS event_valid_to
 
-FROM {{ source('source_ummeed_ict_health', 'appointment_details') }}) AS appointment_data
+FROM {{ source('source_ummeed_ict_health', 'appointment_details') }} AS appointment_data
 
 SELECT 
     ad.*,
