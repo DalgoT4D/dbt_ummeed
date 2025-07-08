@@ -67,7 +67,7 @@ WITH appointment_data AS(
     TO_TIMESTAMP(eventvalidto, 'Mon DD, YYYY HH12:MI:SS PM') AS event_valid_to
 
 FROM {{ source('source_ummeed_ict_health', 'appointment_details') }} AS appointment_data
-
+)
 SELECT 
     ad.*,
     ddlm.doctor_level AS doctor_level  -- Mapped from dim_doctor_level_mapping
