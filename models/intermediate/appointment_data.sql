@@ -26,7 +26,7 @@ WITH appointment_data AS(
             ),
             '^\s+|\s+$', ''
         ), ''
-    )::VARCHAR AS doctor
+    )::VARCHAR AS doctor,
     NULLIF(department, '')::VARCHAR AS department,
     NULLIF(createddate, '')::DATE AS created_date,
     NULLIF(eventstatus, '') AS event_status,
