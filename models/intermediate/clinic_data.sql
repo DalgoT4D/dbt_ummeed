@@ -20,8 +20,7 @@ WITH clinic_data AS (
                     '\s+', ' '
                 ),
                 '^\s+|\s+$', ''
-            )
-        )::VARCHAR AS doctor,
+            )::VARCHAR AS doctor,
 
         TO_DATE(consultationrequestdate, 'DD-MON-YY') AS consultation_date,
         appointmenttype AS consultation_type,
