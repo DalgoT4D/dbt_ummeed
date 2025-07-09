@@ -1,6 +1,7 @@
 {{ config(materialized='table') }}
 
-SELECT DISTINCT
+WITH appointment_data AS(
+    SELECT DISTINCT
     NULLIF(age, '')::VARCHAR AS patient_age,
     NULLIF(city	, '') AS city,
     NULLIF(mrno, '')::VARCHAR AS mrno,
@@ -12,7 +13,20 @@ SELECT DISTINCT
     eventid AS event_id,
     NULLIF(mobileno, '')::VARCHAR AS mobile_no,
     NULLIF(createdby, '') AS created_by,
-    NULLIF(consultant, '')::VARCHAR AS doctor,
+    --NULLIF(consultant, '')::VARCHAR AS doctor,
+    -- Cleaned doctor name value by removing titles, salutations and extra spaces
+    -- The regex removes common titles like Dr., Miss, Ms., Mr., and Mister
+    NULLIF(
+        REGEXP_REPLACE(
+            REGEXP_REPLACE(
+                TRIM(
+                    REGEXP_REPLACE(COALESCE(consultant, ''), '(?i)(^|\s)(dr\.?|miss|ms\.?|mr\.?|mister)(\s|$)', ' ')
+                ),
+                '\s+', ' '
+            ),
+            '^\s+|\s+$', ''
+        ), ''
+    )::VARCHAR AS doctor,
     NULLIF(department, '')::VARCHAR AS department,
     NULLIF(createddate, '')::DATE AS created_date,
     NULLIF(eventstatus, '') AS event_status,
@@ -52,4 +66,13 @@ SELECT DISTINCT
     TO_TIMESTAMP(eventvalidfrom, 'Mon DD, YYYY HH12:MI:SS PM') AS event_valid_from,
     TO_TIMESTAMP(eventvalidto, 'Mon DD, YYYY HH12:MI:SS PM') AS event_valid_to
 
-FROM {{ source('source_ummeed_ict_health', 'appointment_details') }}
+FROM {{ source('source_ummeed_ict_health', 'appointment_details') }} AS appointment_data
+)
+SELECT 
+    ad.*,
+    ddlm.doctor_level AS doctor_level  -- Mapped from dim_doctor_level_mapping
+FROM appointment_data AS ad
+LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_doctor_level_mapping') }} AS ddlm
+    ON ad.doctor = ddlm.doctor
+
+

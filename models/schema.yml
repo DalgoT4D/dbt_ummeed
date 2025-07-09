@@ -355,6 +355,17 @@ sources:
           - name: New Classification
             data_type: text
             description: Classification category for consultation types.
+      - name: dim_doctor_level_mapping
+        identifier: dim_doctor_level_mapping
+        description: doctor levels mapped to their category
+        
+        columns:
+          - name: doctor
+            data_type: text
+            description: Name of the doctor
+          - name: doctor_level
+            data_type: text
+            description: Level of the doctor, indicating their expertise or position.
   - name: source_ummeed_synergy_connect
     schema: staging_synergy_connect
     tables:

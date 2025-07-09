@@ -35,6 +35,9 @@ models:
       - name: doctor
         data_type: character varying
         description: Doctor assigned to the patient
+      - name: doctor_level
+        data_type: text
+        description: Level of the doctor
       - name: consultation_date
         data_tests:
           - dbt_expectations.expect_column_values_to_be_of_type:

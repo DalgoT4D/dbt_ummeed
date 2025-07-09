@@ -34,6 +34,9 @@ models:
       - name: doctor
         description: Name of the doctor who attended the consultation.
         data_type: character varying
+      - name: doctor_level
+        description: Level of the doctor
+        data_type: text
       - name: consultation_date
         description: Date when the consultation occurred.
         data_tests:
