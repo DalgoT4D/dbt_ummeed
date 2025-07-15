@@ -23,7 +23,7 @@ WITH clinic_data AS (
             )::VARCHAR AS doctor,
 
         TO_DATE(consultationrequestdate, 'DD-MON-YY') AS consultation_date,
-        REPLACE(appointmenttype,'?', '–') AS consultation_type,
+        REPLACE(appointmenttype,'?', '-') AS consultation_type,
         unit,
         visitid AS visit_no,
         billstatus AS billed_status,
