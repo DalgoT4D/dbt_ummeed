@@ -11,7 +11,7 @@ WITH clinic_data AS (
         department::VARCHAR AS department,
         --doctor::VARCHAR AS doctor,
         -- Cleaned doctor name value by removing titles, salutations and extra spaces
-        -- The regex removes common titles like Dr., Miss, Ms., Mr., and Mister
+        -- The regex removes common titles like Dr., Miss, Ms., Mr., Mrs., and Mister
         REGEXP_REPLACE(
             REGEXP_REPLACE(
                 TRIM(
