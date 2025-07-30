@@ -13,15 +13,14 @@ WITH clinic_data AS (
         -- Cleaned doctor name value by removing titles, salutations and extra spaces
         -- The regex removes common titles like Dr., Miss, Ms., Mr., and Mister
         REGEXP_REPLACE(
-                REGEXP_REPLACE(
-                    TRIM(
-                        REGEXP_REPLACE(doctor, '(?i)(^|\s)(dr\.?|miss|ms\.?|mr\.?|mister)(\s|$)', ' ')
-                    ),
-                    '\s+', ' '
+            REGEXP_REPLACE(
+                TRIM(
+                    REGEXP_REPLACE(doctor, '(?i)(^|\s)(dr\.?|miss|ms\.?|mr\.?|mister|mrs\.?)(\s|$)', ' ')
                 ),
-                '^\s+|\s+$', ''
-            )::VARCHAR AS doctor,
-
+                '\s+', ' '
+            ),
+            '^\s+|\s+$', ''
+        )::VARCHAR AS doctor,
         TO_DATE(consultationrequestdate, 'DD-MON-YY') AS consultation_date,
         REPLACE(appointmenttype,'?', '-') AS consultation_type,
         unit,
