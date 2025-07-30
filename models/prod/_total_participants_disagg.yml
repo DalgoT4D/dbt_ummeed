@@ -36,6 +36,9 @@ models:
       - name: pid
         data_type: character varying
         description: Unique identifier for the participant.
+      - name: training_indirect_reach_monthly
+        data_type: integer
+        description: Monthly indirect reach through training
       - name: source
         data_type: text
         description: Indicates the origin or source of the participant data.

@@ -25,6 +25,8 @@ SELECT
     sd."programShortName" AS program_short_name,
     jsonb_extract_path_text(content.value, 'totalcount')::INTEGER AS total_count,
     jsonb_extract_path_text(content.value, 'participantCount')::INTEGER AS participant_count,
-    jsonb_extract_path_text(content.value, 'participantCategory') AS participant_category
+    jsonb_extract_path_text(content.value, 'participantCategory') AS participant_category,
+    -- 0 integer value is to ensure that schema remains consistent for total_participant_disagg because indirect reach is calculated for registered participants
+    0 AS training_indirect_reach_monthly
 FROM source_data AS sd,
     LATERAL jsonb_array_elements(sd."unregisteredCount"->'content') AS content

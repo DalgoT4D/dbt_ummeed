@@ -13,6 +13,7 @@ WITH participant_impact_clean AS (
         program_short_name,
         COALESCE(reg_attending_program, 'Not Available') AS participant_category,
         pid,
+        training_indirect_reach_monthly,
         'participant_impact' AS source,
 
         -- Calculate Financial Year
@@ -57,8 +58,8 @@ no_registrations_expanded AS (
         participant_category,
         -- Generate a unique `pid` for each missing participant, ensuring it's a string
         CONCAT('nr_', LPAD((ROW_NUMBER() OVER ())::TEXT, 6, '0')) AS pid,
+        0 AS training_indirect_reach_monthly,
         'no_registrations' AS source,
-
         -- Calculate Financial Year
         CASE 
             WHEN EXTRACT(MONTH FROM TO_DATE(start_date_str, 'DD/MM/YYYY')) >= 4 

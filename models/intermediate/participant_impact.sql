@@ -47,7 +47,25 @@ SELECT
     "programShortName" AS program_short_name,
     "secondaryContact" AS secondary_contact,
     "relationWithChild" AS relation_with_child,
-    "regNonWorkingMonth" AS reg_non_working_month,
+    "regNonWorkingMonth" AS working_with_people_devdelay_montly,
+    CASE
+        WHEN LOWER("regNonWorkingMonth") = 'none' THEN 0
+
+        WHEN LOWER("regNonWorkingMonth") LIKE 'greater than %' THEN 
+            CAST(
+                REGEXP_REPLACE(LOWER("regNonWorkingMonth"), '^greater than\s+(\d+).*$', '\1')
+                AS INTEGER
+            )
+
+        WHEN "regNonWorkingMonth" LIKE '%-%' THEN ROUND(
+            (
+                CAST(LTRIM(SPLIT_PART(TRIM("regNonWorkingMonth"), '-', 1), '0') AS INTEGER) +
+                CAST(LTRIM(SPLIT_PART(TRIM("regNonWorkingMonth"), '-', 2), '0') AS INTEGER)
+            ) / 2.0
+        )::INTEGER
+
+        ELSE 0
+    END::INTEGER AS training_indirect_reach_monthly,
     "childBirthDateinfo1" AS child_birth_date_info1,
     "childBirthDateinfo2" AS child_birth_date_info2,
     "childBirthDateinfo3" AS child_birth_date_info3,

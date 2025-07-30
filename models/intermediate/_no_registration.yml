@@ -44,3 +44,6 @@ models:
       - name: participant_category
         data_type: text
         description: Category of the participant in the course.
+      - name: training_indirect_reach_monthly
+        data_type: integer
+        description: Monthly indirect reach through training.
