@@ -151,9 +151,12 @@ models:
       - name: relation_with_child
         data_type: character varying
         description: Relation with the child
-      - name: reg_non_working_month
+      - name: working_with_people_devdelay_montly
         data_type: character varying
-        description: Registered non-working month
+        description: How many of these people or their families experience developmental disabilities (monthly figures)
+      - name: training_indirect_reach_monthly
+        data_type: integer
+        description: Monthly indirect reach through training
       - name: child_birth_date_info1
         data_type: character varying
         description: Child birth date information 1

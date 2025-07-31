@@ -15,12 +15,12 @@ WITH appointment_data AS(
     NULLIF(createdby, '') AS created_by,
     --NULLIF(consultant, '')::VARCHAR AS doctor,
     -- Cleaned doctor name value by removing titles, salutations and extra spaces
-    -- The regex removes common titles like Dr., Miss, Ms., Mr., and Mister
+    -- The regex removes common titles like Dr., Miss, Ms., Mr., Mrs., and Mister
     NULLIF(
         REGEXP_REPLACE(
             REGEXP_REPLACE(
                 TRIM(
-                    REGEXP_REPLACE(COALESCE(consultant, ''), '(?i)(^|\s)(dr\.?|miss|ms\.?|mr\.?|mister)(\s|$)', ' ')
+                    REGEXP_REPLACE(COALESCE(consultant, ''), '(?i)(^|\s)(dr\.?|miss|ms\.?|mr\.?|mister|mrs\.?)(\s|$)', ' ')
                 ),
                 '\s+', ' '
             ),

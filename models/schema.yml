@@ -499,7 +499,7 @@ sources:
             description: Name of the organisation
           - name: regMonthWorking
             data_type: character varying
-            description: Month of registration for working individuals
+            description: Approximately how many individual children/young people/families do you work with monthly                 
           - name: takeCareOfChild
             data_type: character varying
             description: Indicates if the participant takes care of a child
@@ -526,7 +526,7 @@ sources:
             description: Relation with the child
           - name: regNonWorkingMonth
             data_type: character varying
-            description: Month of registration for non-working individuals
+            description: How many of these people or their families experience developmental disabilities (monthly figures)
           - name: childBirthDateinfo1
             data_type: character varying
             description: Birth date of child 1

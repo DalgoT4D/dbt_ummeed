@@ -14,6 +14,25 @@ SELECT
     p.course_short_name,
     p.organisation_name,
     COALESCE(p.reg_attending_program, 'Not Available') AS reg_attending_program,
+    p.reg_non_working_month, 
+    CASE
+        WHEN LOWER("reg_non_working_month") = 'none' THEN 0
+
+        WHEN LOWER("reg_non_working_month") LIKE 'greater than %' THEN 
+            CAST(
+                REGEXP_REPLACE(LOWER("reg_non_working_month"), '^greater than\s+(\d+).*$', '\1')
+                AS INTEGER
+            )
+
+        WHEN "reg_non_working_month" LIKE '%-%' THEN ROUND(
+            (
+                CAST(LTRIM(SPLIT_PART(TRIM("reg_non_working_month"), '-', 1), '0') AS INTEGER) +
+                CAST(LTRIM(SPLIT_PART(TRIM("reg_non_working_month"), '-', 2), '0') AS INTEGER)
+            ) / 2.0
+        )::INTEGER
+
+        ELSE 0
+    END::INTEGER AS training_indirect_reach_monthly,
     p.start_date,
     EXTRACT(YEAR FROM p.start_date) AS year,
     
