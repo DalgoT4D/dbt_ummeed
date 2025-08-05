@@ -14,20 +14,20 @@ SELECT
     p.course_short_name,
     p.organisation_name,
     COALESCE(p.reg_attending_program, 'Not Available') AS reg_attending_program,
-    p.reg_non_working_month, 
+    p.working_with_people_devdelay_montly, 
     CASE
-        WHEN LOWER("reg_non_working_month") = 'none' THEN 0
+        WHEN LOWER("working_with_people_devdelay_montly") = 'none' THEN 0
 
-        WHEN LOWER("reg_non_working_month") LIKE 'greater than %' THEN 
+        WHEN LOWER("working_with_people_devdelay_montly") LIKE 'greater than %' THEN 
             CAST(
-                REGEXP_REPLACE(LOWER("reg_non_working_month"), '^greater than\s+(\d+).*$', '\1')
+                REGEXP_REPLACE(LOWER("working_with_people_devdelay_montly"), '^greater than\s+(\d+).*$', '\1')
                 AS INTEGER
             )
 
-        WHEN "reg_non_working_month" LIKE '%-%' THEN ROUND(
+        WHEN "working_with_people_devdelay_montly" LIKE '%-%' THEN ROUND(
             (
-                CAST(LTRIM(SPLIT_PART(TRIM("reg_non_working_month"), '-', 1), '0') AS INTEGER) +
-                CAST(LTRIM(SPLIT_PART(TRIM("reg_non_working_month"), '-', 2), '0') AS INTEGER)
+                CAST(LTRIM(SPLIT_PART(TRIM("working_with_people_devdelay_montly"), '-', 1), '0') AS INTEGER) +
+                CAST(LTRIM(SPLIT_PART(TRIM("working_with_people_devdelay_montly"), '-', 2), '0') AS INTEGER)
             ) / 2.0
         )::INTEGER
 
