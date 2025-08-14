@@ -10,8 +10,26 @@ WITH participant_impact_clean AS (
         course_name,
         course_short_name,
         course_category,
-        program_short_name,
-        COALESCE(reg_attending_program, 'Not Available') AS participant_category,
+        CASE 
+            WHEN LOWER(reg_attending_program) LIKE '%parent%' 
+                OR LOWER(reg_attending_program) LIKE '%grandparent%' 
+                OR LOWER(reg_attending_program) LIKE '%sibling%' 
+                OR LOWER(reg_attending_program) LIKE '%caregiver%' 
+                THEN 'Parent/ Grandparent/ Sibling/ Caregiver'
+            WHEN LOWER(reg_attending_program) LIKE '%community worker%' 
+                OR LOWER(reg_attending_program) LIKE '%social worker%' 
+                THEN 'Community Worker/ Social Worker'
+            WHEN LOWER(reg_attending_program) LIKE '%educator%' 
+                OR LOWER(reg_attending_program) LIKE '%teacher%' 
+                THEN 'Educator'
+            WHEN LOWER(reg_attending_program) LIKE '%student%' 
+                THEN 'Student'
+            WHEN LOWER(reg_attending_program) LIKE '%professional%' 
+                THEN 'Professional'
+            WHEN reg_attending_program IS NULL OR TRIM(reg_attending_program) = '' 
+                THEN 'Not Available'
+            ELSE 'Other'
+        END AS participant_category,  
         pid,
         training_indirect_reach_monthly,
         'participant_impact' AS source,
@@ -54,8 +72,26 @@ no_registrations_expanded AS (
         course_name,
         course_short_name,
         course_category,
-        program_short_name,
-        participant_category,
+        CASE 
+            WHEN LOWER(participant_category) LIKE '%parent%' 
+            OR LOWER(participant_category) LIKE '%grandparent%' 
+            OR LOWER(participant_category) LIKE '%sibling%' 
+            OR LOWER(participant_category) LIKE '%caregiver%' 
+            THEN 'Parent/ Grandparent/ Sibling/ Caregiver'
+            WHEN LOWER(participant_category) LIKE '%community worker%' 
+            OR LOWER(participant_category) LIKE '%social worker%' 
+            THEN 'Community Worker/ Social Worker'
+            WHEN LOWER(participant_category) LIKE '%educator%' 
+            OR LOWER(participant_category) LIKE '%teacher%' 
+            THEN 'Educator'
+            WHEN LOWER(participant_category) LIKE '%student%' 
+            THEN 'Student'
+            WHEN LOWER(participant_category) LIKE '%professional%' 
+            THEN 'Professional'
+            WHEN participant_category IS NULL OR TRIM(participant_category) = '' 
+            THEN 'Not Available'
+            ELSE 'Other'
+        END AS participant_category,
         -- Generate a unique `pid` for each missing participant, ensuring it's a string
         CONCAT('nr_', LPAD((ROW_NUMBER() OVER ())::TEXT, 6, '0')) AS pid,
         0 AS training_indirect_reach_monthly,
