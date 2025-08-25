@@ -91,16 +91,58 @@ SELECT
     rp.registered_patient_gender,
     rp.diagnosis,
     rp.registered_mobile_no::VARCHAR AS registered_mobile_no,
-    DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')))::TEXT AS calculated_age,
-    CASE 
-        WHEN rp.date_of_birth IS NULL THEN NULL
-        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 0 AND 3 THEN 'Group A: 0-3'
-        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 3.1 AND 6 THEN 'Group B: 3.1-6'
-        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 6.1 AND 9 THEN 'Group C: 6.1-9'
-        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 9.1 AND 14 THEN 'Group D: 9.1-14'
-        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 14.1 AND 19 THEN 'Group E: 14.1-19'
-        WHEN DATE_PART('year', AGE(NOW(), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) BETWEEN 19.1 AND 24 THEN 'Group F: 19.1-24'
-        ELSE 'Group G: 24.1 and above'
+    CASE
+        WHEN rp.date_of_birth IS NOT NULL AND cd.consultation_date IS NOT NULL THEN
+            CASE
+                WHEN TO_DATE(rp.date_of_birth, 'DD/MM/YYYY') < cd.consultation_date THEN
+                    -- Use consultation_date
+                    CASE
+                        WHEN EXTRACT(MONTH FROM cd.consultation_date) >= 4 THEN
+                            CONCAT('31/03/', EXTRACT(YEAR FROM cd.consultation_date) + 1)
+                        ELSE
+                            CONCAT('31/03/', EXTRACT(YEAR FROM cd.consultation_date))
+                    END
+                WHEN EXTRACT(YEAR FROM TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')) = EXTRACT(YEAR FROM cd.consultation_date) THEN
+                    -- Same year: use max month
+                    CASE
+                        WHEN GREATEST(EXTRACT(MONTH FROM TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')), EXTRACT(MONTH FROM cd.consultation_date)) > 4 THEN
+                            CONCAT('31/03/', EXTRACT(YEAR FROM TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')) + 1)
+                        ELSE
+                            CONCAT('31/03/', EXTRACT(YEAR FROM TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')))
+                    END
+                ELSE
+                    -- Different years: use later date
+                    CASE
+                        WHEN EXTRACT(MONTH FROM 
+                            CASE 
+                                WHEN EXTRACT(YEAR FROM TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')) > EXTRACT(YEAR FROM cd.consultation_date) 
+                                THEN TO_DATE(rp.date_of_birth, 'DD/MM/YYYY') 
+                                ELSE cd.consultation_date 
+                            END
+                        ) > 4 THEN
+                            CONCAT('31/03/', GREATEST(EXTRACT(YEAR FROM TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')), EXTRACT(YEAR FROM cd.consultation_date)) + 1)
+                        ELSE
+                            CONCAT('31/03/', GREATEST(EXTRACT(YEAR FROM TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')), EXTRACT(YEAR FROM cd.consultation_date)))
+                    END
+            END
+        ELSE NULL
+    END::DATE AS fiscal_year_end_date,    
+    DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')))::TEXT AS calculated_age,
+    CASE
+        WHEN rp.date_of_birth IS NULL OR fiscal_year_end_date IS NULL THEN NULL
+        ELSE
+            CASE
+                WHEN DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) < 2 
+                THEN 'Group A: 0 ≤ age < 2'
+                WHEN DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) >= 2 AND DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) < 4 THEN 'Group B: 2 ≤ age < 4'
+                WHEN DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) >= 4 AND DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) < 6 THEN 'Group C: 4 ≤ age < 6'
+                WHEN DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) >= 6 AND DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) < 10 THEN 'Group D: 6 ≤ age < 10'
+                WHEN DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) >= 10 AND DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) < 12 THEN 'Group E: 10 ≤ age < 12'
+                WHEN DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) >= 12 AND DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) < 14 THEN 'Group F: 12 ≤ age < 14'
+                WHEN DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) >= 14 AND DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) < 16 THEN 'Group G: 14 ≤ age < 16'
+                WHEN DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) >= 16 AND DATE_PART('year', AGE(TO_DATE(fiscal_year_end_date), TO_DATE(rp.date_of_birth, 'DD/MM/YYYY'))) < 18 THEN 'Group H: 16 ≤ age < 18'
+                ELSE 'Group I: 18 and above'
+            END
     END AS age_group,
     rp.parent_guardian_phone,
     rp.parent_guardian_age,
