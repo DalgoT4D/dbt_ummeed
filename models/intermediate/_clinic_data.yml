@@ -103,7 +103,7 @@ models:
         description: Fiscal year end date based on date of birth and consultation date
       - name: calculated_age
         data_type: text
-        description: Calculated age based on date of birth
+        description: Calculated age based on date of birth and fiscal year end date
       - name: age_group
         data_type: text
         description: Age group classification

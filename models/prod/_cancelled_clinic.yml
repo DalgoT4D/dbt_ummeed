@@ -74,7 +74,7 @@ models:
         description: Mobile number of the registered patient
         data_type: character varying
       - name: calculated_age
-        description: Calculated age based on date of birth
+        description: Calculated age based on date of birth and fiscal year end date
         data_type: text
       - name: age_group
         description: Age group classification
