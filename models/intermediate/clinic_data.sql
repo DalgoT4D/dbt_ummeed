@@ -203,7 +203,7 @@ SELECT
                     AND DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) < 16 
                     THEN 'Group H: 14 ≤ age < 16'
                 WHEN DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) >= 16 
-                    AND DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_end_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) < 18 
+                    AND DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) < 18 
                     THEN 'Group I: 16 ≤ age < 18'
                 ELSE 'Group J: 18 and above'
             END
