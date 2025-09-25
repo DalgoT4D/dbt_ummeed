@@ -1,0 +1,3 @@
+[console_scripts]
+dbt-osmosis=dbt_osmosis.main:cli
+
