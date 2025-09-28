@@ -92,38 +92,12 @@ BASE_CLINIC_DATA AS (
         rp.diagnosis,
         rp.registered_mobile_no::VARCHAR AS registered_mobile_no,
         CASE
-            WHEN rp.date_of_birth IS NOT NULL AND cd.consultation_date IS NOT NULL THEN
+            WHEN cd.consultation_date IS NOT NULL THEN
                 CASE
-                    WHEN TO_DATE(rp.date_of_birth, 'DD/MM/YYYY') < cd.consultation_date THEN
-                        -- Use consultation_date
-                        CASE
-                            WHEN EXTRACT(MONTH FROM cd.consultation_date) >= 4 THEN
-                                CONCAT('01/04/', EXTRACT(YEAR FROM cd.consultation_date) + 1)
-                            ELSE
-                                CONCAT('01/04/', EXTRACT(YEAR FROM cd.consultation_date))
-                        END
-                    WHEN EXTRACT(YEAR FROM TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')) = EXTRACT(YEAR FROM cd.consultation_date) THEN
-                        -- Same year: use max month
-                        CASE
-                            WHEN GREATEST(EXTRACT(MONTH FROM TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')), EXTRACT(MONTH FROM cd.consultation_date)) > 4 THEN
-                                CONCAT('01/04/', EXTRACT(YEAR FROM TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')) + 1)
-                            ELSE
-                                CONCAT('01/04//', EXTRACT(YEAR FROM TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')))
-                        END
+                    WHEN EXTRACT(MONTH FROM cd.consultation_date) >= 4 THEN
+                        CONCAT('01/04/', EXTRACT(YEAR FROM cd.consultation_date))
                     ELSE
-                        -- Different years: use later date
-                        CASE
-                            WHEN EXTRACT(MONTH FROM 
-                                CASE 
-                                    WHEN EXTRACT(YEAR FROM TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')) > EXTRACT(YEAR FROM cd.consultation_date) 
-                                    THEN TO_DATE(rp.date_of_birth, 'DD/MM/YYYY') 
-                                    ELSE cd.consultation_date 
-                                END
-                            ) > 4 THEN
-                                CONCAT('01/04/', GREATEST(EXTRACT(YEAR FROM TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')), EXTRACT(YEAR FROM cd.consultation_date)) + 1)
-                            ELSE
-                                CONCAT('01/04/', GREATEST(EXTRACT(YEAR FROM TO_DATE(rp.date_of_birth, 'DD/MM/YYYY')), EXTRACT(YEAR FROM cd.consultation_date)))
-                        END
+                        CONCAT('01/04/', EXTRACT(YEAR FROM cd.consultation_date) - 1)
                 END
             ELSE NULL
         END AS fiscal_year_start_date,    
@@ -173,7 +147,10 @@ BASE_CLINIC_DATA AS (
 
 SELECT 
     *,
-    DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date, 'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY')))::TEXT AS calculated_age,
+    CASE
+        WHEN TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY') > TO_DATE(bcd.fiscal_year_start_date, 'DD/MM/YYYY') THEN '0'
+        ELSE DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date, 'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY')))::TEXT
+    END AS calculated_age,
 
     CASE
         WHEN bcd.date_of_birth IS NULL OR bcd.fiscal_year_start_date IS NULL THEN NULL

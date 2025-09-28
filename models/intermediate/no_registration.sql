@@ -27,6 +27,7 @@ SELECT
     jsonb_extract_path_text(content.value, 'participantCount')::INTEGER AS participant_count,
     jsonb_extract_path_text(content.value, 'participantCategory') AS participant_category,
     -- 0 integer value is to ensure that schema remains consistent for total_participant_disagg because indirect reach is calculated for registered participants
-    0 AS training_indirect_reach_monthly
+    0 AS training_indirect_reach_monthly,
+    'Not Available' AS participant_gender
 FROM source_data AS sd,
     LATERAL jsonb_array_elements(sd."unregisteredCount"->'content') AS content

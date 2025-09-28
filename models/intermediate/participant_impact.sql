@@ -3,7 +3,7 @@
 SELECT
     "pId" AS pid, 
     city,
-    gender,
+    gender AS participant_gender,
     taluka,
     "departmentName" AS department,
     "CreatedOn" AS created_on,

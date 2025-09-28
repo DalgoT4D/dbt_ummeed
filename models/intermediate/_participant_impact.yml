@@ -11,9 +11,9 @@ models:
       - name: city
         data_type: character varying
         description: City of the participant
-      - name: gender
+      - name: participant_gender
         data_type: character varying
-        description: Gender of the participant
+        description: Gender of the participant.
       - name: taluka
         data_type: character varying
         description: Taluka of the participant
