@@ -47,3 +47,6 @@ models:
       - name: training_indirect_reach_monthly
         data_type: integer
         description: Monthly indirect reach through training.
+      - name: participant_gender
+        data_type: text
+        description: Gender of the participant.
