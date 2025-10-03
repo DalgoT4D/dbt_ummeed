@@ -8,7 +8,7 @@ SELECT
     p.state_name AS state, 
     p.department,
     iso."ISO Code" AS iso_code,
-    p.gender,
+    p.participant_gender,
     p.course_name,
     p.course_category,
     p.course_short_name,
