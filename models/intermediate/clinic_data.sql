@@ -44,7 +44,7 @@ registered_patient AS (
         dob AS date_of_birth,
         mrno,
         registered_patient_gender,
-        REPLACE(diagnosis, '?', '''') AS diagnosis,
+        diagnosis,
         mobile_no AS registered_mobile_no,
         pat_idn_no,
         guardian_pin,
@@ -174,15 +174,9 @@ SELECT
                     AND DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) < 12 
                     THEN 'Group F: 10 ≤ age < 12'
                 WHEN DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) >= 12 
-                    AND DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) < 14 
-                    THEN 'Group G: 12 ≤ age < 14'
-                WHEN DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) >= 14 
-                    AND DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) < 16 
-                    THEN 'Group H: 14 ≤ age < 16'
-                WHEN DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) >= 16 
-                    AND DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) < 18 
-                    THEN 'Group I: 16 ≤ age < 18'
-                ELSE 'Group J: 18 and above'
+                    AND DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) < 15 
+                    THEN 'Group G: 12 ≤ age < 15'
+                ELSE 'Group H: 15 and above'
             END
     END AS age_group
 
