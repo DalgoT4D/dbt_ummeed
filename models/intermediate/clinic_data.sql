@@ -44,7 +44,7 @@ registered_patient AS (
         dob AS date_of_birth,
         mrno,
         registered_patient_gender,
-        diagnosis,
+        REPLACE(diagnosis, '?', '''') AS diagnosis,
         mobile_no AS registered_mobile_no,
         pat_idn_no,
         guardian_pin,
