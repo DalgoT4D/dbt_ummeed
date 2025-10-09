@@ -57,24 +57,35 @@ WITH base_data AS (
         financial_year,
         month,
         quarter,
-        -- Generate session_id using row_number
-        ROW_NUMBER() OVER (ORDER BY s_no, mrno, consultation_date) AS session_id
+        s_no AS session_id
     FROM {{ ref('clinic_bay_mgmt') }}
 ),
 
--- Split diagnosis while respecting parentheses
-diagnosis_split AS (
+-- Records with diagnosis to split
+records_with_diagnosis AS (
     SELECT 
         *,
-        -- Use regex to split on commas that are not within parentheses
-        -- This regex looks for commas followed by optional spaces that are not preceded by an unclosed parenthesis
-        REGEXP_SPLIT_TO_TABLE(
-            original_diagnosis, 
-            ',(?![^()]*\))'
-        ) AS diagnosis
+        REGEXP_SPLIT_TO_TABLE(original_diagnosis, ',(?![^()]*\))') AS diagnosis
     FROM base_data
     WHERE original_diagnosis IS NOT NULL 
     AND TRIM(original_diagnosis) != ''
+),
+
+-- Records without diagnosis to preserve
+records_without_diagnosis AS (
+    SELECT 
+        *,
+        NULL AS diagnosis
+    FROM base_data
+    WHERE original_diagnosis IS NULL 
+    OR TRIM(original_diagnosis) = ''
+),
+
+-- Combine both sets
+diagnosis_split AS (
+    SELECT * FROM records_with_diagnosis
+    UNION ALL
+    SELECT * FROM records_without_diagnosis
 ),
 
 -- Clean up the split diagnoses and remove duplicates
@@ -138,7 +149,6 @@ cleaned_diagnosis AS (
         quarter,
         session_id
     FROM diagnosis_split
-    WHERE TRIM(diagnosis) != ''
 ),
 
 -- Remove duplicate diagnoses for the same session
