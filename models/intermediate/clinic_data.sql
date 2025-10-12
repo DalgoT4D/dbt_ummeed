@@ -173,3 +173,6 @@ SELECT
     END AS age_group
 FROM CBD_And_Calculated_Age AS cca
 )
+SELECT
+    *
+FROM Complete_Clinic_Data;
