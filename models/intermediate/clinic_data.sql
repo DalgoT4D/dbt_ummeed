@@ -149,14 +149,14 @@ SELECT
     *,
     CASE
         WHEN bcd.date_of_birth IS NULL OR bcd.fiscal_year_start_date IS NULL THEN NULL
-        WHEN TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY') > TO_DATE(bcd.consultation_date, 'DD/MM/YYYY') THEN 0.00
+        WHEN TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY')::DATE > bcd.consultation_date::DATE THEN CAST(0.00 AS NUMERIC)
         ELSE ROUND(
             (
-                (TO_DATE(bcd.fiscal_year_start_date, 'DD/MM/YYYY') - TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))::numeric
-                / 365.25
+                (TO_DATE(bcd.fiscal_year_start_date, 'DD/MM/YYYY')::DATE - TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY')::DATE)::NUMERIC
+                / CAST(365.25 AS NUMERIC)
             ),
             2
-        )
+        )::NUMERIC
     END AS calculated_age
 FROM BASE_CLINIC_DATA AS bcd
 ),
