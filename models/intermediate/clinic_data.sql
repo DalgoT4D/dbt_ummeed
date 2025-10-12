@@ -143,41 +143,33 @@ BASE_CLINIC_DATA AS (
         ON cd.department = dda.department
     LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_doctor_level_mapping') }} AS ddlm
         ON cd.doctor = ddlm.doctor
-)
-
+),
+CBD_And_Calculated_Age AS (
 SELECT 
     *,
     CASE
-        WHEN TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY') > TO_DATE(bcd.fiscal_year_start_date, 'DD/MM/YYYY') THEN '0'
-        ELSE DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date, 'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY')))::TEXT
-    END AS calculated_age,
-
-    CASE
         WHEN bcd.date_of_birth IS NULL OR bcd.fiscal_year_start_date IS NULL THEN NULL
-        ELSE
-            CASE
-                WHEN DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) < 2 
-                    THEN 'Group A: 0 ≤ age < 2'
-                WHEN DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) >= 2 
-                    AND DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) < 4 
-                    THEN 'Group B: 2 ≤ age < 4'
-                WHEN DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) >= 4 
-                    AND DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) < 6 
-                    THEN 'Group C: 4 ≤ age < 6'
-                WHEN DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) >= 6 
-                    AND DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) < 8 
-                    THEN 'Group D: 6 ≤ age < 8'
-                WHEN DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) >= 8 
-                    AND DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) < 10 
-                    THEN 'Group E: 8 ≤ age < 10'
-                WHEN DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) >= 10 
-                    AND DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) < 12 
-                    THEN 'Group F: 10 ≤ age < 12'
-                WHEN DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) >= 12 
-                    AND DATE_PART('year', AGE(TO_DATE(bcd.fiscal_year_start_date,'DD/MM/YYYY'), TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))) < 15 
-                    THEN 'Group G: 12 ≤ age < 15'
-                ELSE 'Group H: 15 and above'
-            END
+        WHEN TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY') > TO_DATE(bcd.consultation_date, 'DD/MM/YYYY') THEN 0.00
+        ELSE ROUND(
+            (
+                (TO_DATE(bcd.fiscal_year_start_date, 'DD/MM/YYYY') - TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY'))::numeric
+                / 365.25
+            ),
+            2
+        )
+    END AS calculated_age
+FROM BASE_CLINIC_DATA AS bcd),
+Complete_Clinic_Data AS (
+SELECT
+    *,
+    CASE
+        WHEN calculated_age IS NULL THEN NULL
+        WHEN calculated_age >= 0    AND calculated_age <= 2.99  THEN 'Group A: 0 to 2'
+        WHEN calculated_age >= 3    AND calculated_age <= 5.99  THEN 'Group B: 3 to 5'
+        WHEN calculated_age >= 6    AND calculated_age <= 8.99  THEN 'Group C: 6 to 8'
+        WHEN calculated_age >= 9    AND calculated_age <= 11.99 THEN 'Group D: 9 to 11'
+        WHEN calculated_age >= 12   AND calculated_age <= 15.99 THEN 'Group E: 13 to 15'
+        ELSE 'Group F: 16 and Above'
     END AS age_group
-
-FROM BASE_CLINIC_DATA as bcd
+FROM CBD_And_Calculated_Age AS cca
+)

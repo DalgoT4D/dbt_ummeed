@@ -10,6 +10,7 @@ WITH participant_impact_clean AS (
         course_name,
         course_short_name,
         course_category,
+        program_short_name,
         CASE 
             WHEN LOWER(reg_attending_program) LIKE '%parent%' 
                 OR LOWER(reg_attending_program) LIKE '%grandparent%' 
@@ -73,6 +74,7 @@ no_registrations_expanded AS (
         course_name,
         course_short_name,
         course_category,
+        program_short_name,
         CASE 
             WHEN LOWER(participant_category) LIKE '%parent%' 
             OR LOWER(participant_category) LIKE '%grandparent%' 
