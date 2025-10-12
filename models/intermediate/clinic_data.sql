@@ -171,8 +171,8 @@ SELECT
         WHEN calculated_age >= 12   AND calculated_age <= 15.99 THEN 'Group E: 13 to 15'
         ELSE 'Group F: 16 and Above'
     END AS age_group
-FROM CBD_And_Calculated_Age AS cca
-)
+FROM CBD_And_Calculated_Age AS cca),
+
 SELECT
     *
 FROM Complete_Clinic_Data;
