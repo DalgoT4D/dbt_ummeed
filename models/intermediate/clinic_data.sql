@@ -82,7 +82,7 @@ registered_patient AS (
         service_center_name
     FROM {{ ref('registered_patient') }}
 ),
-BASE_CLINIC_DATA AS (
+Base_Clinic_Data AS (
     SELECT 
         cd.*,
         rp.registered_patient_id,
@@ -132,7 +132,7 @@ BASE_CLINIC_DATA AS (
         ctm."New Classification" AS consultation_category,  -- Mapped from dim_consultation_type_mapping
         CONCAT_WS(' ', dda.acronym, ctm."New Classification") AS dep_consult_category,  -- Acronym + Consultation Category
         dda.acronym AS dep_shortened,
-        ddlm.doctor_level AS doctor_level  -- Mapped from dim_doctor_level_mapping
+        ddlm.doctor_level  -- Mapped from dim_doctor_level_mapping
 
     FROM clinic_data AS cd
     LEFT JOIN registered_patient AS rp
@@ -158,7 +158,7 @@ SELECT
             2
         )::NUMERIC
     END AS calculated_age
-FROM BASE_CLINIC_DATA AS bcd
+FROM Base_Clinic_Data AS bcd
 ),
 
 Complete_Clinic_Data AS (

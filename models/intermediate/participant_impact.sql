@@ -50,20 +50,18 @@ SELECT
     "regNonWorkingMonth" AS working_with_people_devdelay_montly,
     CASE
         WHEN LOWER("regNonWorkingMonth") = 'none' THEN 0
-
         WHEN LOWER("regNonWorkingMonth") LIKE 'greater than %' THEN 
             CAST(
                 REGEXP_REPLACE(LOWER("regNonWorkingMonth"), '^greater than\s+(\d+).*$', '\1')
                 AS INTEGER
             )
-
-        WHEN "regNonWorkingMonth" LIKE '%-%' THEN ROUND(
+        WHEN "regNonWorkingMonth" LIKE '%-%' THEN
+            ROUND(
             (
                 CAST(LTRIM(SPLIT_PART(TRIM("regNonWorkingMonth"), '-', 1), '0') AS INTEGER) +
                 CAST(LTRIM(SPLIT_PART(TRIM("regNonWorkingMonth"), '-', 2), '0') AS INTEGER)
             ) / 2.0
-        )::INTEGER
-
+            )::INTEGER
         ELSE 0
     END::INTEGER AS training_indirect_reach_monthly,
     "childBirthDateinfo1" AS child_birth_date_info1,

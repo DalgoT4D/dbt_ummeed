@@ -11,7 +11,8 @@ WITH participant_impact_clean AS (
         course_short_name,
         course_category,
         program_short_name,
-        CASE 
+        CASE
+         
             WHEN LOWER(reg_attending_program) LIKE '%parent%' 
                 OR LOWER(reg_attending_program) LIKE '%grandparent%' 
                 OR LOWER(reg_attending_program) LIKE '%sibling%' 
