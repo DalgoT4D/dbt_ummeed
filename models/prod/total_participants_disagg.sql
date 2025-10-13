@@ -32,7 +32,13 @@ WITH participant_impact_clean AS (
             ELSE 'Other'
         END AS participant_category,  
         pid,
-        COALESCE(NULLIF(TRIM(participant_gender), ''), 'Not Available') AS participant_gender,
+        CASE
+            WHEN participant_gender IS NULL OR TRIM(participant_gender) = '' THEN 'Not Available'
+            WHEN LOWER(TRIM(participant_gender)) ~ '^(m|male|man|boy|cis[- ]?male)$' THEN 'Male'
+            WHEN LOWER(TRIM(participant_gender)) ~ '^(f|female|woman|girl|cis[- ]?female)$' THEN 'Female'
+            WHEN LOWER(TRIM(participant_gender)) ~ '(prefer not|prefer not to|prefer not to say|prefer not to disclose|do not wish|dont want|decline|no response|not disclose|rather not say)' THEN 'Prefer Not To Mention'
+            ELSE 'Other'
+        END AS participant_gender,
         training_indirect_reach_monthly,
         'participant_impact' AS source,
 
@@ -97,7 +103,13 @@ no_registrations_expanded AS (
         END AS participant_category,
         -- Generate a unique `pid` for each missing participant, ensuring it's a string
         CONCAT('nr_', LPAD((ROW_NUMBER() OVER ())::TEXT, 6, '0')) AS pid,
-        COALESCE(NULLIF(TRIM(participant_gender), ''), 'Not Available') AS participant_gender,
+        CASE
+            WHEN participant_gender IS NULL OR TRIM(participant_gender) = '' THEN 'Not Available'
+            WHEN LOWER(TRIM(participant_gender)) ~ '^(m|male|man|boy|cis[- ]?male)$' THEN 'Male'
+            WHEN LOWER(TRIM(participant_gender)) ~ '^(f|female|woman|girl|cis[- ]?female)$' THEN 'Female'
+            WHEN LOWER(TRIM(participant_gender)) ~ '(prefer not|prefer not to|prefer not to say|prefer not to disclose|do not wish|dont want|decline|no response|not disclose|rather not say)' THEN 'Prefer Not To Mention'
+            ELSE 'Other'
+        END AS participant_gender,
         0 AS training_indirect_reach_monthly,
         'no_registrations' AS source,
         -- Calculate Financial Year

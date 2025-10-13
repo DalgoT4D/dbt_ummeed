@@ -166,11 +166,11 @@ SELECT
     *,
     CASE
         WHEN calculated_age IS NULL THEN NULL
-        WHEN calculated_age >= 0    AND calculated_age <= 2.99  THEN 'Group A: 0 to 2'
-        WHEN calculated_age >= 3    AND calculated_age <= 5.99  THEN 'Group B: 3 to 5'
-        WHEN calculated_age >= 6    AND calculated_age <= 8.99  THEN 'Group C: 6 to 8'
-        WHEN calculated_age >= 9    AND calculated_age <= 11.99 THEN 'Group D: 9 to 11'
-        WHEN calculated_age >= 12   AND calculated_age <= 15.99 THEN 'Group E: 13 to 15'
+        WHEN calculated_age >= 0    AND calculated_age <= 3.99  THEN 'Group A: 0 to 3'
+        WHEN calculated_age >= 4    AND calculated_age <= 6.99  THEN 'Group B: 4 to 6'
+        WHEN calculated_age >= 7    AND calculated_age <= 9.99  THEN 'Group C: 7 to 9'
+        WHEN calculated_age >= 10    AND calculated_age <= 12.99 THEN 'Group D: 10 to 12'
+        WHEN calculated_age >= 13   AND calculated_age <= 15.99 THEN 'Group E: 13 to 15'
         ELSE 'Group F: 16 and Above'
     END AS age_group
 FROM CBD_And_Calculated_Age AS cca)
