@@ -25,7 +25,7 @@ WITH clinic_data AS (
         registered_patient_gender,
         diagnosis,
         registered_mobile_no,
-        calculated_age,
+        calculated_age::TEXT,
         age_group,
         who_brought_the_child,
         location_category,

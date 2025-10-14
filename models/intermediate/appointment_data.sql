@@ -63,16 +63,14 @@ WITH appointment_data AS(
     END AS cancellation_reason,
 
     NULLIF(slotstarttime, '') AS slot_start_time,
-    TO_TIMESTAMP(eventvalidfrom, 'Mon DD, YYYY HH12:MI:SS PM') AS event_valid_from,
-    TO_TIMESTAMP(eventvalidto, 'Mon DD, YYYY HH12:MI:SS PM') AS event_valid_to
+    TO_TIMESTAMP(NULLIF(eventvalidfrom, ''), 'Mon DD, YYYY HH12:MI:SS PM') AS event_valid_from,
+    TO_TIMESTAMP(NULLIF(eventvalidto, ''), 'Mon DD, YYYY HH12:MI:SS PM') AS event_valid_to
 
 FROM {{ source('source_ummeed_ict_health', 'appointment_details') }} AS appointment_data
 )
 SELECT 
     ad.*,
-    ddlm.doctor_level AS doctor_level  -- Mapped from dim_doctor_level_mapping
+    ddlm.doctor_level  -- Mapped from dim_doctor_level_mapping
 FROM appointment_data AS ad
 LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_doctor_level_mapping') }} AS ddlm
-    ON ad.doctor = ddlm.doctor
-
-
+    ON TRIM(LOWER(ad.doctor)) = TRIM(LOWER(ddlm.doctor))
