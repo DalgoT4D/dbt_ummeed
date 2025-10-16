@@ -44,7 +44,7 @@ registered_patient AS (
         dob AS date_of_birth,
         mrno,
         registered_patient_gender,
-        diagnosis,
+        REPLACE(diagnosis, '?', '''') AS diagnosis,
         mobile_no AS registered_mobile_no,
         pat_idn_no,
         guardian_pin,
@@ -149,6 +149,7 @@ SELECT
     *,
     CASE
         WHEN bcd.date_of_birth IS NULL OR bcd.fiscal_year_start_date IS NULL THEN NULL
+        WHEN TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY')::DATE > TO_DATE(bcd.fiscal_year_start_date, 'DD/MM/YYYY')::DATE THEN CAST(0.00 AS NUMERIC)
         WHEN TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY')::DATE > bcd.consultation_date::DATE THEN CAST(0.00 AS NUMERIC)
         ELSE ROUND(
             (
