@@ -626,3 +626,10 @@ sources:
           - name: _airbyte_meta
             data_type: jsonb
             description: Metadata related to Airbyte extraction
+
+  - name: staging_lookup
+    schema: staging_lookup
+    tables:
+      - name: org_mapping
+        identifier: Org_Mapping___Sheet1
+        description: registered patient on ICT health app

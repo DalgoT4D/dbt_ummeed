@@ -13,6 +13,7 @@ SELECT
     p.course_category,
     p.course_short_name,
     p.organisation_name,
+    p.standardized_org_name,
     COALESCE(p.reg_attending_program, 'Not Available') AS reg_attending_program,
     p.working_with_people_devdelay_montly, 
     CASE
@@ -60,7 +61,7 @@ SELECT
             THEN 'Q3'
     END AS quarter
 
-FROM intermediate.participant_impact AS p
+FROM {{ ref('participant_impact') }} AS p
 LEFT JOIN 
     prod.india_states_iso AS iso
     ON 

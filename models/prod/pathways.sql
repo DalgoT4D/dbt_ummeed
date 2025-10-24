@@ -30,6 +30,7 @@ WITH cleaned_clinic_data AS (
         TO_CHAR(consultation_date, 'Month')::TEXT AS month,
         NULL::TEXT AS course_name,  
         NULL::TEXT AS course_category,
+        NULL::TEXT AS standardized_org_name,
         CASE 
             WHEN EXTRACT(MONTH FROM consultation_date) BETWEEN 1 AND 3 
                 THEN 'Q4'
@@ -52,6 +53,7 @@ matched_synergy AS (
         sp.primary_contact AS mobile_no,
         sp.course_name,
         sp.course_category,
+        sp.standardized_org_name,
         TO_CHAR(cd.consultation_date, 'Month')::TEXT AS month,
         cd.patient_name,
         sp.department,
@@ -112,6 +114,7 @@ expanded_synergy AS (
         ms.month,
         ms.course_name,
         ms.course_category,
+        ms.standardized_org_name,
         ms.quarter
     FROM matched_synergy AS ms
 )
