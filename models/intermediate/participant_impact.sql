@@ -79,5 +79,8 @@ SELECT
     contactedbyemailinfuture AS contacted_by_email_in_future,
     permissioninterviewedpost AS permission_interviewed_post,
     permissiontousephotovideos AS permission_to_use_photo_videos,
-    whereyouhearaboutprogcourtext AS where_you_hear_about_prog_course_text
-FROM {{ source('source_ummeed_synergy_connect', 'participant_impact') }}
+    whereyouhearaboutprogcourtext AS where_you_hear_about_prog_course_text,
+    org_lookup.standardized_name AS standardized_org_name
+FROM {{ source('source_ummeed_synergy_connect', 'participant_impact') }} pi
+LEFT JOIN {{ source('staging_lookup', 'org_mapping') }} org_lookup
+    ON LOWER(TRIM(pi."orgnisationName")) = LOWER(TRIM(org_lookup.organization_name))

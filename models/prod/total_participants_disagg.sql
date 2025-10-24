@@ -41,6 +41,7 @@ WITH participant_impact_clean AS (
             ELSE 'Other'
         END AS participant_gender,
         training_indirect_reach_monthly,
+        standardized_org_name,
         'participant_impact' AS source,
 
         -- Calculate Financial Year
@@ -112,6 +113,7 @@ no_registrations_expanded AS (
             ELSE 'Other'
         END AS participant_gender,
         0 AS training_indirect_reach_monthly,
+        NULL::TEXT AS standardized_org_name,
         'no_registrations' AS source,
         -- Calculate Financial Year
         CASE 
