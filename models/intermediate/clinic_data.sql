@@ -87,7 +87,11 @@ promotions as (
     select
         doctor_name,
         doctor_level,
-        promotion_date
+        promotion_date,
+        lead(promotion_date) over (
+            partition by doctor_name 
+            order by promotion_date
+        ) as next_promotion_date
     from {{ source('source_ummeed_ict_health', 'dim_doctor_level_mapping')}}    
 ),
 
@@ -141,11 +145,7 @@ Base_Clinic_Data AS (
         ctm."New Classification" AS consultation_category,  -- Mapped from dim_consultation_type_mapping
         CONCAT_WS(' ', dda.acronym, ctm."New Classification") AS dep_consult_category,  -- Acronym + Consultation Category
         dda.acronym AS dep_shortened,
-        ddlm.doctor_level,  -- Mapped from dim_doctor_level_mapping
-        row_number() over (
-        partition by cd.doctor, cd.consultation_date
-            order by ddlm.promotion_date desc
-        ) as rn
+        p.doctor_level,  -- Mapped from promotion CTE
     FROM clinic_data AS cd
     LEFT JOIN registered_patient AS rp
         ON cd.mrno = rp.mrno
@@ -153,10 +153,15 @@ Base_Clinic_Data AS (
         ON cd.consultation_type = ctm."Consultation Type"
     LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_department_acronym') }} AS dda
         ON cd.department = dda.department
-    LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_doctor_level_mapping') }} AS ddlm
-        ON cd.doctor = ddlm.doctor_name 
-        AND ddlm.promotion_date <= cd.consultation_date
+    JOIN promotions AS p
+        ON cd.doctor = p.doctor_name 
+        AND cd.consultation_date >= p.promotion_date
+     and (
+          cd.consultation_date < p.next_promotion_date
+          or p.next_promotion_date is null
+     )
 ),
+
 CBD_And_Calculated_Age AS (
 SELECT 
     *,
@@ -174,7 +179,6 @@ SELECT
         )::NUMERIC
     END AS calculated_age
 FROM Base_Clinic_Data AS bcd
-WHERE rn = 1 or rn is NULL
 ),
 
 Complete_Clinic_Data AS (
