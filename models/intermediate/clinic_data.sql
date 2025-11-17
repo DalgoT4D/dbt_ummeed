@@ -145,7 +145,7 @@ Base_Clinic_Data AS (
         ctm."New Classification" AS consultation_category,  -- Mapped from dim_consultation_type_mapping
         CONCAT_WS(' ', dda.acronym, ctm."New Classification") AS dep_consult_category,  -- Acronym + Consultation Category
         dda.acronym AS dep_shortened,
-        p.doctor_level,  -- Mapped from promotion CTE
+        p.doctor_level  -- Mapped from promotion CTE
     FROM clinic_data AS cd
     LEFT JOIN registered_patient AS rp
         ON cd.mrno = rp.mrno
