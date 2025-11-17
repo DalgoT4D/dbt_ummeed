@@ -82,6 +82,15 @@ registered_patient AS (
         service_center_name
     FROM {{ ref('registered_patient') }}
 ),
+
+promotions as (
+    select
+        doctor_name,
+        doctor_level,
+        promotion_date
+    from {{ source('ict_health_staging', 'dim_doctor_level_mapping')}}    
+),
+
 Base_Clinic_Data AS (
     SELECT 
         cd.*,
@@ -132,8 +141,11 @@ Base_Clinic_Data AS (
         ctm."New Classification" AS consultation_category,  -- Mapped from dim_consultation_type_mapping
         CONCAT_WS(' ', dda.acronym, ctm."New Classification") AS dep_consult_category,  -- Acronym + Consultation Category
         dda.acronym AS dep_shortened,
-        ddlm.doctor_level  -- Mapped from dim_doctor_level_mapping
-
+        ddlm.doctor_level,  -- Mapped from dim_doctor_level_mapping
+        row_number() over (
+        partition by cd.doctor_name, cd.consultation_date
+            order by ddlm.promotion_date desc
+        ) as rn
     FROM clinic_data AS cd
     LEFT JOIN registered_patient AS rp
         ON cd.mrno = rp.mrno
@@ -142,11 +154,13 @@ Base_Clinic_Data AS (
     LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_department_acronym') }} AS dda
         ON cd.department = dda.department
     LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_doctor_level_mapping') }} AS ddlm
-        ON cd.doctor = ddlm.doctor
+        ON cd.doctor = ddlm.doctor_NAME 
+        AND ddlm.promotion_date <= cd.consultation_date
 ),
 CBD_And_Calculated_Age AS (
 SELECT 
     *,
+    coalesce(doctore_level, 'L0') as doctor_level,
     CASE
         WHEN bcd.date_of_birth IS NULL OR bcd.fiscal_year_start_date IS NULL THEN NULL
         WHEN TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY')::DATE > TO_DATE(bcd.fiscal_year_start_date, 'DD/MM/YYYY')::DATE THEN CAST(0.00 AS NUMERIC)
@@ -160,6 +174,7 @@ SELECT
         )::NUMERIC
     END AS calculated_age
 FROM Base_Clinic_Data AS bcd
+WHERE rn = 1 rn is NULL
 ),
 
 Complete_Clinic_Data AS (

@@ -357,15 +357,22 @@ sources:
             description: Classification category for consultation types.
       - name: dim_doctor_level_mapping
         identifier: dim_doctor_level_mapping
-        description: doctor levels mapped to their category
+        description: doctor levels mapped to the names based on promotion dates
         
         columns:
-          - name: doctor
+          - name: id
+            data_type: integer
+            description: Unique identifier for each doctor level record.
+          - name: doctor_name
             data_type: text
             description: Name of the doctor
           - name: doctor_level
             data_type: text
             description: Level of the doctor, indicating their expertise or position.
+          - name: promotion_date
+            data_type: date
+            description: Date when the doctor was promoted to the current level.
+
   - name: source_ummeed_synergy_connect
     schema: staging_synergy_connect
     tables:
