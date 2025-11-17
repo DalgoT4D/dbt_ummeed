@@ -366,7 +366,7 @@ sources:
           - name: doctor_name
             data_type: text
             description: Name of the doctor
-          - name: doctor_level
+          - name: doctor_lvl
             data_type: text
             description: Level of the doctor, indicating their expertise or position.
           - name: promotion_date
