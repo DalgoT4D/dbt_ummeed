@@ -143,7 +143,7 @@ Base_Clinic_Data AS (
         dda.acronym AS dep_shortened,
         ddlm.doctor_level,  -- Mapped from dim_doctor_level_mapping
         row_number() over (
-        partition by cd.doctor_name, cd.consultation_date
+        partition by cd.doctor, cd.consultation_date
             order by ddlm.promotion_date desc
         ) as rn
     FROM clinic_data AS cd
@@ -174,7 +174,7 @@ SELECT
         )::NUMERIC
     END AS calculated_age
 FROM Base_Clinic_Data AS bcd
-WHERE rn = 1 rn is NULL
+WHERE rn = 1 or rn is NULL
 ),
 
 Complete_Clinic_Data AS (

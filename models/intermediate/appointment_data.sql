@@ -73,4 +73,4 @@ SELECT
     ddlm.doctor_level  -- Mapped from dim_doctor_level_mapping
 FROM appointment_data AS ad
 LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_doctor_level_mapping') }} AS ddlm
-    ON TRIM(LOWER(ad.doctor)) = TRIM(LOWER(ddlm.doctor))
+    ON TRIM(LOWER(ad.doctor)) = TRIM(LOWER(ddlm.doctor_name))
