@@ -154,7 +154,7 @@ Base_Clinic_Data AS (
     LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_department_acronym') }} AS dda
         ON cd.department = dda.department
     LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_doctor_level_mapping') }} AS ddlm
-        ON cd.doctor = ddlm.doctor_NAME 
+        ON cd.doctor = ddlm.doctor_name 
         AND ddlm.promotion_date <= cd.consultation_date
 ),
 CBD_And_Calculated_Age AS (
