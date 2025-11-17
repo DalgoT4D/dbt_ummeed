@@ -88,7 +88,7 @@ promotions as (
         doctor_name,
         doctor_level,
         promotion_date
-    from {{ source('ict_health_staging', 'dim_doctor_level_mapping')}}    
+    from {{ source('source_ummeed_ict_health', 'dim_doctor_level_mapping')}}    
 ),
 
 Base_Clinic_Data AS (
