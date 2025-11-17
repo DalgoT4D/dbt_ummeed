@@ -153,12 +153,12 @@ Base_Clinic_Data AS (
         ON cd.consultation_type = ctm."Consultation Type"
     LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_department_acronym') }} AS dda
         ON cd.department = dda.department
-    JOIN promotions AS p
+    LEFT JOIN promotions AS p
         ON cd.doctor = p.doctor_name 
         AND cd.consultation_date >= p.promotion_date
-     and (
-          cd.consultation_date < p.next_promotion_date
-          or p.next_promotion_date is null
+        AND (
+          p.next_promotion_date is NULL 
+          OR cd.consultation_date < p.next_promotion_date
      )
 ),
 
