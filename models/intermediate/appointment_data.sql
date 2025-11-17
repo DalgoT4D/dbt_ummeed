@@ -67,10 +67,26 @@ WITH appointment_data AS(
     TO_TIMESTAMP(NULLIF(eventvalidto, ''), 'Mon DD, YYYY HH12:MI:SS PM') AS event_valid_to
 
 FROM {{ source('source_ummeed_ict_health', 'appointment_details') }} AS appointment_data
+),
+promotions as (
+    select
+        doctor_name,
+        doctor_lvl,
+        promotion_date,
+        lead(promotion_date) over (
+            partition by doctor_name 
+            order by promotion_date
+        ) as next_promotion_date
+    from {{ source('source_ummeed_ict_health', 'dim_doctor_level_mapping')}}    
 )
 SELECT 
     ad.*,
-    ddlm.doctor_lvl  -- Mapped from dim_doctor_level_mapping
+    COALESCE(p.doctor_lvl, 'L0') AS doctor_level  -- Mapped from dim_doctor_level_mapping
 FROM appointment_data AS ad
-LEFT JOIN {{ source('source_ummeed_ict_health', 'dim_doctor_level_mapping') }} AS ddlm
-    ON TRIM(LOWER(ad.doctor)) = TRIM(LOWER(ddlm.doctor_name))
+LEFT JOIN promotions AS p
+        ON ad.doctor = p.doctor_name 
+        AND ad.created_date >= p.promotion_date
+        AND (
+          p.next_promotion_date is NULL 
+          OR ad.created_date < p.next_promotion_date
+     )
