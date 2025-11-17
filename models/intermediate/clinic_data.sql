@@ -166,7 +166,7 @@ Base_Clinic_Data AS (
 CBD_And_Calculated_Age AS (
 SELECT 
     *,
-    COALESCE(p.doctor_level, 'L0') AS doctor_lvl
+    COALESCE(p.doctor_level, 'L0') AS doctor_lvl,
     CASE
         WHEN bcd.date_of_birth IS NULL OR bcd.fiscal_year_start_date IS NULL THEN NULL
         WHEN TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY')::DATE > TO_DATE(bcd.fiscal_year_start_date, 'DD/MM/YYYY')::DATE THEN CAST(0.00 AS NUMERIC)
