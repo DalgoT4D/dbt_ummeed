@@ -159,7 +159,7 @@ Base_Clinic_Data AS (
         AND cd.consultation_date >= p.promotion_date
         AND (
           p.next_promotion_date is NULL 
-          OR cd.consultation_date < p.next_promotion_date
+          OR cd.consultation_date <= p.next_promotion_date
      )
 ),
 
