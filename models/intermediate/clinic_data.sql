@@ -188,7 +188,7 @@ SELECT
     )::NUMERIC AS actual_age,
     ROUND(
         (
-            (current_date::DATE- TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY')::DATE)::NUMERIC
+            (TO_DATE(current_date, 'DD/MM/YYYY')::DATE- TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY')::DATE)::NUMERIC
             / CAST(365.25 AS NUMERIC)
         ),
         2
