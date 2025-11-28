@@ -63,7 +63,10 @@ matched_synergy AS (
         cd.date_of_birth,
         cd.diagnosis,
         --cd.calculated_age,
-        ROUND((TO_DATE(sp.start_date, 'DD/MM/YYYY')::DATE - TO_DATE(cd.date_of_birth, 'DD/MM/YYYY')::DATE)::NUMERIC/ CAST(365.25 AS NUMERIC)), 2)::NUMERIC AS actual_age,
+        ROUND(
+            (sp.start_date - TO_DATE(cd.date_of_birth, 'DD/MM/YYYY')::DATE)::NUMERIC / CAST(365.25 AS NUMERIC), 
+            2
+        )::NUMERIC AS actual_age,
         cd.age_group,
         cd.pat_idn_no,
         cd.patient_income,
