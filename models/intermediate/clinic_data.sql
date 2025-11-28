@@ -181,14 +181,14 @@ SELECT
     END AS calculated_age,
     ROUND(
         (
-            (TO_DATE(bcd.consultation_date, 'DD/MM/YYYY')::DATE - TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY')::DATE)::NUMERIC
+            ((bcd.consultation_date, 'DD/MM/YYYY')::DATE - TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY')::DATE)::NUMERIC
             / CAST(365.25 AS NUMERIC)
         ),
         2
     )::NUMERIC AS actual_age,
     ROUND(
         (
-            (TO_DATE(current_date, 'DD/MM/YYYY')::DATE- TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY')::DATE)::NUMERIC
+            ((current_date, 'DD/MM/YYYY')::DATE- TO_DATE(bcd.date_of_birth, 'DD/MM/YYYY')::DATE)::NUMERIC
             / CAST(365.25 AS NUMERIC)
         ),
         2
