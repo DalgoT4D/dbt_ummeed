@@ -30,6 +30,8 @@ SELECT
     diagnosis,
     registered_mobile_no,
     calculated_age,
+    actual_age,
+    present_age,
     age_group,
     parent_guardian_phone,
     parent_guardian_age,
