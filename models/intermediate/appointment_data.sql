@@ -68,6 +68,7 @@ WITH appointment_data AS(
 
 FROM {{ source('source_ummeed_ict_health', 'appointment_details') }} AS appointment_data
 ),
+
 promotions as (
     select
         doctor_name,
@@ -79,9 +80,10 @@ promotions as (
         ) as next_promotion_date
     from {{ source('source_ummeed_ict_health', 'dim_doctor_level_mapping')}}    
 )
+
 SELECT 
     ad.*,
-    COALESCE(p.doctor_lvl, 'L0') AS doctor_level  -- Mapped from dim_doctor_level_mapping
+    COALESCE(p.doctor_lvl, 'Not Available') AS doctor_level  -- Mapped from dim_doctor_level_mapping
 FROM appointment_data AS ad
 LEFT JOIN promotions AS p
         ON ad.doctor = p.doctor_name 

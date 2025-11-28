@@ -104,6 +104,12 @@ models:
       - name: calculated_age
         data_type: text
         description: Calculated age based on date of birth and fiscal year end date
+      - name: actual_age
+        data_type: text
+        description: Actual age based on date of birth and consultation date
+      - name: present_age
+        data_type: text
+        description: Present age based on date of birth and current date
       - name: age_group
         data_type: text
         description: Age group classification
