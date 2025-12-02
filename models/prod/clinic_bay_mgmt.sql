@@ -83,5 +83,6 @@ SELECT
 
 FROM {{ ref('clinic_data') }}
 WHERE 
-    TRIM(patient_name) <> 'Dummy Ummeed'
+--    TRIM(patient_name) <> 'Dummy Ummeed'
+    TRIM(patient_name) NOT ILIKE '%Dummy%'
     AND consultation_type NOT IN ('Internal Review', 'Phone/Email Query', 'UPPA Fees')
