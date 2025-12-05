@@ -176,6 +176,9 @@ models:
       - name: dep_shortened
         data_type: text
         description: Acronym representing a department
+      - name: reg_type_based_on_current_fy
+        data_type: text
+        description: Category of the registration type based on ongoing fiscal year
       - name: year
         data_tests:
           - not_null

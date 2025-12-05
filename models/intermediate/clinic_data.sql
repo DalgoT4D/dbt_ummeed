@@ -193,7 +193,6 @@ SELECT
         ),
         2
     )::NUMERIC AS present_age,
-    -- registration_type: New Registration when MRN is 7 digits and its YYMM falls in the fiscal year
     -- registration_type based on CURRENT_DATE fiscal year span (Apr 1 .. Mar 31)
     CASE
         WHEN bcd.mrno IS NULL THEN 'Old Registration'
@@ -212,7 +211,7 @@ SELECT
                  END), 'YYMM')::INT
         THEN 'New Registration'
         ELSE 'Old Registration'
-    END AS registration_type
+    END AS reg_type_based_on_current_fy
 
 FROM Base_Clinic_Data AS bcd
 ),

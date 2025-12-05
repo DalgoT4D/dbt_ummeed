@@ -54,7 +54,7 @@ SELECT
     consultation_category, 
     dep_consult_category, 
     dep_shortened,
-    registration_type,
+    reg_type_based_on_current_fy,
     EXTRACT(YEAR FROM consultation_date) AS year,
     -- Calculate Financial Year
     CASE 
