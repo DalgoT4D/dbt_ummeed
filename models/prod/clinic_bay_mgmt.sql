@@ -54,6 +54,7 @@ SELECT
     consultation_category, 
     dep_consult_category, 
     dep_shortened,
+    registration_type,
     EXTRACT(YEAR FROM consultation_date) AS year,
     -- Calculate Financial Year
     CASE 
@@ -83,6 +84,6 @@ SELECT
 
 FROM {{ ref('clinic_data') }}
 WHERE 
---    TRIM(patient_name) <> 'Dummy Ummeed'
+--  TRIM(patient_name) <> 'Dummy Ummeed'
     TRIM(patient_name) NOT ILIKE '%Dummy%'
     AND consultation_type NOT IN ('Internal Review', 'Phone/Email Query', 'UPPA Fees')

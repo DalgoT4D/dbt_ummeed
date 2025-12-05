@@ -192,7 +192,28 @@ SELECT
             / CAST(365.25 AS NUMERIC)
         ),
         2
-    )::NUMERIC AS present_age
+    )::NUMERIC AS present_age,
+    -- registration_type: New Registration when MRN is 7 digits and its YYMM falls in the fiscal year
+    -- registration_type based on CURRENT_DATE fiscal year span (Apr 1 .. Mar 31)
+    CASE
+        WHEN bcd.mrno IS NULL THEN 'Old Registration'
+        WHEN NOT (bcd.mrno ~ '^\d{7}$') THEN 'Old Registration'
+        WHEN LEFT(bcd.mrno, 4)::INT BETWEEN
+            TO_CHAR(
+                (CASE WHEN EXTRACT(MONTH FROM CURRENT_DATE) >= 4
+                      THEN TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE)), 'DD/MM/YYYY')
+                      ELSE TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE) - 1), 'DD/MM/YYYY')
+                 END), 'YYMM')::INT
+            AND
+            TO_CHAR(
+                (CASE WHEN EXTRACT(MONTH FROM CURRENT_DATE) >= 4
+                      THEN (TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE)), 'DD/MM/YYYY') + INTERVAL '11 months')
+                      ELSE (TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE) - 1), 'DD/MM/YYYY') + INTERVAL '11 months')
+                 END), 'YYMM')::INT
+        THEN 'New Registration'
+        ELSE 'Old Registration'
+    END AS registration_type
+
 FROM Base_Clinic_Data AS bcd
 ),
 
