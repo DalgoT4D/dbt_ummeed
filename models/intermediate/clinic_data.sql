@@ -13,14 +13,17 @@ WITH clinic_data AS (
         -- Cleaned doctor name value by removing titles, salutations and extra spaces
         -- The regex removes common titles like Dr., Miss, Ms., Mr., Mrs., and Mister
         REGEXP_REPLACE(
+            TRIM(
             REGEXP_REPLACE(
-                TRIM(
-                    REGEXP_REPLACE(doctor, '(?i)(^|\s)(dr\.?|miss|ms\.?|mr\.?|mister|mrs\.?)(\s|$)', ' ')
-                ),
-                '\s+', ' '
+                REGEXP_REPLACE(doctor, '(?i)(^|\s)(dr\.?|miss|ms\.?|mr\.?|mister|mrs\.?)(\s|$)', ' ', 'g'),
+                '[^A-Za-z0-9\s]', ' ', 'g'
+            )
             ),
-            '^\s+|\s+$', ''
+            '\s+', ' ',
+            'g'
         )::VARCHAR AS doctor,
+
+
         TO_DATE(consultationrequestdate, 'DD-MON-YY') AS consultation_date,
         REPLACE(appointmenttype,'?', '-') AS consultation_type,
         unit,
@@ -192,7 +195,27 @@ SELECT
             / CAST(365.25 AS NUMERIC)
         ),
         2
-    )::NUMERIC AS present_age
+    )::NUMERIC AS present_age,
+    -- registration_type based on CURRENT_DATE fiscal year span (Apr 1 .. Mar 31)
+    CASE
+        WHEN bcd.mrno IS NULL THEN 'Old Registration'
+        WHEN NOT (bcd.mrno ~ '^\d{7}$') THEN 'Old Registration'
+        WHEN LEFT(bcd.mrno, 4)::INT BETWEEN
+            TO_CHAR(
+                (CASE WHEN EXTRACT(MONTH FROM CURRENT_DATE) >= 4
+                      THEN TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE)), 'DD/MM/YYYY')
+                      ELSE TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE) - 1), 'DD/MM/YYYY')
+                 END), 'YYMM')::INT
+            AND
+            TO_CHAR(
+                (CASE WHEN EXTRACT(MONTH FROM CURRENT_DATE) >= 4
+                      THEN (TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE)), 'DD/MM/YYYY') + INTERVAL '11 months')
+                      ELSE (TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE) - 1), 'DD/MM/YYYY') + INTERVAL '11 months')
+                 END), 'YYMM')::INT
+        THEN 'New Registration'
+        ELSE 'Old Registration'
+    END AS reg_type_based_on_current_fy
+
 FROM Base_Clinic_Data AS bcd
 ),
 

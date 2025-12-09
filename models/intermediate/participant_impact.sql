@@ -1,6 +1,7 @@
 {{ config(materialized='table') }}
 
-SELECT
+WITH BASE_REG_PARTICIPANT_DATA AS 
+(SELECT DISTINCT
     "pId" AS pid, 
     city,
     gender AS participant_gender,
@@ -48,22 +49,6 @@ SELECT
     "secondaryContact" AS secondary_contact,
     "relationWithChild" AS relation_with_child,
     "regNonWorkingMonth" AS working_with_people_devdelay_montly,
-    CASE
-        WHEN LOWER("regNonWorkingMonth") = 'none' THEN 0
-        WHEN LOWER("regNonWorkingMonth") LIKE 'greater than %' THEN 
-            CAST(
-                REGEXP_REPLACE(LOWER("regNonWorkingMonth"), '^greater than\s+(\d+).*$', '\1')
-                AS INTEGER
-            )
-        WHEN "regNonWorkingMonth" LIKE '%-%' THEN
-            ROUND(
-            (
-                CAST(LTRIM(SPLIT_PART(TRIM("regNonWorkingMonth"), '-', 1), '0') AS INTEGER) +
-                CAST(LTRIM(SPLIT_PART(TRIM("regNonWorkingMonth"), '-', 2), '0') AS INTEGER)
-            ) / 2.0
-            )::INTEGER
-        ELSE 0
-    END::INTEGER AS training_indirect_reach_monthly,
     "childBirthDateinfo1" AS child_birth_date_info1,
     "childBirthDateinfo2" AS child_birth_date_info2,
     "childBirthDateinfo3" AS child_birth_date_info3,
@@ -84,3 +69,25 @@ SELECT
 FROM {{ source('source_ummeed_synergy_connect', 'participant_impact') }} pi
 LEFT JOIN {{ source('staging_lookup', 'org_mapping') }} org_lookup
     ON LOWER(TRIM(pi."orgnisationName")) = LOWER(TRIM(org_lookup.organization_name))
+)
+
+SELECT 
+    *,
+    CASE
+        WHEN LOWER(brpd."working_with_people_devdelay_montly") = 'none' THEN 0
+        WHEN LOWER(brpd."working_with_people_devdelay_montly") LIKE 'greater than %' THEN 
+            CAST(
+                REGEXP_REPLACE(LOWER(brpd."working_with_people_devdelay_montly"), '^greater than\s+(\d+).*$', '\1')
+                AS INTEGER
+            )
+        WHEN brpd."working_with_people_devdelay_montly" LIKE '%-%' THEN
+            ROUND(
+            (
+                CAST(LTRIM(SPLIT_PART(TRIM(brpd."working_with_people_devdelay_montly"), '-', 1), '0') AS INTEGER) +
+                CAST(LTRIM(SPLIT_PART(TRIM(brpd."working_with_people_devdelay_montly"), '-', 2), '0') AS INTEGER)
+            ) / 2.0
+            )::INTEGER
+        ELSE 0
+    END::INTEGER AS training_indirect_reach_monthly
+FROM BASE_REG_PARTICIPANT_DATA AS brpd
+    
