@@ -74,20 +74,20 @@ LEFT JOIN {{ source('staging_lookup', 'org_mapping') }} org_lookup
 SELECT 
     *,
     CASE
-        WHEN LOWER("regNonWorkingMonth") = 'none' THEN 0
-        WHEN LOWER("regNonWorkingMonth") LIKE 'greater than %' THEN 
+        WHEN LOWER(brpd."regNonWorkingMonth") = 'none' THEN 0
+        WHEN LOWER(brpd."regNonWorkingMonth") LIKE 'greater than %' THEN 
             CAST(
-                REGEXP_REPLACE(LOWER("regNonWorkingMonth"), '^greater than\s+(\d+).*$', '\1')
+                REGEXP_REPLACE(LOWER(brpd"regNonWorkingMonth"), '^greater than\s+(\d+).*$', '\1')
                 AS INTEGER
             )
-        WHEN "regNonWorkingMonth" LIKE '%-%' THEN
+        WHEN brpd."regNonWorkingMonth" LIKE '%-%' THEN
             ROUND(
             (
-                CAST(LTRIM(SPLIT_PART(TRIM("regNonWorkingMonth"), '-', 1), '0') AS INTEGER) +
-                CAST(LTRIM(SPLIT_PART(TRIM("regNonWorkingMonth"), '-', 2), '0') AS INTEGER)
+                CAST(LTRIM(SPLIT_PART(TRIM(brpd."regNonWorkingMonth"), '-', 1), '0') AS INTEGER) +
+                CAST(LTRIM(SPLIT_PART(TRIM(brpd."regNonWorkingMonth"), '-', 2), '0') AS INTEGER)
             ) / 2.0
             )::INTEGER
         ELSE 0
     END::INTEGER AS training_indirect_reach_monthly
-FROM BASE_REG_PARTICIPANT_DATA
+FROM BASE_REG_PARTICIPANT_DATA AS brpd
     
