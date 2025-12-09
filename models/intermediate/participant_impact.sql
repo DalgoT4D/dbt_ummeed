@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 WITH BASE_REG_PARTICIPANT_DATA AS 
-(SELECT
+(SELECT DISTINCT
     "pId" AS pid, 
     city,
     gender AS participant_gender,
