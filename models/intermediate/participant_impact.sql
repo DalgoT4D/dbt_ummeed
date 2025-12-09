@@ -74,17 +74,17 @@ LEFT JOIN {{ source('staging_lookup', 'org_mapping') }} org_lookup
 SELECT 
     *,
     CASE
-        WHEN LOWER(brpd."regNonWorkingMonth") = 'none' THEN 0
-        WHEN LOWER(brpd."regNonWorkingMonth") LIKE 'greater than %' THEN 
+        WHEN LOWER(brpd."working_with_people_devdelay_montly") = 'none' THEN 0
+        WHEN LOWER(brpd."working_with_people_devdelay_montly") LIKE 'greater than %' THEN 
             CAST(
-                REGEXP_REPLACE(LOWER(brpd."regNonWorkingMonth"), '^greater than\s+(\d+).*$', '\1')
+                REGEXP_REPLACE(LOWER(brpd."working_with_people_devdelay_montly"), '^greater than\s+(\d+).*$', '\1')
                 AS INTEGER
             )
-        WHEN brpd."regNonWorkingMonth" LIKE '%-%' THEN
+        WHEN brpd."working_with_people_devdelay_montly" LIKE '%-%' THEN
             ROUND(
             (
-                CAST(LTRIM(SPLIT_PART(TRIM(brpd."regNonWorkingMonth"), '-', 1), '0') AS INTEGER) +
-                CAST(LTRIM(SPLIT_PART(TRIM(brpd."regNonWorkingMonth"), '-', 2), '0') AS INTEGER)
+                CAST(LTRIM(SPLIT_PART(TRIM(brpd."working_with_people_devdelay_montly"), '-', 1), '0') AS INTEGER) +
+                CAST(LTRIM(SPLIT_PART(TRIM(brpd."working_with_people_devdelay_montly"), '-', 2), '0') AS INTEGER)
             ) / 2.0
             )::INTEGER
         ELSE 0
