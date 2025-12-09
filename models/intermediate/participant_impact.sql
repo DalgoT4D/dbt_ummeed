@@ -77,7 +77,7 @@ SELECT
         WHEN LOWER(brpd."regNonWorkingMonth") = 'none' THEN 0
         WHEN LOWER(brpd."regNonWorkingMonth") LIKE 'greater than %' THEN 
             CAST(
-                REGEXP_REPLACE(LOWER(brpd"regNonWorkingMonth"), '^greater than\s+(\d+).*$', '\1')
+                REGEXP_REPLACE(LOWER(brpd."regNonWorkingMonth"), '^greater than\s+(\d+).*$', '\1')
                 AS INTEGER
             )
         WHEN brpd."regNonWorkingMonth" LIKE '%-%' THEN
