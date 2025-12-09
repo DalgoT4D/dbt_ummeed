@@ -69,7 +69,7 @@ WITH BASE_REG_PARTICIPANT_DATA AS
 FROM {{ source('source_ummeed_synergy_connect', 'participant_impact') }} pi
 LEFT JOIN {{ source('staging_lookup', 'org_mapping') }} org_lookup
     ON LOWER(TRIM(pi."orgnisationName")) = LOWER(TRIM(org_lookup.organization_name))
-),
+)
 
 SELECT 
     *,
