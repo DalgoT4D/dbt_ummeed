@@ -196,25 +196,20 @@ SELECT
         ),
         2
     )::NUMERIC AS present_age,
-    -- registration_type based on CURRENT_DATE fiscal year span (Apr 1 .. Mar 31)
     CASE
-        WHEN bcd.mrno IS NULL THEN 'Old Registration'
-        WHEN NOT (bcd.mrno ~ '^\d{7}$') THEN 'Old Registration'
-        WHEN LEFT(bcd.mrno, 4)::INT BETWEEN
-            TO_CHAR(
-                (CASE WHEN EXTRACT(MONTH FROM CURRENT_DATE) >= 4
-                      THEN TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE)), 'DD/MM/YYYY')
-                      ELSE TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE) - 1), 'DD/MM/YYYY')
-                 END), 'YYMM')::INT
-            AND
-            TO_CHAR(
-                (CASE WHEN EXTRACT(MONTH FROM CURRENT_DATE) >= 4
-                      THEN (TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE)), 'DD/MM/YYYY') + INTERVAL '11 months')
-                      ELSE (TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE) - 1), 'DD/MM/YYYY') + INTERVAL '11 months')
-                 END), 'YYMM')::INT
-        THEN 'New Registration'
-        ELSE 'Old Registration'
-    END AS reg_type_based_on_current_fy
+        WHEN bcd.mrno IS NULL OR LENGTH(bcd.mrno) < 7 THEN 'RegOld'
+        WHEN NOT (bcd.mrno ~ '^\d{7}$') THEN 'RegOld'
+        ELSE
+            CASE
+                -- If month (characters 3-4) >= 04, fiscal year is YY to YY+1
+                WHEN CAST(SUBSTR(bcd.mrno, 3, 2) AS INT) >= 4 THEN
+                    'Reg' || SUBSTR(bcd.mrno, 1, 2) || '-' || LPAD(CAST(CAST(SUBSTR(bcd.mrno, 1, 2) AS INT) + 1 AS VARCHAR), 2, '0')
+                -- If month (characters 3-4) < 04, fiscal year is YY-1 to YY
+                WHEN CAST(SUBSTR(bcd.mrno, 3, 2) AS INT) < 4 THEN
+                    'Reg' || LPAD(CAST(CAST(SUBSTR(bcd.mrno, 1, 2) AS INT) - 1 AS VARCHAR), 2, '0') || '-' || SUBSTR(bcd.mrno, 1, 2)
+                ELSE 'RegOld'
+            END
+        END AS registration_year
 
 FROM Base_Clinic_Data AS bcd
 ),
