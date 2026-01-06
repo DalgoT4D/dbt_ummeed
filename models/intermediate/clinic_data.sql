@@ -77,7 +77,7 @@ registered_patient AS (
         END AS who_brought_the_child,
         plan_name,
         is_processed::TEXT,
-        updated_date,
+        updated_date::DATE AS updated_date,
         inserted_date::DATE AS inserted_date,
         identity_type,
         patient_income,
@@ -166,7 +166,7 @@ Base_Clinic_Data AS (
      )
 ),
 
-CBD_And_Calculated_Age AS (
+CBD_And_Age_Calculations_And_RegFiscalYear AS (
 SELECT 
     *,
     COALESCE(doctor_lvl, 'Not Available') AS doctor_level,
@@ -196,6 +196,8 @@ SELECT
         ),
         2
     )::NUMERIC AS present_age,
+
+         -- registration_fiscalyear based on mrno format 'YYMMXXX'
     CASE
         WHEN bcd.mrno IS NULL OR LENGTH(bcd.mrno) < 7 THEN 'RegOld'
         WHEN NOT (bcd.mrno ~ '^\d{7}$') THEN 'RegOld'
@@ -209,8 +211,27 @@ SELECT
                     'Reg' || LPAD(CAST(CAST(SUBSTR(bcd.mrno, 1, 2) AS INT) - 1 AS VARCHAR), 2, '0') || '-' || SUBSTR(bcd.mrno, 1, 2)
                 ELSE 'RegOld'
             END
-        END AS registration_year
+        END AS registration_fiscalyear,
 
+        -- registration_type based on CURRENT_DATE fiscal year span (Apr 1 .. Mar 31)
+    CASE
+        WHEN bcd.mrno IS NULL THEN 'Old Registration'
+        WHEN NOT (bcd.mrno ~ '^\d{7}$') THEN 'Old Registration'
+        WHEN LEFT(bcd.mrno, 4)::INT BETWEEN
+            TO_CHAR(
+                (CASE WHEN EXTRACT(MONTH FROM CURRENT_DATE) >= 4
+                      THEN TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE)), 'DD/MM/YYYY')
+                      ELSE TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE) - 1), 'DD/MM/YYYY')
+                 END), 'YYMM')::INT
+            AND
+            TO_CHAR(
+                (CASE WHEN EXTRACT(MONTH FROM CURRENT_DATE) >= 4
+                      THEN (TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE)), 'DD/MM/YYYY') + INTERVAL '11 months')
+                      ELSE (TO_DATE(CONCAT('01/04/', EXTRACT(YEAR FROM CURRENT_DATE) - 1), 'DD/MM/YYYY') + INTERVAL '11 months')
+                 END), 'YYMM')::INT
+        THEN 'New Registration'
+        ELSE 'Old Registration'
+    END AS reg_type_based_on_current_fy
 FROM Base_Clinic_Data AS bcd
 ),
 
@@ -226,7 +247,7 @@ SELECT
         WHEN calculated_age >= 13   AND calculated_age <= 15.99 THEN 'Group E: 13 to 15'
         ELSE 'Group F: 16 and Above'
     END AS age_group
-FROM CBD_And_Calculated_Age AS cca)
+FROM CBD_And_Age_Calculations_And_RegFiscalYear AS cbdacrfy)
 
 SELECT
     *
