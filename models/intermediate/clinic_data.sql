@@ -77,7 +77,7 @@ registered_patient AS (
         END AS who_brought_the_child,
         plan_name,
         is_processed::TEXT,
-        updated_date::DATE AS updated_date,
+        updated_date,
         inserted_date::DATE AS inserted_date,
         identity_type,
         patient_income,

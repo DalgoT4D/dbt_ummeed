@@ -149,7 +149,7 @@ cleaned_diagnosis AS (
         dep_consult_category,
         dep_shortened,
         registration_fiscalyear,
-        reg_type_based_on_current_fy
+        reg_type_based_on_current_fy,
         year,
         financial_year,
         month,
