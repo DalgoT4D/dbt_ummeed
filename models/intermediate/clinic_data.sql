@@ -166,7 +166,7 @@ Base_Clinic_Data AS (
      )
 ),
 
-CBD_And_Calculated_Age AS (
+CBD_And_Age_Calculations_And_RegFiscalYear AS (
 SELECT 
     *,
     COALESCE(doctor_lvl, 'Not Available') AS doctor_level,
@@ -196,7 +196,24 @@ SELECT
         ),
         2
     )::NUMERIC AS present_age,
-    -- registration_type based on CURRENT_DATE fiscal year span (Apr 1 .. Mar 31)
+
+         -- registration_fiscalyear based on mrno format 'YYMMXXX'
+    CASE
+        WHEN bcd.mrno IS NULL OR LENGTH(bcd.mrno) < 7 THEN 'RegOld'
+        WHEN NOT (bcd.mrno ~ '^\d{7}$') THEN 'RegOld'
+        ELSE
+            CASE
+                -- If month (characters 3-4) >= 04, fiscal year is YY to YY+1
+                WHEN CAST(SUBSTR(bcd.mrno, 3, 2) AS INT) >= 4 THEN
+                    'Reg' || SUBSTR(bcd.mrno, 1, 2) || '-' || LPAD(CAST(CAST(SUBSTR(bcd.mrno, 1, 2) AS INT) + 1 AS VARCHAR), 2, '0')
+                -- If month (characters 3-4) < 04, fiscal year is YY-1 to YY
+                WHEN CAST(SUBSTR(bcd.mrno, 3, 2) AS INT) < 4 THEN
+                    'Reg' || LPAD(CAST(CAST(SUBSTR(bcd.mrno, 1, 2) AS INT) - 1 AS VARCHAR), 2, '0') || '-' || SUBSTR(bcd.mrno, 1, 2)
+                ELSE 'RegOld'
+            END
+        END AS registration_fiscalyear,
+
+        -- registration_type based on CURRENT_DATE fiscal year span (Apr 1 .. Mar 31)
     CASE
         WHEN bcd.mrno IS NULL THEN 'Old Registration'
         WHEN NOT (bcd.mrno ~ '^\d{7}$') THEN 'Old Registration'
@@ -215,7 +232,6 @@ SELECT
         THEN 'New Registration'
         ELSE 'Old Registration'
     END AS reg_type_based_on_current_fy
-
 FROM Base_Clinic_Data AS bcd
 ),
 
@@ -231,7 +247,7 @@ SELECT
         WHEN calculated_age >= 13   AND calculated_age <= 15.99 THEN 'Group E: 13 to 15'
         ELSE 'Group F: 16 and Above'
     END AS age_group
-FROM CBD_And_Calculated_Age AS cca)
+FROM CBD_And_Age_Calculations_And_RegFiscalYear AS cbdacrfy)
 
 SELECT
     *

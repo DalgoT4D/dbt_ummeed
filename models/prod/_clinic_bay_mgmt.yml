@@ -175,7 +175,10 @@ models:
         description: Acronym and consultation category combined
       - name: dep_shortened
         data_type: text
-        description: Acronym representing a department
+        description: Acronym representing a department      
+      - name: registration_fiscalyear
+        data_type: text
+        description: The registration fiscal year
       - name: reg_type_based_on_current_fy
         data_type: text
         description: Category of the registration type based on ongoing fiscal year
