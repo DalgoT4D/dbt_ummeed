@@ -63,15 +63,6 @@ WITH appointment_data AS(
     --     ELSE 'Other'
     -- END AS cancelled_by,
 
-    -- Determine cancelled_by using cancel_code and event_status_MandE
-    CASE
-        WHEN event_status_MandE IN ('CANCEL', 'NO_SHOW') AND cancel_code IS NULL THEN NULL
-        WHEN event_status_MandE IN ('CANCEL', 'NO_SHOW') AND cancel_code LIKE 'PC%' THEN 'Patient Cancelled'
-        WHEN event_status_MandE IN ('CANCEL', 'NO_SHOW') AND cancel_code LIKE 'UC%' THEN 'Ummeed'
-        WHEN event_status_MandE IN ('CANCEL', 'NO_SHOW') THEN 'Other'
-        ELSE NULL
-    END AS cancelled_by,
-
     -- Extracting the actual cancellation reason without numbers
     CASE 
         WHEN cancelreason = 'Patient Cancelled 48 hours before appointment' THEN cancelreason
@@ -85,6 +76,19 @@ WITH appointment_data AS(
     TO_TIMESTAMP(NULLIF(eventvalidto, ''), 'Mon DD, YYYY HH12:MI:SS PM') AS event_valid_to
 
 FROM {{ source('source_ummeed_ict_health', 'appointment_details') }} AS appointment_data
+),
+
+appointment_data_with_cancelled_by AS (
+    SELECT
+        *,
+        CASE
+            WHEN event_status_MandE IN ('CANCEL', 'NO_SHOW') AND cancel_code IS NULL THEN NULL
+            WHEN event_status_MandE IN ('CANCEL', 'NO_SHOW') AND cancel_code LIKE 'PC%' THEN 'Patient Cancelled'
+            WHEN event_status_MandE IN ('CANCEL', 'NO_SHOW') AND cancel_code LIKE 'UC%' THEN 'Ummeed'
+            WHEN event_status_MandE IN ('CANCEL', 'NO_SHOW') THEN 'Other'
+            ELSE NULL
+        END AS cancelled_by
+    FROM appointment_data
 ),
 
 promotions as (
@@ -102,7 +106,7 @@ promotions as (
 SELECT 
     ad.*,
     COALESCE(p.doctor_lvl, 'Not Available') AS doctor_level  -- Mapped from dim_doctor_level_mapping
-FROM appointment_data AS ad
+FROM appointment_data_with_cancelled_by AS ad
 LEFT JOIN promotions AS p
         ON ad.doctor = p.doctor_name 
         AND ad.created_date >= p.promotion_date
