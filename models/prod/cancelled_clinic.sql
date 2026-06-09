@@ -111,8 +111,8 @@ filtered_appointments AS (
 
         -- Appointment-specific fields
         CASE 
-            WHEN LOWER(event_status) = 'cancel' THEN 'Cancel'
-            WHEN LOWER(event_status) = 'no_show' THEN 'No Show'
+            WHEN LOWER(event_status_MandE) = 'cancel' THEN 'Cancel'
+            WHEN LOWER(event_status_MandE) = 'no_show' THEN 'No Show'
             ELSE event_status
         END AS event_status,
         cancel_code,

@@ -17,6 +17,7 @@ SELECT
     department,
     created_date,
     event_status,
+    event_status_MandE,
     isprocessed,
     patient_name,
     slot_end_time,

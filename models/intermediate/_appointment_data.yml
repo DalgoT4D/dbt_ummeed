@@ -55,6 +55,9 @@ models:
       - name: event_status
         data_type: text
         description: Status of the event
+      - name: event_status_MandE
+        data_type: text
+        description: Modified event status for monitoring and evaluation purposes to incoroporate rescheduled appointments.
       - name: isprocessed
         data_type: character varying
         description: Indicates if the event has been processed

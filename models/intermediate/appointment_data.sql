@@ -30,13 +30,19 @@ WITH appointment_data AS(
     NULLIF(department, '')::VARCHAR AS department,
     NULLIF(createddate, '')::DATE AS created_date,
     NULLIF(eventstatus, '') AS event_status,
+    NULLIF(cancelreason, '') AS cancel_reason,
+    -- Helper column: if cancelled due to reschedule mark as RESCHEDULED else keep original status
+    CASE
+        WHEN NULLIF(eventstatus, '') = 'CANCEL' AND NULLIF(cancelreason, '') = 'Appointment Rescheduled' THEN 'RESCHEDULED'
+        ELSE NULLIF(eventstatus, '')
+    END AS event_status_MandE,
     isprocessed::VARCHAR,
     NULLIF(patientname, '') AS patient_name,
     NULLIF(slotendtime, '') AS slot_end_time,
     NULLIF(updateddate, '') AS updated_date,
 
     --Cancellation Logic
-
+    
     -- Extracting the cancel code (First two parts: 'XX - YY')
     CASE 
         WHEN cancelreason LIKE 'PC%' THEN TRIM(SPLIT_PART(cancelreason, '.', 1))
@@ -44,20 +50,23 @@ WITH appointment_data AS(
         WHEN cancelreason LIKE 'OC%' THEN TRIM(SPLIT_PART(cancelreason, '.', 1))
         WHEN cancelreason LIKE 'XC%' THEN TRIM(SPLIT_PART(cancelreason, '.', 1))
         WHEN cancelreason LIKE 'NS%' THEN TRIM(SPLIT_PART(cancelreason, '.', 1))
-        WHEN cancelreason = 'Patient Cancelled 48 hours before appointment' THEN 'PC' 
+        WHEN cancelreason = 'Patient Cancelled 48 hours before appointment' THEN 'PC'
+        WHEN cancelreason = 'Appointment Rescheduled' THEN 'AR'
+        ELSE NULL 
     END AS cancel_code,
 
     -- Identifying who cancelled the appointment (NULL if cancelreason is empty)
-    CASE 
-        WHEN cancelreason IS NULL OR TRIM(cancelreason) = '' THEN NULL
-        WHEN cancelreason LIKE 'UC%' THEN 'Ummeed'
-        WHEN cancelreason LIKE 'PC%' OR cancelreason = 'Patient Cancelled 48 hours before appointment' THEN 'Patient'
-        ELSE 'Other'
-    END AS cancelled_by,
+    -- CASE 
+    --     WHEN cancelreason IS NULL OR TRIM(cancelreason) = '' THEN NULL
+    --     WHEN cancelreason LIKE 'UC%' THEN 'Ummeed'
+    --     WHEN cancelreason LIKE 'PC%' OR cancelreason = 'Patient Cancelled 48 hours before appointment' THEN 'Patient'
+    --     ELSE 'Other'
+    -- END AS cancelled_by,
 
     -- Extracting the actual cancellation reason without numbers
     CASE 
         WHEN cancelreason = 'Patient Cancelled 48 hours before appointment' THEN cancelreason
+        WHEN cancelreason = 'Appointment Rescheduled' THEN cancelreason
         WHEN cancelreason IS NULL OR TRIM(cancelreason) = '' THEN NULL
         ELSE TRIM(REGEXP_REPLACE(SPLIT_PART(cancelreason, '- ', 2), '^\d+\.\s*', ''))
     END AS cancellation_reason,
@@ -67,6 +76,19 @@ WITH appointment_data AS(
     TO_TIMESTAMP(NULLIF(eventvalidto, ''), 'Mon DD, YYYY HH12:MI:SS PM') AS event_valid_to
 
 FROM {{ source('source_ummeed_ict_health', 'appointment_details') }} AS appointment_data
+),
+
+appointment_data_with_cancelled_by AS (
+    SELECT
+        *,
+        CASE
+            WHEN event_status_MandE IN ('CANCEL', 'NO_SHOW') AND cancel_code IS NULL THEN NULL
+            WHEN event_status_MandE IN ('CANCEL', 'NO_SHOW') AND cancel_code LIKE 'PC%' THEN 'Patient Cancelled'
+            WHEN event_status_MandE IN ('CANCEL', 'NO_SHOW') AND cancel_code LIKE 'UC%' THEN 'Ummeed'
+            WHEN event_status_MandE IN ('CANCEL', 'NO_SHOW') THEN 'Other'
+            ELSE NULL
+        END AS cancelled_by
+    FROM appointment_data
 ),
 
 promotions as (
@@ -84,7 +106,7 @@ promotions as (
 SELECT 
     ad.*,
     COALESCE(p.doctor_lvl, 'Not Available') AS doctor_level  -- Mapped from dim_doctor_level_mapping
-FROM appointment_data AS ad
+FROM appointment_data_with_cancelled_by AS ad
 LEFT JOIN promotions AS p
         ON ad.doctor = p.doctor_name 
         AND ad.created_date >= p.promotion_date
