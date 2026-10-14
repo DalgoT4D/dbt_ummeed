@@ -203,3 +203,6 @@ models:
         description: >-
           Represents the quarter of the year relevant to the clinic bay management activities.
         data_type: text
+      - name: diagnosis_classification
+        data_type: text
+        description: Classification of the diagnosis into broader categories

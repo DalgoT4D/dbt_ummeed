@@ -246,7 +246,19 @@ SELECT
         WHEN calculated_age >= 10    AND calculated_age <= 12.99 THEN 'Group D: 10 to 12'
         WHEN calculated_age >= 13   AND calculated_age <= 15.99 THEN 'Group E: 13 to 15'
         ELSE 'Group F: 16 and Above'
-    END AS age_group
+    END AS age_group,
+    CASE
+        WHEN diagnosis IS NULL OR TRIM(diagnosis) = ''
+            THEN 'Missing Diagnosis'
+
+        WHEN diagnosis ILIKE '%Autism Spectrum Disorder%'
+            THEN 'ASD'
+
+        WHEN diagnosis ILIKE '%ADHD%'
+            AND diagnosis NOT ILIKE '%Autism Spectrum Disorder%'
+            THEN 'ADHD'
+        ELSE 'Other Diagnoses'
+    END AS diagnosis_classification
 FROM CBD_And_Age_Calculations_And_RegFiscalYear AS cbdacrfy)
 
 SELECT

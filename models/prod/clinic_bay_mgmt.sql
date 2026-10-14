@@ -28,6 +28,7 @@ SELECT
     date_of_birth,
     registered_patient_gender,
     diagnosis,
+    diagnosis_classification,
     registered_mobile_no,
     calculated_age,
     actual_age,
