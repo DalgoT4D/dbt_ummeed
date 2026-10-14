@@ -185,3 +185,6 @@ models:
       - name: reg_type_based_on_current_fy
         data_type: text
         description: Category of the registration type based on ongoing fiscal year
+      - name: diagnosis_classification
+        data_type: text
+        description: Classification of the diagnosis into broader categories

@@ -13,6 +13,7 @@ WITH cleaned_clinic_data AS (
         consultation_type,
         date_of_birth,
         diagnosis,
+        diagnosis_classification,
         --calculated_age,
         actual_age,
         age_group,
@@ -63,6 +64,7 @@ matched_synergy AS (
         cd.patient_gender,
         cd.date_of_birth,
         cd.diagnosis,
+        cd.diagnosis_classification,
         --cd.calculated_age,
         ROUND(
             (sp.start_date - TO_DATE(cd.date_of_birth, 'DD/MM/YYYY')::DATE)::NUMERIC / CAST(365.25 AS NUMERIC), 
@@ -108,6 +110,7 @@ expanded_synergy AS (
         NULL::TEXT AS consultation_type,
         ms.date_of_birth,
         ms.diagnosis,
+        ms.diagnosis_classification,
         ms.actual_age,
         ms.age_group,
         ms.pat_idn_no,

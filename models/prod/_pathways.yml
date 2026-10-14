@@ -97,3 +97,6 @@ models:
       - name: source
         data_type: text
         description: Indicates the origin or source of the patient pathway data.
+      - name: diagnosis_classification
+        data_type: text
+        description: Classification of the diagnosis into broader categories
