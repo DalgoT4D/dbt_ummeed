@@ -10,7 +10,7 @@ WITH source_data AS (
         "departmentName",
         "courseShortName",
         "programShortName",
-        "mainaudience",
+        "mainAudience",
         "ecosystem",
         "unregisteredCount"  -- Case-sensitive reference
     FROM {{ source('source_ummeed_synergy_connect', 'no_registrations') }}
@@ -22,7 +22,7 @@ SELECT
     sd."endDateStr" AS end_date_str,
     sd."startDateStr" AS start_date_str,
     sd."courseCategory" AS course_category,
-    sd."mainaudience" AS main_audience,
+    sd."mainAudience" AS main_audience,
     sd."ecosystem" AS ecosystem,
     sd."departmentName" AS department,
     sd."courseShortName" AS course_short_name,
