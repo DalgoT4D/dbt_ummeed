@@ -50,3 +50,9 @@ models:
       - name: participant_gender
         data_type: text
         description: Gender of the participant.
+      - name: ecosystem
+        data_type: character varying
+        description: Ecosystem associated with the course
+      - name: main_audience
+        data_type: character varying
+        description: Main audience of the course

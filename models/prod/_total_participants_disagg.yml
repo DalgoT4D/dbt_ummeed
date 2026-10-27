@@ -62,3 +62,9 @@ models:
       - name: quarter
         description: Represents the fiscal quarter in which participant data is aggregated.
         data_type: text
+      - name: ecosystem
+        data_type: character varying
+        description: Ecosystem associated with the course
+      - name: main_audience
+        data_type: character varying
+        description: Main audience of the course
