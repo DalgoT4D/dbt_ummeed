@@ -11,6 +11,8 @@ SELECT
     p.participant_gender,
     p.course_name,
     p.course_category,
+    p.main_audience,
+    p.ecosystem,
     p.course_short_name,
     p.organisation_name,
     p.standardized_org_name,
